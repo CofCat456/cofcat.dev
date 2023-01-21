@@ -1,0 +1,5 @@
+# Contentlayer
+.contentlayer
+
+# Ignore contentlayer eslint errors
+contentLayerAdapter.js

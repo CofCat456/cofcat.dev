@@ -1,11 +1,21 @@
+import type { NextPage } from 'next';
 import Head from 'next/head';
-import { Inter } from '@next/font/google';
-import styles from '@/styles/Home.module.css';
 import Header from '@/components/Header';
 
-const inter = Inter({ subsets: ['latin'] });
+import { allPostsNewToOld, Post } from '@/lib/contentLayerAdapter';
 
-export default function Home() {
+import styles from '@/styles/Home.module.css';
+
+export function getStaticProps() {
+  const posts = allPostsNewToOld;
+  return { props: { posts } };
+}
+
+type Props = {
+  posts: Post[];
+};
+
+const Home: NextPage<Props> = ({ posts }) => {
   return (
     <>
       <Head>
@@ -15,7 +25,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={styles.main}></main>
+      <main className={styles.main}>
+        <div className={styles.grid}>
+          {posts.map((post) => (
+            <a key={post.slug} href={post.path} className={styles.card}>
+              <h2>{post.title}</h2>
+              <p>{post.description}</p>
+            </a>
+          ))}
+        </div>
+      </main>
     </>
   );
-}
+};
+
+export default Home;

@@ -1,8 +1,8 @@
-import { allPosts, Post } from 'contentlayer/generated';
+import { allPages, allPosts, Page, Post } from 'contentlayer/generated';
 import { defineDocumentType, defineNestedType, makeSource } from 'contentlayer/source-files';
 import { compareDesc } from 'date-fns';
 
-export { allPosts, defineDocumentType, defineNestedType, makeSource, Post };
+export { allPages, allPosts, defineDocumentType, defineNestedType, makeSource, Page, Post };
 
 export const allPostsNewToOld =
   allPosts?.sort((a, b) => {

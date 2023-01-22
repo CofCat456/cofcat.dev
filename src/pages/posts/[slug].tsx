@@ -48,8 +48,6 @@ const PostPage: NextPage<Props> = ({ post }) => {
       <main className={styles.main}>
         <h1 className={styles.title}>{post.title}</h1>
         <time dateTime={post.date}>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
-        // 替換掉 render html 的 div，改為 <MDXContent />
-        // <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
         <MDXContent />
       </main>
     </div>

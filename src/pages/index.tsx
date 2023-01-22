@@ -1,21 +1,22 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '@/components/Header';
-
-import { allPostsNewToOld, Post } from '@/lib/contentLayerAdapter';
-
-import styles from '@/styles/Home.module.css';
+import { useMDXComponent } from 'next-contentlayer/hooks';
+import { allPages, Page } from '@/lib/contentLayerAdapter';
+import AboutMe from '@/components/content/AboutMe';
+import AuthorLayout from '@/layouts/AuthorLayout';
 
 export function getStaticProps() {
-  const posts = allPostsNewToOld;
-  return { props: { posts } };
+  const page = allPages.find((page) => page.slug === 'about-me');
+  return { props: { page } };
 }
 
 type Props = {
-  posts: Post[];
+  page: Page;
 };
 
-const Home: NextPage<Props> = ({ posts }) => {
+const Home: NextPage<Props> = ({ page }) => {
+  const MDXContent = useMDXComponent(page.body.code);
   return (
     <>
       <Head>
@@ -25,14 +26,14 @@ const Home: NextPage<Props> = ({ posts }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={styles.main}>
-        <div className={styles.grid}>
-          {posts.map((post) => (
-            <a key={post.slug} href={post.path} className={styles.card}>
-              <h2>{post.title}</h2>
-              <p>{post.description}</p>
-            </a>
-          ))}
+      <main className="dark:text-cc-dak-text mt-16 bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text">
+        <div className="mx-auto h-screen  max-w-screen-xl px-6 py-10 md:py-10">
+          <div className="mx-auto max-w-screen-md">
+            <AboutMe />
+            <AuthorLayout>
+              <MDXContent />
+            </AuthorLayout>
+          </div>
         </div>
       </main>
     </>

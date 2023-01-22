@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { TbBrandGithub } from 'react-icons/tb';
 import ThemeToggle from './ThemeToggleButton';
 

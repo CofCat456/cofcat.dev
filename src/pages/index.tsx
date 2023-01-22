@@ -1,9 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useTheme } from 'next-themes';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import AuthorLayout from '@/layouts/AuthorLayout';
-import AboutMe from '@/components/AboutMe';
+import AboutMe from '@/components/PagesComponents/Aboout/AboutMe';
 import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
 
 import siteMetadata from '@/data/siteMetadata';
@@ -20,6 +21,8 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ page }) => {
+  const theme = useTheme();
+
   const MDXContent = useMDXComponent(page.body.code);
   return (
     <>
@@ -30,7 +33,7 @@ const Home: NextPage<Props> = ({ page }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ContainerWrapper>
-        <AboutMe />
+        <AboutMe theme={theme.theme ?? 'dark'} />
         <AuthorLayout>
           <MDXContent />
         </AuthorLayout>

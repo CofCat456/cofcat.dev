@@ -4,6 +4,13 @@ import { withContentlayer } from 'next-contentlayer';
 const nextConfig = withContentlayer({
   reactStrictMode: true,
   swcMinify: true,
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
+  },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -13,6 +20,11 @@ const nextConfig = withContentlayer({
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
     ignoreBuildErrors: true,
+  },
+  baseUrl: './src',
+  paths: {
+    '@/components/*': ['components/*'],
+    '@/lib/*': ['lib/*'],
   },
 });
 

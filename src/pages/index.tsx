@@ -5,6 +5,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import { allPages, Page } from '@/lib/contentLayerAdapter';
 import AboutMe from '@/components/content/AboutMe';
 import AuthorLayout from '@/layouts/AuthorLayout';
+import Footer from '@/components/Footer';
 
 export function getStaticProps() {
   const page = allPages.find((page) => page.slug === 'about-me');
@@ -25,17 +26,20 @@ const Home: NextPage<Props> = ({ page }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main className="dark:text-cc-dak-text mt-16 bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text">
-        <div className="mx-auto h-screen  max-w-screen-xl px-6 py-10 md:py-10">
-          <div className="mx-auto max-w-screen-md">
-            <AboutMe />
-            <AuthorLayout>
-              <MDXContent />
-            </AuthorLayout>
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="dark:text-cc-dak-text mb-auto flex-1 bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text">
+          <div className="mx-auto max-w-screen-xl px-6 py-10 md:py-10">
+            <div className="mx-auto max-w-screen-md">
+              <AboutMe />
+              <AuthorLayout>
+                <MDXContent />
+              </AuthorLayout>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+        <Footer />
+      </div>
     </>
   );
 };

@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { FaCat } from 'react-icons/fa';
 
+import siteMetadata from '@/data/siteMetadata';
+
 const AboutMe: React.FC = () => {
   return (
     <div className="mb-12 flex items-center pt-4 md:flex-row">
@@ -9,12 +11,13 @@ const AboutMe: React.FC = () => {
       </div>
       <div>
         <h1 className="mb-4 inline-flex items-end gap-1 text-4xl font-extrabold">
-          CofCat <FaCat className="m-1 h-5 w-5" />
+          {siteMetadata.title}
+          <FaCat className="m-1 h-5 w-5" />
         </h1>
         <p className="text-lg leading-[1.75] text-cc-text transition-colors dark:text-cc-dark-text">
-          Front-end Engineer 🧑🏻‍💻
+          {siteMetadata.industry}
           <br />
-          All you need is a notepad and the world becomes your canvas.
+          {siteMetadata.motto}
         </p>
       </div>
     </div>

@@ -34,6 +34,7 @@
     "clsx": "^1.2.1",
     "esbuild": "^0.17.3",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "postcss": "^8.4.21",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.1",

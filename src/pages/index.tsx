@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Header from '@/components/Header';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import AboutMe from '@/components/content/AboutMe';
-import Footer from '@/components/Footer';
+
 import AuthorLayout from '@/layouts/AuthorLayout';
+import AboutMe from '@/components/AboutMe';
+import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
 
 import siteMetadata from '@/data/siteMetadata';
 
@@ -29,10 +29,12 @@ const Home: NextPage<Props> = ({ page }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <AboutMe />
-      <AuthorLayout>
-        <MDXContent />
-      </AuthorLayout>
+      <ContainerWrapper>
+        <AboutMe />
+        <AuthorLayout>
+          <MDXContent />
+        </AuthorLayout>
+      </ContainerWrapper>
     </>
   );
 };

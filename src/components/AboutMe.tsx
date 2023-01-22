@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { FaCat } from 'react-icons/fa';
 
 import siteMetadata from '@/data/siteMetadata';
 

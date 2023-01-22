@@ -1,5 +1,5 @@
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../Header';
+import Footer from '../Footer';
 
 interface Props {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ const LayoutWrapper: React.FC<Props> = ({ children }) => {
   return (
     <div className="flex min-h-screen w-full flex-col justify-between">
       <Header />
-      <main className="dark:text-cc-dak-text mb-auto flex-1 bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text">
+      <main className="mb-auto flex-1 bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text">
         <div className="mx-auto max-w-screen-xl px-6 py-10 md:py-10">
           <div className="mx-auto max-w-screen-md">{children}</div>
         </div>

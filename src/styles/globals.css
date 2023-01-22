@@ -34,6 +34,6 @@ body {
     @apply flex items-center gap-1 overflow-hidden;
   }
   .navItem {
-    @apply cursor-pointer p-2 text-base text-cc-text opacity-70 outline-none transition-all duration-300 hover:opacity-100 dark:text-cc-dark-text;
+    @apply cursor-pointer p-2 text-base text-cc-text opacity-70 outline-none transition-opacity hover:opacity-100 dark:text-cc-dark-text;
   }
 }

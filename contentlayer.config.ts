@@ -1,5 +1,6 @@
 import rehypeSlug from 'rehype-slug';
 
+import imageMetadata from './src/plugins/imageMetadata';
 import { defineDocumentType, makeSource } from './src/lib/contentLayerAdapter';
 
 export const Post = defineDocumentType(() => ({
@@ -7,7 +8,7 @@ export const Post = defineDocumentType(() => ({
   filePathPattern: `content/posts/**/*.mdx`,
   contentType: 'mdx',
   mdx: {
-    rehypePlugins: [rehypeSlug],
+    rehypePlugins: [rehypeSlug, imageMetadata],
   },
   fields: {
     title: {
@@ -43,7 +44,7 @@ export const Page = defineDocumentType(() => ({
   filePathPattern: `content/pages/**/*.mdx`,
   contentType: 'mdx',
   mdx: {
-    rehypePlugins: [rehypeSlug],
+    rehypePlugins: [rehypeSlug, imageMetadata],
   },
   fields: {
     title: {

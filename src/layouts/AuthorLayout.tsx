@@ -1,4 +1,4 @@
-import PostBody from '@/components/PostBody';
+import PostBody from '@/components/Post/PostBody';
 
 interface Props {
   children: React.ReactNode;

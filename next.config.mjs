@@ -11,6 +11,10 @@ const nextConfig = withContentlayer({
     });
     return config;
   },
+  images: {
+    // Enable modern image formats
+    formats: ['image/avif', 'image/webp'],
+  },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.

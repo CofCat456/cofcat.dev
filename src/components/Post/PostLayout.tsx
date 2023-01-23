@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 
-import PageTitle from '@/components/PostTitle';
-import PostBody from '@/components/PostBody';
+import PageTitle from '@/components/Post/PostTitle';
+import PostBody from '@/components/Post/PostBody';
 import formatDate from '@/lib/formatDate';
 import Link from 'next/link';
-import ContainerWrapper, { Size } from './Wrapper/ContainerWrapper';
+import ContainerWrapper, { Size } from '../Wrapper/ContainerWrapper';
 
 export interface PostForPostLayout {
   date: string;

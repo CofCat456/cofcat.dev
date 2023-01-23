@@ -2,7 +2,10 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/components/PostLayout';
+import PostLayout, {
+  PostForPostLayout,
+  RelatedPostForPostLayout,
+} from '@/components/Post/PostLayout';
 import mdxComponents from '@/lib/mdxComponents';
 import { allPosts, allPostsNewToOld } from '@/lib/contentLayerAdapter';
 

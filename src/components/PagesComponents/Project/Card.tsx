@@ -20,7 +20,7 @@ const ProjectCard: React.FC<Props> = ({ project }) => {
       <Link
         href={href}
         aria-label={`Link to ${title}`}
-        className="relative block aspect-video w-full cursor-pointer overflow-hidden rounded-lg object-cover shadow-lg duration-500 lg:group-hover:scale-105"
+        className="relative block aspect-video w-full cursor-pointer overflow-hidden rounded-lg object-cover shadow-lg transition-transform duration-500 lg:group-hover:scale-105"
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -33,13 +33,13 @@ const ProjectCard: React.FC<Props> = ({ project }) => {
           placeholder={imgPlaceholder}
         />
       </Link>
-      <h2 className="mb-3 mt-6 cursor-pointer text-2xl font-extrabold leading-8 tracking-tight duration-1000 group-hover:translate-x-3">
+      <h2 className="mb-3 mt-6 cursor-pointer text-2xl font-extrabold leading-8 tracking-tight transition-transform duration-1000 group-hover:translate-x-3">
         <Link href={href} aria-label={`Link to ${title}`}>
           {title}
         </Link>
       </h2>
       <p
-        className="line-clamp-3 mt-4 cursor-pointer transition-all group-hover:opacity-100 lg:opacity-40"
+        className="line-clamp-3 mt-4 cursor-pointer transition-opacity group-hover:opacity-100 lg:opacity-40"
         dangerouslySetInnerHTML={{
           __html: description,
         }}

@@ -11,6 +11,7 @@ const ProjectCard: React.FC<Props> = ({ project }) => {
   const {
     title,
     description,
+    date,
     links: { site: href },
     image: { src: imgSrc, alt: imgAlt, placeholder: imgPlaceholder },
   } = project;
@@ -38,6 +39,9 @@ const ProjectCard: React.FC<Props> = ({ project }) => {
           {title}
         </Link>
       </h2>
+      <p className="mt-2 cursor-pointer font-extrabold text-[#b2938d] transition-transform duration-700 group-hover:translate-x-4">
+        {date}
+      </p>
       <p
         className="line-clamp-3 mt-4 cursor-pointer transition-opacity group-hover:opacity-100 lg:opacity-40"
         dangerouslySetInnerHTML={{

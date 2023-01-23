@@ -18,6 +18,7 @@ export type Project = {
   title: string;
   description: string;
   skills: string[];
+  date: string;
   links: {
     post: string;
     github: string;
@@ -41,6 +42,7 @@ export const allProject: Record<Category, Project[]> = {
       title: '貓咖啡 CatCof',
       description: '咖啡電商網站，有前後台功能',
       skills: ['Vue 2', 'Vue Cli', 'Vue Router', 'Bootstrap5'],
+      date: '2022-04-19',
       links: {
         post: '',
         github: '',
@@ -56,6 +58,7 @@ export const allProject: Record<Category, Project[]> = {
       title: 'React - TodoList',
       description: '使用 React 開發，串接 API 完成代辦事項功能',
       skills: ['React', 'React Hook', 'React Router'],
+      date: '2022-08-21',
       links: {
         post: '',
         github: '',
@@ -71,6 +74,7 @@ export const allProject: Record<Category, Project[]> = {
       title: 'LivePhotos 募款網站',
       description: '用 Vue3 和 TailWindCSS 開發',
       skills: ['Vue3', 'Vitawind', 'VeeValidate'],
+      date: '2022-09-07',
       links: {
         post: '',
         github: '',
@@ -88,6 +92,7 @@ export const allProject: Record<Category, Project[]> = {
       title: 'TailwindCSS - Faceboock UI',
       description: 'TailwindCSS 實作 Facebook 頁面',
       skills: ['TailwindCSS', 'Webpack'],
+      date: '2022-08-26',
       links: {
         post: '',
         github: '',
@@ -103,6 +108,7 @@ export const allProject: Record<Category, Project[]> = {
       title: '即時天氣預報',
       description: '使用 React 開發，串接中央氣象局 API',
       skills: ['React', 'React Hook', 'Emotion'],
+      date: '2022-08-06',
       links: {
         post: '',
         github: '',
@@ -118,6 +124,7 @@ export const allProject: Record<Category, Project[]> = {
       title: 'TailwindCSS - AlDente UI',
       description: 'TailwindCSS 練習作品',
       skills: ['TailwindCSS', 'Webpack'],
+      date: '2022-08-25',
       links: {
         post: '',
         github: '',
@@ -133,6 +140,7 @@ export const allProject: Record<Category, Project[]> = {
       title: '六角甜點餐廳',
       description: 'TailwindCSS 練習作品',
       skills: ['HTML 5', 'CSS'],
+      date: '2022-08-26',
       links: {
         post: '',
         github: '',
@@ -148,6 +156,7 @@ export const allProject: Record<Category, Project[]> = {
       title: 'chatTalker AI 機器人',
       description: 'TailwindCSS 練習作品',
       skills: ['HTML 5', 'CSS'],
+      date: '2022-08-26',
       links: {
         post: '',
         github: '',
@@ -163,6 +172,7 @@ export const allProject: Record<Category, Project[]> = {
       title: '農產品比價網',
       description: '輕鬆查詢全台蔬菜、水果、花卉等價格',
       skills: ['Axios', 'Bootstrap 5'],
+      date: '2022-01-27',
       links: {
         post: '',
         github: '',
@@ -178,6 +188,7 @@ export const allProject: Record<Category, Project[]> = {
       title: '九九乘法表',
       description: ' 新手 JS 地下城，1F Boss 關卡',
       skills: ['Vue 2', 'JavaScript'],
+      date: '2022-02-08',
       links: {
         post: '',
         github: '',
@@ -193,6 +204,7 @@ export const allProject: Record<Category, Project[]> = {
       title: '時鐘',
       description: '新手 JS 地下城，2F Boss 關卡',
       skills: ['Vue 2', 'JavaScript'],
+      date: '2022-02-08',
       links: {
         post: '',
         github: '',
@@ -208,6 +220,7 @@ export const allProject: Record<Category, Project[]> = {
       title: 'JS TodoList',
       description: '使用 JS 練習Todolist。',
       skills: ['HTML 5', 'JavaScript', 'Bootstrap 5'],
+      date: '2022-01-25',
       links: {
         post: '',
         github: '',
@@ -223,6 +236,8 @@ export const allProject: Record<Category, Project[]> = {
       title: '六角 HexScool 首頁',
       description: '六角大專院校程式體驗營作品',
       skills: ['HTML 5', 'JavaScript', 'Bootstrap 5'],
+      date: '2022-04-03',
+
       links: {
         post: '',
         github: '',

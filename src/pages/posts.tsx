@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 
 import PostList, { PostForPostList } from '@/components/PagesComponents/Posts/PostList';
-import { allPostsNewToOld } from '@/lib/contentLayerAdapter';
+import { allPostsNew2Old } from '@/lib/contentLayerAdapter';
 import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
 
 type PostForIndexPage = PostForPostList;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps<Props> = () => {
-  const posts = allPostsNewToOld.map((post) => ({
+  const posts = allPostsNew2Old.map((post) => ({
     slug: post.slug,
     date: post.date,
     title: post.title,

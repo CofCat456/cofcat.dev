@@ -13,10 +13,10 @@ export enum Size {
 }
 
 const SizeMap = (size: Size) => {
-  const widthStr = 'max-w-screen';
+  const widthStr = 'lg:max-w-screen';
   const map = new Map().set(Size.md, `${widthStr}-md`).set(Size.lg, `${widthStr}-lg`);
 
-  return map.get(size) || 'max-w-screen-md';
+  return map.get(size) || `${widthStr}-md`;
 };
 
 const ContainerWrapper: React.FC<Props> = ({ children, duration = 0.4, size = Size.md }) => {
@@ -27,7 +27,7 @@ const ContainerWrapper: React.FC<Props> = ({ children, duration = 0.4, size = Si
       exit={{ y: 20, opacity: 0 }}
       transition={{ duration, ease: 'easeInOut' }}
       className={clsx(
-        'mx-auto h-full w-full bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text',
+        'mx-auto h-full w-full max-w-full bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text sm:max-w-screen-sm md:max-w-screen-md',
         SizeMap(size),
       )}
     >

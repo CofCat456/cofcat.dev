@@ -29,7 +29,7 @@ const CustomTab: React.FC<Props> = ({ children }) => {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className="my-10">{children}</Tab.Panels>
+        <Tab.Panels className="my-4 md:my-10">{children}</Tab.Panels>
       </Tab.Group>
     </div>
   );

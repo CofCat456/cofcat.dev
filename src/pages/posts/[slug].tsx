@@ -4,7 +4,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/layouts/PostLayout';
 import mdxComponents from '@/lib/mdxComponents';
-import { allPosts, allPostsNewToOld } from '@/lib/contentLayerAdapter';
+import { allPosts, allPostsNew2Old } from '@/lib/contentLayerAdapter';
 
 type PostForPostPage = PostForPostLayout & {
   title: string;
@@ -30,21 +30,21 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
-  const postIndex = allPostsNewToOld.findIndex((post) => post.slug === params?.slug);
+  const postIndex = allPostsNew2Old.findIndex((post) => post.slug === params?.slug);
   if (postIndex === -1) {
     return {
       notFound: true,
     };
   }
-  const prevFull = allPostsNewToOld[postIndex + 1] || null;
+  const prevFull = allPostsNew2Old[postIndex + 1] || null;
   const prevPost: RelatedPostForPostLayout = prevFull
     ? { title: prevFull.title, path: prevFull.path }
     : null;
-  const nextFull = allPostsNewToOld[postIndex - 1] || null;
+  const nextFull = allPostsNew2Old[postIndex - 1] || null;
   const nextPost: RelatedPostForPostLayout = nextFull
     ? { title: nextFull.title, path: nextFull.path }
     : null;
-  const postFull = allPostsNewToOld[postIndex];
+  const postFull = allPostsNew2Old[postIndex];
   const post: PostForPostPage = {
     title: postFull.title,
     date: postFull.date,

@@ -6,8 +6,8 @@ interface Props {}
 
 const AboutMe: React.FC<Props> = () => {
   return (
-    <div className="mb-12 flex items-center pt-4 md:flex-row">
-      <div className="aspect-square w-44 overflow-hidden rounded-full md:mr-10">
+    <div className="mb-12 flex flex-col items-center pt-4 md:flex-row">
+      <div className="mb:mb-0 mb-4 aspect-square w-44 overflow-hidden rounded-full md:mr-10">
         <Image src={siteMetadata.meImg} width={180} height={180} alt="CofCat" />
       </div>
       <div>

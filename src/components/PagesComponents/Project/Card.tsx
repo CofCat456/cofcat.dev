@@ -20,7 +20,7 @@ const ProjectCard: React.FC<Props> = ({ project }) => {
     <div className="group h-full rounded-md transition-colors">
       <Link
         href={href}
-        aria-label={`Link to ${title}`}
+        aria-label={`CustomLink to ${title}`}
         className="relative block aspect-video w-full cursor-pointer overflow-hidden rounded-lg object-cover shadow-lg transition-transform duration-500 lg:group-hover:scale-105"
         rel="noopener noreferrer"
         target="_blank"

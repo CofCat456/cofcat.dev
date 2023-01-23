@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import PageTitle from '@/components/Post/PostTitle';
 import PostBody from '@/components/Post/PostBody';
 import TableOfContents from '@/components/Post/TableOfContents';
-import formatDate from '@/lib/formatDate';
 import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
+import CustomLink from '@/components/Custom/CustomLink';
+
+import formatDate from '@/lib/formatDate';
 
 export interface PostForPostLayout {
   date: string;
@@ -80,27 +81,27 @@ export default function PostLayout({ post, nextPost, prevPost, children }: Props
                     <h2 className="mb-1 text-xs uppercase tracking-wide text-gray-500 transition-colors dark:text-gray-400">
                       上一篇
                     </h2>
-                    <Link
+                    <CustomLink
                       href={prevPost.path}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                      className="text-cc-text transition-colors hover:text-sky-500 dark:text-cc-dark-text dark:hover:text-sky-400"
                     >
                       ← {prevPost.title}
-                    </Link>
+                    </CustomLink>
                   </div>
                 ) : (
                   <div />
                 )}
                 {nextPost && (
-                  <div className="basis-6/12">
+                  <div className="inline-flex basis-6/12 flex-col items-end">
                     <h2 className="mb-1 text-left text-xs uppercase tracking-wide text-gray-500 transition-colors dark:text-gray-400 sm:text-right">
                       下一篇
                     </h2>
-                    <Link
+                    <CustomLink
                       href={nextPost.path}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 block transition-colors sm:text-right"
+                      className="text-cc-text transition-colors hover:text-sky-500 dark:text-cc-dark-text dark:hover:text-sky-400 sm:text-right"
                     >
                       {nextPost.title} →
-                    </Link>
+                    </CustomLink>
                   </div>
                 )}
               </div>

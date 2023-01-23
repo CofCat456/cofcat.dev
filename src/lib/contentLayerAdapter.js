@@ -4,7 +4,7 @@ import { compareDesc } from 'date-fns';
 
 export { allPages, allPosts, defineDocumentType, defineNestedType, makeSource, Page, Post };
 
-export const allPostsNewToOld =
+export const allPostsNew2Old =
   allPosts?.sort((a, b) => {
     return compareDesc(new Date(a.date), new Date(b.date));
   }) || [];

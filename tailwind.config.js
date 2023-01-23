@@ -26,7 +26,7 @@ module.exports = {
               '&:hover': {
                 textDecoration: 'underline',
               },
-              code: { color: theme('colors.primary.400') },
+              code: { color: theme('colors.sky.400') },
             },
             h1: {
               fontWeight: '700',
@@ -95,7 +95,7 @@ module.exports = {
               '&:hover': {
                 textDecoration: 'underline',
               },
-              code: { color: theme('colors.primary.400') },
+              code: { color: theme('colors.sky.400') },
             },
             h1: {
               fontWeight: '700',

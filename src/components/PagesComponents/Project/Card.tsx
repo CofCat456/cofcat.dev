@@ -1,0 +1,51 @@
+import Link from 'next/link';
+import Image from 'next/image';
+
+import { Project } from '@/data/projects';
+
+type Props = {
+  project: Project;
+};
+
+const ProjectCard: React.FC<Props> = ({ project }) => {
+  const {
+    title,
+    description,
+    links: { site: href },
+    image: { src: imgSrc, alt: imgAlt, placeholder: imgPlaceholder },
+  } = project;
+
+  return (
+    <div className="group h-full rounded-md transition-colors">
+      <Link
+        href={href}
+        aria-label={`Link to ${title}`}
+        className="relative block aspect-video w-full cursor-pointer overflow-hidden rounded-lg object-cover shadow-lg duration-500 lg:group-hover:scale-105"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Image
+          alt={imgAlt}
+          src={imgSrc}
+          className="bg-gray-300 object-cover object-center dark:bg-gray-700"
+          quality="30"
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 344px, 472px"
+          placeholder={imgPlaceholder}
+        />
+      </Link>
+      <h2 className="mb-3 mt-6 cursor-pointer text-2xl font-extrabold leading-8 tracking-tight duration-1000 group-hover:translate-x-3">
+        <Link href={href} aria-label={`Link to ${title}`}>
+          {title}
+        </Link>
+      </h2>
+      <p
+        className="line-clamp-3 mt-4 cursor-pointer transition-all group-hover:opacity-100 lg:opacity-40"
+        dangerouslySetInnerHTML={{
+          __html: description,
+        }}
+      />
+    </div>
+  );
+};
+
+export default ProjectCard;

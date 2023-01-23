@@ -1,9 +1,14 @@
+import rehypeSlug from 'rehype-slug';
+
 import { defineDocumentType, makeSource } from './src/lib/contentLayerAdapter';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `content/posts/**/*.mdx`,
   contentType: 'mdx',
+  mdx: {
+    rehypePlugins: [rehypeSlug],
+  },
   fields: {
     title: {
       type: 'string',
@@ -21,6 +26,9 @@ export const Post = defineDocumentType(() => ({
       type: 'date',
       required: true,
     },
+    socialImage: {
+      type: 'string',
+    },
   },
   computedFields: {
     path: {
@@ -34,6 +42,9 @@ export const Page = defineDocumentType(() => ({
   name: 'Page',
   filePathPattern: `content/pages/**/*.mdx`,
   contentType: 'mdx',
+  mdx: {
+    rehypePlugins: [rehypeSlug],
+  },
   fields: {
     title: {
       type: 'string',

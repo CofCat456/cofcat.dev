@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/components/PostLayout';
+import mdxComponents from '@/lib/mdxComponents';
 import { allPosts, allPostsNewToOld } from '@/lib/contentLayerAdapter';
 
 type PostForPostPage = PostForPostLayout & {
@@ -83,7 +84,7 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PostLayout post={post} prevPost={prevPost} nextPost={nextPost}>
-        <MDXContent />
+        <MDXContent components={mdxComponents} />
       </PostLayout>
     </>
   );

@@ -2,11 +2,9 @@ import Image from 'next/image';
 
 import siteMetadata from '@/data/siteMetadata';
 
-interface Props {
-  theme: string;
-}
+interface Props {}
 
-const AboutMe: React.FC<Props> = ({ theme }) => {
+const AboutMe: React.FC<Props> = () => {
   return (
     <div className="mb-12 flex items-center pt-4 md:flex-row">
       <div className="aspect-square w-44 overflow-hidden rounded-full md:mr-10">
@@ -15,7 +13,6 @@ const AboutMe: React.FC<Props> = ({ theme }) => {
       <div>
         <h1 className="mb-4 inline-flex items-end gap-1 text-4xl font-extrabold">
           {siteMetadata.title}
-          <span className="m-1 text-base">{theme === 'light' ? '🐈' : '🐈‍⬛'}</span>
         </h1>
         <p className="text-lg leading-[1.75] text-cc-text transition-colors dark:text-cc-dark-text">
           {siteMetadata.industry}

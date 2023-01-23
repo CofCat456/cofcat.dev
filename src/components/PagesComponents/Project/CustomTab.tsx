@@ -9,7 +9,7 @@ interface Props {
 
 const CustomTab: React.FC<Props> = ({ children }) => {
   return (
-    <div className="mx-auto w-full px-2 py-4">
+    <div className="mx-auto w-full">
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1 transition-colors">
           {Object.keys(Category).map((category) => (

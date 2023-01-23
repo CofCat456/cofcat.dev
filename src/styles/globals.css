@@ -9,26 +9,6 @@ body {
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-.fade-enter.themeToggleBtn {
-  opacity: 0;
-  transform: translateY(-30px);
-}
-
-.fade-enter-active.themeToggleBtn {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-exit.themeToggleBtn {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-exit-active.themeToggleBtn {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
 @layer base {
   .nav {
     @apply flex items-center gap-1 overflow-hidden;

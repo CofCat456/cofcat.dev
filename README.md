@@ -1,23 +1,14 @@
-# cofcat.dev
+# CofCat Homepage
+
+[https://www.cofcat.com](https://www.cofcat.com)
 
 ![Blog homepage](./docs/homepage.png)
-
-CofCat personal website
-
-Visit: [https://cofcat-dev.vercel.app/](https://cofcat-dev.vercel.app/)
 
 ## Features
 
 - Next.js 13
 - ContentLayer (loading local MDX files)
 - TailwindCSS
-- Headlessui
+- Headless UI
+- Framer Motion
 - Eslint, Prettier
-
-## Commands
-
-### Start local dev server
-
-```bash
-yarn dev
-```

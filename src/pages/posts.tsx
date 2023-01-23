@@ -35,8 +35,8 @@ const Posts: NextPage<Props> = ({ posts }) => {
         <link rel="icon" href="/favicon/favicon.ico" />
       </Head>
       <ContainerWrapper size={Size.lg}>
-        <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700">
-          <div className="prose prose-lg my-8 dark:prose-dark">
+        <div className="divide-y divide-gray-200 transition-colors dark:divide-gray-700">
+          <div className="prose prose-lg mt-0 mb-8 dark:prose-dark sm:mt-8">
             <h2>所有文章</h2>
           </div>
           <PostList posts={posts} />

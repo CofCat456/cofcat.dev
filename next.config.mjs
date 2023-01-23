@@ -25,11 +25,6 @@ const nextConfig = withContentlayer({
     // your project has type errors.
     ignoreBuildErrors: true,
   },
-  baseUrl: './src',
-  paths: {
-    '@/components/*': ['components/*'],
-    '@/lib/*': ['lib/*'],
-  },
 });
 
 export default nextConfig;

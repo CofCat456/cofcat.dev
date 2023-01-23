@@ -1,0 +1,116 @@
+---
+title: 新手 JS 地下城 1F — 9x9 乘法表
+description: 六角學院 JS 地下城 - 1F 9x9 乘法表
+slug: js-dungeons-1f
+date: 2022-02-06
+type: Post
+tag: JS-Dungeons
+---
+
+### 新手 JS 地下城 1F — 9x9 乘法表
+
+![](https://cdn-images-1.medium.com/max/800/1*Jzgsv9EDB6crgxrVJCUY1g.png)
+
+**六角學院 _新手 JS 地下城 1F_**
+
+> **_這篇是六角學院的_** [**_JavaScript 題目篇-_** 🐲 **_新手 JS 地下城_**](https://courses.hexschool.com/courses/enrolled/674121)**_，_**[**_1F Boss 關卡「9x9 乘法表」_**](https://courses.hexschool.com/courses/javascript-js/lectures/12019663)**_攻略過程心得。_**
+
+在學習完 [**JS 必修篇**](https://courses.hexschool.com/courses/enrolled/1463822)和[**核心篇**](https://courses.hexschool.com/courses/enrolled/670037)後，決定來挑戰一下六角學院所推出的 **JS 地下城**，目前剛好將 [**Vue 實戰影音的課程**](https://courses.hexschool.com/courses/enrolled/1326387)上到一半，所以儘量都使用 Vue 來完成挑戰。
+
+---
+
+#### BOSS 弱點
+
+1.  【特定技術】需使用 `JS for 迴圈技巧`，裡頭數字不能直接寫在 HTML 上，需使用 JS 印出。
+2.  需使用 HTML、CSS、JS 技術
+3.  介面需與設計稿一致
+
+#### 解題思路
+
+-   使用 Flex 完成畫面排版
+-   利用 Vue 元件概念將區塊做成元件
+-   利用 v-for 印出元件
+
+以前在做作業時都有現成的 Html 架構跟 CSS 可以使用，雖然也有手刻網頁的經驗，但這真的是還是第一次切版XD，一開始拿到設計稿其實有點小呆住，心理OS(該不會要自己切版吧?)，不過想想也是給自己的一個挑戰，也很快想到解題思路就開始挑戰了。
+
+---
+
+### CSS
+
+![](https://cdn-images-1.medium.com/max/800/1*CksRXYLjGxK3wZzECb1V2g.jpeg)
+
+**1F — 9x9 乘法表**
+
+_Step 1_ : 按照設計稿做出一個 1280px X 1372px 的畫面，然後在裡頭設定一個1110px X 1178px 的小畫面。
+
+_Step 2_ : 由於在 container 中使用了 align-items: center ，會將裡頭的子元素垂直置中，讓左右的間距為 85px ( 1280px - 1110px = 170px )，接著將 wrap 的 margin 上下設為 80px ( 1372px - 1178px = 194px )接著扣掉 footer 的高度 34px ) ，到這裡基本的畫面就完成了~
+
+_Step 3_ : 接著要處理 wrap 裡頭的 card*8 ，再設定完每一個 card 的大小為 350px X 366px 後 ，開始處理排序的問題，一樣使用 flex 讓元素自動分配空間，加上 **flex-wrap: wrap** 讓元素超出範圍時自動換行，再來使用 **justify-content: space-between** 來讓每個元素的間距拉出來。
+
+![](https://cdn-images-1.medium.com/max/800/1*WFIHw5Y8hYF3ihysTlLrHw.png)
+
+**1F — 9x9 乘法表畫面 CSS**
+
+_Step 4 :_ 最後處理小細節，由於畫面中中間排的 card 上下 margin 為 40px，而上下排則不用設定，因此這裡我使用 **nth-child()** 選擇器來調整 wrap 中第4、5、6 個 div。
+
+![](https://cdn-images-1.medium.com/max/800/1*29rzmlVYegcRMqSKFRpAsA.png)
+
+**1F — 9x9 乘法表畫面 CSS**
+
+接著處理 card 中的元素排列
+
+_Step 1 :_ 這裡我將 card 裡頭新增一個 box 設定大小為 270px X 268px ，設定 margin 左右為 auto 來讓兩邊間距為 ( 360px - 270px ) / 2 = 40px ，接著加上 Flex 的設定 flex-direction: column 、 **flex-wrap: wrap** 。
+
+_Step 2 : 新增_文字大小、顏色等等的設定，這裡都是按照設計稿來設定。
+
+_Step 3 : card 的高度之_所以設定 268px ，是因為在設計稿中，左邊會有一個 153px 高度的大數字，再來才是高度 33px 的算式，並且每行之間的距離為 8px ，因此可以得出 ( 153px + 33px * 3 + 8px * 2 = 268px ) ，為了讓每行的距離拉出來，在父層增加 **justify-content: space-between** ，這樣 8px 的間距就出來了，接著 h1標籤距離頂端的距離為 34px 所以加上 margin-top:34px 的設定。
+
+_Step 4 :_ 但是仔細看右邊會發現並沒有大數字，所以我們必須額外調整，右邊第一排與 card 頂端的距離為 64px ，扣除剛剛已經加上的 34px，利用 nth-child 選取器加上 margin-top: 30px ，這樣右邊的高度 ( 33px * 6 + 30px + 8px * 5 = 268px ) 也已經符合囉。
+
+![](https://cdn-images-1.medium.com/max/800/1*rhnbYHtGJhufkRUn1N64wQ.png)
+
+**1F — 9x9 乘法表 Card CSS**
+
+> **基本上到這裡就完成了畫面的部分，接下來只剩下將數字塞進去就完成了!**
+
+> 題外話 : 一開始原本想使用 Grid 來切版，不過試了一下體會到自己對 Grid 的掌握度還不夠，只好默默地換成 Flex了.
+
+> 如果對 Flex 和 Grid 都不了解的話，推薦觀看 Amos 老師的玩轉 [CSS FLEX](https://www.youtube.com/watch?v=_nCBQ6AIzDU) 以及 [CSS GRID](https://www.youtube.com/watch?v=fYcz3FUqv7M&t=3785s) 的影片，觀念講得很詳細。
+
+---
+
+### Vue
+
+_Step 1 :_ 我將 card 做成元件後，使用 v-for 的方式印出 8 個元件，同時利用props 來接受每一次的 ++count 值。
+
+![](https://cdn-images-1.medium.com/max/800/1*amfWauGRO9827G-12BsS5w.png)
+
+**1F — 9x9 乘法表 Vue Components Code**
+
+_Step 2 :_ 再次使用 v-for 來引出 p 標籤，然後將傳入的 i 跟 j 分別帶入算式就大功告成囉 。
+
+![](https://cdn-images-1.medium.com/max/800/1*I1mX5F3Zsd33Fp8qP1eJlQ.png)
+
+**1F — 9x9 乘法表 Vue Components Code**
+
+> 接著只要傳上 GigHub Page 就完成了挑戰了(灑花)
+
+[完成品 Demo](https://cofcat456.github.io/JS-Dungeons/1F/)
+
+---
+
+### 心得
+
+![](https://cdn-images-1.medium.com/max/800/1*vlAJjyAs0X6wjnkWYCjM2w.jpeg)
+
+Photo by [Samantha Gades](https://unsplash.com/@srosinger3997?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&utm_medium=referral)
+
+收穫還是蠻多的，難度比六角學院JS課程的作業更有挑戰性，除了畫面需要自己切版，卡關時也需要自己去找尋資料才有辦法完成，很適合來考驗自己的能力!
+
+在這關中，深刻體會自己切版的能力需要加強，大部分時間都花在寫 CSS 上，真正 JS 的部分大概只花了不到15分鐘，開始懷疑這關是不是趁機考驗切版的能力...?
+
+> 完成挑戰後，就準備進入下一關囉!
+
+謝謝你的閱讀，如果我的文章能幫助到其他闖關者們，或對你有一點點的收穫的話，可以給我一些掌聲唷!👏
+
+如果觀念或文章內容有錯，我也很願意接受指導!

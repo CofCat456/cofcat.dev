@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           <Icon kind="resume" href={siteMetadata.resume} />
         </div>
         <div className="mb-8 flex space-x-2 text-sm text-gray-500 transition-colors dark:text-gray-400">
-          <div>{`Copyright © 2022 - ${new Date().getFullYear()} ${siteMetadata.author}`}</div>
+          <div>{`Copyright © ${new Date().getFullYear()} ${siteMetadata.author}`}</div>
         </div>
       </div>
     </footer>

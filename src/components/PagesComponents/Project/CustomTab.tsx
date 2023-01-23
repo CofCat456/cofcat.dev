@@ -1,7 +1,7 @@
+import clsx from 'clsx';
 import { Tab } from '@headlessui/react';
 
 import { Category } from '@/data/projects';
-import clsx from 'clsx';
 
 interface Props {
   children: React.ReactNode;

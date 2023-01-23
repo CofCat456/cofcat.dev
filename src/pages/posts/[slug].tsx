@@ -1,11 +1,23 @@
-import { format, parseISO } from 'date-fns';
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-// 新增下面這行
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import { allPosts, Post } from '@/lib/contentLayerAdapter';
-import styles from '@/styles/Home.module.css';
+import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/components/PostLayout';
+import { allPosts, allPostsNewToOld } from '@/lib/contentLayerAdapter';
+
+type PostForPostPage = PostForPostLayout & {
+  title: string;
+  description: string;
+  body: {
+    code: string;
+  };
+};
+
+type Props = {
+  post: PostForPostPage;
+  prevPost: RelatedPostForPostLayout;
+  nextPost: RelatedPostForPostLayout;
+};
 
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = allPosts.map((post) => post.path);
@@ -16,7 +28,30 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
-  const post = allPosts.find((post) => post.slug === params?.slug);
+  const postIndex = allPostsNewToOld.findIndex((post) => post.slug === params?.slug);
+  if (postIndex === -1) {
+    return {
+      notFound: true,
+    };
+  }
+  const prevFull = allPostsNewToOld[postIndex + 1] || null;
+  const prevPost: RelatedPostForPostLayout = prevFull
+    ? { title: prevFull.title, path: prevFull.path }
+    : null;
+  const nextFull = allPostsNewToOld[postIndex - 1] || null;
+  const nextPost: RelatedPostForPostLayout = nextFull
+    ? { title: nextFull.title, path: nextFull.path }
+    : null;
+  const postFull = allPostsNewToOld[postIndex];
+  const post: PostForPostPage = {
+    title: postFull.title,
+    date: postFull.date,
+    description: postFull.description,
+    body: {
+      code: postFull.body.code,
+    },
+  };
+
   if (!post) {
     return {
       notFound: true,
@@ -25,32 +60,32 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
   return {
     props: {
       post,
+      prevPost,
+      nextPost,
     },
   };
 };
 
-type Props = {
-  post: Post;
-};
+const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
+  const {
+    description,
+    title,
+    body: { code },
+  } = post;
 
-const PostPage: NextPage<Props> = ({ post }) => {
-  // 以及新增下面這行
-  const MDXContent = useMDXComponent(post.body.code);
+  const MDXContent = useMDXComponent(code);
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>{post.title}</title>
-        <meta name="description" content={post.description} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>{post.title}</h1>
-        <time dateTime={post.date}>{format(parseISO(post.date), 'LLLL d, yyyy')}</time>
+      <PostLayout post={post} prevPost={prevPost} nextPost={nextPost}>
         <MDXContent />
-      </main>
-    </div>
+      </PostLayout>
+    </>
   );
 };
 

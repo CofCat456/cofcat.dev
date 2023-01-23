@@ -8,7 +8,7 @@ type Props = {
 
 export default function PostBody({ children }: Props) {
   return (
-    <div className={clsx('prose transition-colors dark:prose-dark', styles.postBody)}>
+    <div className={clsx('prose max-w-none transition-colors dark:prose-dark', styles.postBody)}>
       {children}
     </div>
   );

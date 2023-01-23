@@ -89,7 +89,7 @@ export const allProject: Record<Category, Project[]> = {
   ],
   Exerecise: [
     {
-      title: 'TailwindCSS - Faceboock UI',
+      title: 'Faceboock UI',
       description: 'TailwindCSS 實作 Facebook 頁面',
       skills: ['TailwindCSS', 'Webpack'],
       date: '2022-08-26',
@@ -121,7 +121,7 @@ export const allProject: Record<Category, Project[]> = {
       },
     },
     {
-      title: 'TailwindCSS - AlDente UI',
+      title: 'AlDente UI',
       description: 'TailwindCSS 練習作品',
       skills: ['TailwindCSS', 'Webpack'],
       date: '2022-08-25',

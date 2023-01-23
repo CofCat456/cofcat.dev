@@ -4,7 +4,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import AuthorLayout from '@/layouts/AuthorLayout';
 import AboutMe from '@/components/PagesComponents/Aboout/AboutMe';
-import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
+import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
 
 import siteMetadata from '@/data/siteMetadata';
 

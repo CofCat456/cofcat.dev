@@ -2,10 +2,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import PostLayout, {
-  PostForPostLayout,
-  RelatedPostForPostLayout,
-} from '@/components/Post/PostLayout';
+import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/layouts/PostLayout';
 import mdxComponents from '@/lib/mdxComponents';
 import { allPosts, allPostsNewToOld } from '@/lib/contentLayerAdapter';
 
@@ -14,6 +11,7 @@ type PostForPostPage = PostForPostLayout & {
   description: string;
   body: {
     code: string;
+    raw: string;
   };
 };
 
@@ -53,6 +51,7 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     description: postFull.description,
     body: {
       code: postFull.body.code,
+      raw: postFull.body.raw,
     },
   };
 

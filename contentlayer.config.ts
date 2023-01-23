@@ -7,9 +7,6 @@ export const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `content/posts/**/*.mdx`,
   contentType: 'mdx',
-  mdx: {
-    rehypePlugins: [rehypeSlug, imageMetadata],
-  },
   fields: {
     title: {
       type: 'string',
@@ -43,9 +40,6 @@ export const Page = defineDocumentType(() => ({
   name: 'Page',
   filePathPattern: `content/pages/**/*.mdx`,
   contentType: 'mdx',
-  mdx: {
-    rehypePlugins: [rehypeSlug, imageMetadata],
-  },
   fields: {
     title: {
       type: 'string',
@@ -75,4 +69,7 @@ export const Page = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'content',
   documentTypes: [Post, Page],
+  mdx: {
+    rehypePlugins: [rehypeSlug, imageMetadata],
+  },
 });

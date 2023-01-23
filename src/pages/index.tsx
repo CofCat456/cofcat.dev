@@ -4,11 +4,12 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import AuthorLayout from '@/layouts/AuthorLayout';
 import AboutMe from '@/components/PagesComponents/Aboout/AboutMe';
-import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
+import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
 
 import siteMetadata from '@/data/siteMetadata';
 
 import { allPages, Page } from '@/lib/contentLayerAdapter';
+import mdxComponents from '@/lib/mdxComponents';
 
 export function getStaticProps() {
   const page = allPages.find((page) => page.slug === 'about-me');
@@ -32,7 +33,7 @@ const Home: NextPage<Props> = ({ page }) => {
       <ContainerWrapper>
         <AboutMe />
         <AuthorLayout>
-          <MDXContent />
+          <MDXContent components={mdxComponents} />
         </AuthorLayout>
       </ContainerWrapper>
     </>

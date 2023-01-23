@@ -27,7 +27,7 @@ const Posts: NextPage<Props> = ({ posts }) => {
     <ContainerWrapper size={Size.lg}>
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700">
         <div className="prose prose-lg my-8 dark:prose-dark">
-          <h2>最新文章</h2>
+          <h2>所有文章</h2>
         </div>
         <PostList posts={posts} />
       </div>

@@ -1,23 +1,113 @@
-import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-import { allPosts } from '@/lib/contentLayerAdapter';
-import styles from '@/styles/Home.module.css';
+import PageTitle from '@/components/Post/PostTitle';
+import PostBody from '@/components/Post/PostBody';
+import TableOfContents from '@/components/Post/TableOfContents';
+import formatDate from '@/lib/formatDate';
+import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
 
-const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <div className={styles.grid}>
-          {/* {posts.map((post) => (
-            <a key={post.slug} href={post.path} className={styles.card}>
-              <h2>{post.title}</h2>
-              <p>{post.description}</p>
-            </a>
-          ))} */}
-        </div>
-      </main>
-    </div>
-  );
+export interface PostForPostLayout {
+  date: string;
+  title: string;
+  body: {
+    raw: string;
+  };
+}
+
+export type RelatedPostForPostLayout = {
+  title: string;
+  path: string;
+} | null;
+
+type Props = {
+  post: PostForPostLayout;
+  nextPost: RelatedPostForPostLayout;
+  prevPost: RelatedPostForPostLayout;
+  children: React.ReactNode;
 };
 
-export default Home;
+export default function PostLayout({ post, nextPost, prevPost, children }: Props) {
+  const {
+    date,
+    title,
+    body: { raw },
+  } = post;
+
+  const { locale } = useRouter();
+
+  return (
+    <article>
+      <ContainerWrapper size={Size.lg}>
+        <div className="divide-y divide-gray-200 transition-colors dark:divide-gray-700">
+          <header className="py-6">
+            <div className="space-y-1 text-center">
+              <div className="mb-4">
+                <PageTitle>{title}</PageTitle>
+              </div>
+
+              <dl className="space-y-10">
+                <div>
+                  <dt className="sr-only">發佈時間</dt>
+                  <dd className="text-base font-medium leading-6 text-gray-500 transition-colors dark:text-gray-400">
+                    <time dateTime={date}>{formatDate(date, locale)}</time>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </header>
+
+          <div className="divide-y divide-gray-200 pt-10 pb-8 transition-colors dark:divide-gray-700">
+            <div
+              className="pb-8 transition-colors lg:grid lg:grid-cols-4 lg:gap-x-6"
+              style={{ gridTemplateRows: 'auto 1fr' }}
+            >
+              <div className="divide-y divide-gray-200 pt-10 pb-8 transition-colors dark:divide-gray-700 lg:col-span-3">
+                <PostBody>{children}</PostBody>
+              </div>
+              <aside>
+                <div className="hidden lg:sticky lg:top-24 lg:col-span-1 lg:block">
+                  <TableOfContents source={raw} />
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div className="divide-y divide-gray-200 pb-8 transition-colors dark:divide-gray-700">
+            <footer>
+              <div className="flex flex-col gap-4 pt-4 text-base font-medium sm:flex-row sm:justify-between xl:gap-8 xl:pt-8">
+                {prevPost ? (
+                  <div className="basis-6/12">
+                    <h2 className="mb-1 text-xs uppercase tracking-wide text-gray-500 transition-colors dark:text-gray-400">
+                      上一篇
+                    </h2>
+                    <Link
+                      href={prevPost.path}
+                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    >
+                      ← {prevPost.title}
+                    </Link>
+                  </div>
+                ) : (
+                  <div />
+                )}
+                {nextPost && (
+                  <div className="basis-6/12">
+                    <h2 className="mb-1 text-left text-xs uppercase tracking-wide text-gray-500 transition-colors dark:text-gray-400 sm:text-right">
+                      下一篇
+                    </h2>
+                    <Link
+                      href={nextPost.path}
+                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 block transition-colors sm:text-right"
+                    >
+                      {nextPost.title} →
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </footer>
+          </div>
+        </div>
+      </ContainerWrapper>
+    </article>
+  );
+}

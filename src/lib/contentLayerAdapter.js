@@ -1,5 +1,9 @@
 import { allPages, allPosts, Page, Post } from 'contentlayer/generated';
-import { defineDocumentType, defineNestedType, makeSource } from 'contentlayer/source-files';
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from 'contentlayer/source-files';
 import { compareDesc } from 'date-fns';
 
 export { allPages, allPosts, defineDocumentType, defineNestedType, makeSource, Page, Post };

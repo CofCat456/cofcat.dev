@@ -1,0 +1,3 @@
+[submodule "content"]
+	path = content
+	url = https://github.com/CofCat456/cofcat.dev_content.git

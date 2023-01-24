@@ -45,10 +45,6 @@ export const Page = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
-    description: {
-      type: 'string',
-      required: true,
-    },
     slug: {
       type: 'string',
       required: true,
@@ -56,12 +52,6 @@ export const Page = defineDocumentType(() => ({
     date: {
       type: 'date',
       required: true,
-    },
-  },
-  computedFields: {
-    path: {
-      type: 'string',
-      resolve: (page) => `/pages/${page.slug}`,
     },
   },
 }));

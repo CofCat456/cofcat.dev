@@ -8,7 +8,7 @@
         "map": [["@", "./src"]],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
-    }
-    "import/ignore": ["contentLayerAdapter.js"]
-  },
+    },
+    "import/ignore": ["contentLayerAdapter.js", "convert.js"]
+  }
 }

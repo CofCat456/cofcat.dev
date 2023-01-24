@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "UPDATE_SCRIPT": "sh update.sh"
+    },
+    "command": "$UPDATE_SCRIPT"
+  }
+}

@@ -46,11 +46,11 @@ module.exports = {
               color: theme('colors.cc-text'),
             },
             pre: {
-              backgroundColor: theme('colors.gray.800'),
+              backgroundColor: theme('colors.neutral.800'),
             },
             code: {
               color: theme('colors.pink.500'),
-              backgroundColor: theme('colors.gray.100'),
+              backgroundColor: theme('colors.neutral.100'),
               paddingLeft: '4px',
               paddingRight: '4px',
               paddingTop: '2px',
@@ -64,25 +64,25 @@ module.exports = {
               content: 'none',
             },
             details: {
-              backgroundColor: theme('colors.gray.100'),
+              backgroundColor: theme('colors.neutral.100'),
               paddingLeft: '4px',
               paddingRight: '4px',
               paddingTop: '2px',
               paddingBottom: '2px',
               borderRadius: '0.25rem',
             },
-            hr: { borderColor: theme('colors.gray.300') },
+            hr: { borderColor: theme('colors.neutral.300') },
             'ol li::marker': {
               fontWeight: '600',
-              color: theme('colors.gray.500'),
+              color: theme('colors.neutral.500'),
             },
             'ul li::marker': {
-              backgroundColor: theme('colors.gray.500'),
+              backgroundColor: theme('colors.neutral.500'),
             },
-            strong: { color: theme('colors.gray.600') },
+            strong: { color: theme('colors.neutral.600') },
             blockquote: {
-              color: theme('colors.gray.900'),
-              borderLeftColor: theme('colors.gray.200'),
+              color: theme('colors.neutral.900'),
+              borderLeftColor: theme('colors.neutral.200'),
             },
           },
         },
@@ -115,36 +115,36 @@ module.exports = {
               color: theme('colors.cc-dark-text'),
             },
             pre: {
-              backgroundColor: theme('colors.gray.800'),
+              backgroundColor: theme('colors.neutral.800'),
             },
             code: {
-              backgroundColor: theme('colors.gray.800'),
+              backgroundColor: theme('colors.neutral.800'),
             },
             details: {
-              backgroundColor: theme('colors.gray.800'),
+              backgroundColor: theme('colors.neutral.800'),
             },
-            hr: { borderColor: theme('colors.gray.500') },
+            hr: { borderColor: theme('colors.neutral.500') },
             'ol li::marker': {
               fontWeight: '600',
-              color: theme('colors.gray.400'),
+              color: theme('colors.neutral.400'),
             },
             'ul li::marker': {
-              backgroundColor: theme('colors.gray.400'),
+              backgroundColor: theme('colors.neutral.400'),
             },
-            strong: { color: theme('colors.gray.100') },
+            strong: { color: theme('colors.neutral.100') },
             thead: {
               th: {
-                color: theme('colors.gray.100'),
+                color: theme('colors.neutral.100'),
               },
             },
             tbody: {
               tr: {
-                borderBottomColor: theme('colors.gray.700'),
+                borderBottomColor: theme('colors.neutral.700'),
               },
             },
             blockquote: {
-              color: theme('colors.gray.100'),
-              borderLeftColor: theme('colors.gray.700'),
+              color: theme('colors.neutral.100'),
+              borderLeftColor: theme('colors.neutral.700'),
             },
           },
         },

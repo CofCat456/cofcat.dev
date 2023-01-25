@@ -23,6 +23,7 @@
     "plaiceholder": "^2.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rehype-prism-plus": "^1.5.0",
     "rehype-slug": "^5.1.0",
     "sharp": "^0.31.3",
     "unist-util-visit": "^4.1.1"

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { motion as m } from 'framer-motion';
+import { AnimatePresence, motion as m } from 'framer-motion';
 
 interface Props {
   children: React.ReactNode;
@@ -21,18 +21,21 @@ const SizeMap = (size: Size) => {
 
 const ContainerWrapper: React.FC<Props> = ({ children, duration = 0.4, size = Size.md }) => {
   return (
-    <m.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 20, opacity: 0 }}
-      transition={{ duration, ease: 'easeInOut' }}
-      className={clsx(
-        'mx-auto h-full w-full max-w-full bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text sm:max-w-screen-sm md:max-w-screen-md',
-        SizeMap(size),
-      )}
-    >
-      {children}
-    </m.div>
+    <AnimatePresence initial={true} mode={'wait'}>
+      <m.div
+        layout
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 20, opacity: 0 }}
+        transition={{ duration, ease: 'easeInOut' }}
+        className={clsx(
+          'mx-auto h-full w-full max-w-full bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text sm:max-w-screen-sm md:max-w-screen-md',
+          SizeMap(size),
+        )}
+      >
+        {children}
+      </m.div>
+    </AnimatePresence>
   );
 };
 

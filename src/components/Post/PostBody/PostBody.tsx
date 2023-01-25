@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-
 import styles from './PostBody.module.scss';
 
 type Props = {

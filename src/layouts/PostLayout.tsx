@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router';
 
+import PostWrapper from '@/components/Wrapper/PostWrapper';
 import PageTitle from '@/components/Post/PostTitle';
 import PostBody from '@/components/Post/PostBody';
 import TableOfContents from '@/components/Post/TableOfContents';
-import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
 import CustomLink from '@/components/Custom/CustomLink';
 
 import formatDate from '@/lib/formatDate';
 
 export interface PostForPostLayout {
-  date: string;
   title: string;
+  date: string;
   body: {
     raw: string;
   };
@@ -30,8 +30,8 @@ type Props = {
 
 export default function PostLayout({ post, nextPost, prevPost, children }: Props) {
   const {
-    date,
     title,
+    date,
     body: { raw },
   } = post;
 
@@ -39,8 +39,11 @@ export default function PostLayout({ post, nextPost, prevPost, children }: Props
 
   return (
     <article>
-      <ContainerWrapper size={Size.lg}>
-        <div className="divide-y divide-gray-200 transition-colors dark:divide-gray-700">
+      <PostWrapper>
+        <div
+          key={title}
+          className="divide-y divide-gray-200 transition-colors dark:divide-gray-700"
+        >
           <header className="py-6">
             <div className="space-y-1 text-center">
               <div className="mb-4">
@@ -108,7 +111,7 @@ export default function PostLayout({ post, nextPost, prevPost, children }: Props
             </footer>
           </div>
         </div>
-      </ContainerWrapper>
+      </PostWrapper>
     </article>
   );
 }

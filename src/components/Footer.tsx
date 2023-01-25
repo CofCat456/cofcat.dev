@@ -10,7 +10,6 @@ const Footer: React.FC = () => {
           <Icon kind="mail" href={`mailto:${siteMetadata.email}`} />
           <Icon kind="github" href={siteMetadata.github} />
           <Icon kind="medium" href={siteMetadata.medium} />
-          <Icon kind="resume" href={siteMetadata.resume} />
         </div>
         <div className="mb-8 flex space-x-2 text-sm text-gray-500 transition-colors dark:text-gray-400">
           <div>{`Copyright © ${new Date().getFullYear()} ${siteMetadata.author}`}</div>

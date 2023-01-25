@@ -23,16 +23,16 @@ const PostWrapper: React.FC<Props> = ({ children, duration = 0.4 }) => {
   }, []);
 
   return (
-    <AnimatePresence mode={'wait'}>
+    <AnimatePresence>
       {isLoading ? (
         <m.div
           key={key}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0 }}
           transition={{ duration, ease: 'easeInOut' }}
           className={className}
-        >
-          {children}
-        </m.div>
+        ></m.div>
       ) : (
         <m.div
           key={key}

@@ -1,5 +1,6 @@
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from 'rehype-prism-plus';
+import rehypeCodeTitles from 'rehype-code-titles';
 
 import imageMetadata from './src/plugins/imageMetadata';
 import { defineDocumentType, makeSource } from './src/lib/contentLayerAdapter';
@@ -61,6 +62,11 @@ export default makeSource({
   contentDirPath: 'content',
   documentTypes: [Post, Page],
   mdx: {
-    rehypePlugins: [rehypeSlug, [rehypePrism, { ignoreMissing: true }], imageMetadata],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      [rehypePrism, { ignoreMissing: true }],
+      imageMetadata,
+    ],
   },
 });

@@ -1,6 +1,6 @@
 import CustomLink from '@/components/Custom/CustomLink';
 import CustomImage from '@/components/Custom/CustomImage';
-
+import CustomPre from '@/components/Custom/CustomPre';
 import {
   CustomH1,
   CustomH2,
@@ -20,6 +20,7 @@ const mdxComponents = {
   h6: CustomH6,
   a: CustomLink,
   img: CustomImage,
+  pre: CustomPre,
 };
 
 export default mdxComponents;

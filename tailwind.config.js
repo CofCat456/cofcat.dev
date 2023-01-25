@@ -9,17 +9,17 @@ module.exports = {
         mplus: ['"M PLUS Rounded 1c"', 'sans-serif'],
       },
       colors: {
-        'cc-bg': '#f5f5f5',
-        'cc-header': '#f5f5f5',
+        'cc-bg': 'rgb(255, 255, 255)',
+        'cc-header': 'rgba(255, 255, 255, .25)',
         'cc-text': '#111827',
-        'cc-dark-bg': '#050505',
-        'cc-dark-header-bg': '#181818',
-        'cc-dark-text': '#fafafa',
+        'cc-dark-bg': '#202023',
+        'cc-dark-header-bg': '#20202380',
+        'cc-dark-text': 'rgba(255, 255, 255, .92)',
       },
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.gray.900'),
+            color: theme('colors.cc-text'),
             a: {
               color: theme('colors.sky.500'),
               textDecoration: 'none',
@@ -31,19 +31,19 @@ module.exports = {
             h1: {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.900'),
+              color: theme('colors.cc-text'),
             },
             h2: {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.900'),
+              color: theme('colors.cc-text'),
             },
             h3: {
               fontWeight: '600',
-              color: theme('colors.gray.900'),
+              color: theme('colors.cc-text'),
             },
             'h4,h5,h6': {
-              color: theme('colors.gray.900'),
+              color: theme('colors.cc-text'),
             },
             pre: {
               backgroundColor: theme('colors.gray.800'),
@@ -88,7 +88,7 @@ module.exports = {
         },
         dark: {
           css: {
-            color: theme('colors.zinc.50'),
+            color: theme('colors.cc-dark-text'),
             a: {
               color: theme('colors.sky.400'),
               textDecoration: 'none',
@@ -100,19 +100,19 @@ module.exports = {
             h1: {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.100'),
+              color: theme('colors.cc-dark-text'),
             },
             h2: {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.100'),
+              color: theme('colors.cc-dark-text'),
             },
             h3: {
               fontWeight: '600',
-              color: theme('colors.gray.100'),
+              color: theme('colors.cc-dark-text'),
             },
             'h4,h5,h6': {
-              color: theme('colors.gray.100'),
+              color: theme('colors.cc-dark-text'),
             },
             pre: {
               backgroundColor: theme('colors.gray.800'),

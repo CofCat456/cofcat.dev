@@ -16,7 +16,7 @@ export default function PostList({ posts = [] }: Props) {
         return (
           <li key={slug} className="group transition-colors">
             <CustomLink href={path}>
-              <article className="space-y-2 rounded-xl p-4 transition-colors group-hover:bg-neutral-200 dark:group-hover:bg-neutral-800 xl:grid xl:grid-cols-4  xl:items-baseline xl:space-y-0">
+              <article className="space-y-2 rounded-xl p-4 transition-colors group-hover:bg-neutral-100 dark:group-hover:bg-neutral-800 xl:grid xl:grid-cols-4  xl:items-baseline xl:space-y-0">
                 <dl>
                   <dt className="sr-only">locale</dt>
                   <dd className="text-sm font-medium leading-6 text-neutral-500 transition-colors dark:text-neutral-400 md:text-base">

@@ -1,14 +1,20 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/layouts/PostLayout';
+
+import { BlogSEO } from '@/components/SEO';
 import mdxComponents from '@/lib/mdxComponents';
 import { allPosts, allPostsNew2Old } from '@/lib/contentLayerAdapter';
+
+import siteMetadata from '@/data/siteMetadata';
 
 type PostForPostPage = PostForPostLayout & {
   title: string;
   description: string;
+  date: string;
+  socialImage: string;
+  path: string;
   body: {
     code: string;
     raw: string;
@@ -73,6 +79,9 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
   const {
     description,
     title,
+    date,
+    socialImage,
+    path,
     body: { code },
   } = post;
 
@@ -80,11 +89,13 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="icon" href="/favicon/favicon.ico" />
-      </Head>
+      <BlogSEO
+        url={`${siteMetadata.siteUrl}${path}`}
+        title={`${title} - ${siteMetadata.title}`}
+        description={description}
+        date={date}
+        socialImage={socialImage}
+      />
       <PostLayout post={post} prevPost={prevPost} nextPost={nextPost}>
         <MDXContent components={mdxComponents} />
       </PostLayout>

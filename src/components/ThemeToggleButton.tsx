@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
 
 import { useState, useEffect } from 'react';
-import { BsFillMoonFill, BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
+import { TbMoon, TbSun } from 'react-icons/tb';
 import { motion as m, AnimatePresence } from 'framer-motion';
 
 const ThemeToggleButton: React.FC = () => {
@@ -33,9 +33,9 @@ const ThemeToggleButton: React.FC = () => {
         onClick={toggleTheme}
       >
         {theme === 'light' ? (
-          <BsFillSunFill key="light" className="text-2xl" />
+          <TbSun key="light" className="text-2xl" />
         ) : (
-          <BsFillMoonStarsFill key="dark" className="text-2xl" />
+          <TbMoon key="dark" className="text-2xl" />
         )}
       </m.button>
     </AnimatePresence>

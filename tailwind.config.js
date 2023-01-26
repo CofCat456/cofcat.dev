@@ -10,9 +10,9 @@ module.exports = {
       },
       colors: {
         'cc-bg': 'rgb(255, 255, 255)',
-        'cc-header': 'rgba(255, 255, 255, .25)',
+        'cc-header': '#ffffff40',
         'cc-text': '#111827',
-        'cc-dark-bg': '#202023',
+        'cc-dark-bg': 'rgb(32, 32, 35)',
         'cc-dark-header-bg': '#20202380',
         'cc-dark-text': 'rgba(255, 255, 255, .92)',
       },

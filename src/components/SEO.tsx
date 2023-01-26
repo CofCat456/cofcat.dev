@@ -119,7 +119,6 @@ export const BlogSEO = ({
       <Head>
         {date && <meta property="article:published_time" content={publishedAt} />}
         <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
-        <link rel="icon" href="/favicon/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

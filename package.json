@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "sh update.sh && next build && next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint",
     "convert": "node convert.js"
@@ -48,6 +48,7 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
+    "next-sitemap": "^3.1.47",
     "postcss": "^8.4.21",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.1",

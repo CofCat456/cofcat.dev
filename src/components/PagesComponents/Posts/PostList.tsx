@@ -4,7 +4,7 @@ import CustomLink from '@/components/Custom/CustomLink';
 
 import formatDate from '@/lib/formatDate';
 
-export interface PostForPostList {
+export interface Post {
   slug: string;
   date: string;
   title: string;
@@ -13,7 +13,7 @@ export interface PostForPostList {
 }
 
 type Props = {
-  posts: PostForPostList[];
+  posts: Post[];
 };
 
 export default function PostList({ posts = [] }: Props) {

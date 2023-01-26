@@ -4,6 +4,12 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      lineHeight: {
+        11: '2.75rem',
+        12: '3rem',
+        13: '3.25rem',
+        14: '3.5rem',
+      },
       fontFamily: {
         noto: ['"Noto Sans TC"', 'sans-serif'],
         mplus: ['"M PLUS Rounded 1c"', 'sans-serif'],

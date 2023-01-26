@@ -2,17 +2,20 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 
 import { PageSEO } from '@/components/SEO';
-import PostList, { PostForPostList } from '@/components/PagesComponents/Posts/PostList';
+import { Post } from '@/components/PagesComponents/Posts/PostList';
 import { allPostsNew2Old } from '@/lib/contentLayerAdapter';
 import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
 
 import siteMetadata from '@/data/siteMetadata';
+import PostsLayout from '@/layouts/PostsLayout';
 
-type PostForIndexPage = PostForPostList;
+type PostForIndexPage = Post;
 
 type Props = {
   posts: PostForIndexPage[];
 };
+
+const POSTS_PER_PAGE = 10;
 
 export const getStaticProps: GetStaticProps<Props> = () => {
   const posts = allPostsNew2Old.map((post) => ({
@@ -26,16 +29,22 @@ export const getStaticProps: GetStaticProps<Props> = () => {
 };
 
 const Posts: NextPage<Props> = ({ posts }) => {
+  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE);
+
+  const pagination = {
+    currentPage: 1,
+    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+  };
+
   return (
     <>
       <PageSEO title={`${siteMetadata.title} All Posts`} />
       <ContainerWrapper size={Size.lg}>
-        <div className="divide-y divide-gray-200 transition-colors dark:divide-gray-700">
-          <div className="prose prose-lg mt-0 mb-8 dark:prose-dark sm:mt-8">
-            <h2>所有文章</h2>
-          </div>
-          <PostList posts={posts} />
-        </div>
+        <PostsLayout
+          posts={posts}
+          initialDisplayPosts={initialDisplayPosts}
+          pagination={pagination}
+        />
       </ContainerWrapper>
     </>
   );

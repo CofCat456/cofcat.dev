@@ -237,7 +237,6 @@ export const allProject: Record<Category, Project[]> = {
       description: '六角大專院校程式體驗營作品',
       skills: ['HTML 5', 'JavaScript', 'Bootstrap 5'],
       date: '2022-04-03',
-
       links: {
         post: '',
         github: '',

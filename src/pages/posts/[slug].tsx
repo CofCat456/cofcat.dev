@@ -5,7 +5,7 @@ import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/layou
 
 import { BlogSEO } from '@/components/SEO';
 import mdxComponents from '@/lib/mdxComponents';
-import { allPosts, allPostsNew2Old } from '@/lib/contentLayerAdapter';
+import { allPosts, allPostsNew2Old, Post } from '@/lib/contentLayerAdapter';
 
 import siteMetadata from '@/data/siteMetadata';
 
@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     ? { title: nextFull.title, path: nextFull.path }
     : null;
   const postFull = allPostsNew2Old[postIndex];
-  const post: PostForPostPage = {
+  const post: Post = {
     title: postFull.title,
     date: postFull.date,
     description: postFull.description,

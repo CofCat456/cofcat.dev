@@ -1,11 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-import { PageSEO } from '@/components/SEO';
-import siteMetadata from '@/data/siteMetadata';
-import { allPostsNew2Old } from '@/lib/contentLayerAdapter';
 import PostsLayout from '@/layouts/PostsLayout';
-import { Post } from '@/components/PagesComponents/Posts/PostList';
-import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
+
+import { PageSEO } from '@/components/SEO';
+import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
+import { allPostsNew2Old } from '@/lib/contentLayerAdapter';
+
+import siteMetadata from '@/data/siteMetadata';
+import { POSTS_PER_PAGE_ } from '@/data/constants';
+import { Post, Size } from '@/_interface';
 
 type PathType = {
   params: {
@@ -13,9 +16,14 @@ type PathType = {
   };
 };
 
+type Props = {
+  posts: Post[];
+  pageNumber: number;
+};
+
 export const getStaticPaths: GetStaticPaths = () => {
   let paths: PathType[] = [];
-  const totalPages = Math.ceil(allPostsNew2Old.length / 10);
+  const totalPages = Math.ceil(allPostsNew2Old.length / POSTS_PER_PAGE_);
   const pathsToAppend = Array.from({ length: totalPages }, (_, i) => ({
     params: { page: (i + 1).toString() },
   }));
@@ -30,7 +38,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { page } = params;
   const pageStr = typeof page === 'string' ? page : page.join('');
 
-  const posts = allPostsNew2Old.map((post) => ({
+  const posts: Post[] = allPostsNew2Old.map((post: Post) => ({
     title: post.title,
     description: post.description,
     date: post.date,
@@ -48,17 +56,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-type Props = {
-  posts: Post[];
-  pageNumber: number;
-};
-
 export default function PostListPage({ posts, pageNumber }: Props) {
-  const initialDisplayPosts = posts.slice(10 * (pageNumber - 1), 10 * pageNumber);
+  const initialDisplayPosts = posts.slice(
+    POSTS_PER_PAGE_ * (pageNumber - 1),
+    POSTS_PER_PAGE_ * pageNumber,
+  );
 
   const pagination = {
     currentPage: pageNumber,
-    totalPages: Math.ceil(posts.length / 10),
+    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE_),
   };
 
   return (

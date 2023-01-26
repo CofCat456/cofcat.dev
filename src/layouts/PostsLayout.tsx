@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
-import PostList, { Post } from '@/components/PagesComponents/Posts/PostList';
+import PostList from '@/components/PagesComponents/Posts/PostList';
 import Pagination, { PaginationType } from '@/components/Pagination';
+
+import { Post } from '@/_interface';
 
 type Props = {
   posts: Post[];
@@ -23,7 +25,7 @@ const PostsLayout: React.FC<Props> = ({ posts, initialDisplayPosts = [], paginat
     <>
       <div className="divide-y">
         <div className="space-y-2 pt-10 pb-6 md:space-y-5">
-          <h1 className="pb-4 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 transition-colors dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="pb-4 text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             所有文章
           </h1>
           <div className="relative max-w-lg">
@@ -32,7 +34,7 @@ const PostsLayout: React.FC<Props> = ({ posts, initialDisplayPosts = [], paginat
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="搜尋標題或內文"
-              className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 transition-colors dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
+              className="block w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-neutral-900 transition-colors focus:border-sky-500 focus:ring-sky-500 dark:border-neutral-900 dark:bg-neutral-800 dark:text-neutral-100"
             />
             <svg
               className="absolute right-3 top-3 h-5 w-5 text-gray-400 transition-colors dark:text-gray-300"

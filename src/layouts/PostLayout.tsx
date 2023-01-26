@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-
 import PostWrapper from '@/components/Wrapper/PostWrapper';
 import PageTitle from '@/components/Post/PostTitle';
 import PostBody from '@/components/Post/PostBody';
@@ -9,13 +7,7 @@ import CustomLink from '@/components/Custom/CustomLink';
 
 import formatDate from '@/lib/formatDate';
 
-export interface PostForPostLayout {
-  title: string;
-  date: string;
-  body: {
-    raw: string;
-  };
-}
+import { Post } from '@/_interface';
 
 export type RelatedPostForPostLayout = {
   title: string;
@@ -23,20 +15,14 @@ export type RelatedPostForPostLayout = {
 } | null;
 
 type Props = {
-  post: PostForPostLayout;
+  post: Post;
   nextPost: RelatedPostForPostLayout;
   prevPost: RelatedPostForPostLayout;
   children: React.ReactNode;
 };
 
-export default function PostLayout({ post, nextPost, prevPost, children }: Props) {
-  const {
-    title,
-    date,
-    body: { raw },
-  } = post;
-
-  const { locale } = useRouter();
+const PostLayout: React.FC<Props> = ({ post, nextPost, prevPost, children }) => {
+  const { title, date, body: { raw } = { raw: '' } } = post;
 
   return (
     <article>
@@ -54,8 +40,8 @@ export default function PostLayout({ post, nextPost, prevPost, children }: Props
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">發佈時間</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 transition-colors dark:text-gray-400">
-                    <time dateTime={date}>{formatDate(date, locale)}</time>
+                  <dd className="text-base font-medium leading-6 transition-colors">
+                    <time dateTime={date}>{formatDate(date)}</time>
                   </dd>
                 </div>
               </dl>
@@ -116,4 +102,6 @@ export default function PostLayout({ post, nextPost, prevPost, children }: Props
       </PostWrapper>
     </article>
   );
-}
+};
+
+export default PostLayout;

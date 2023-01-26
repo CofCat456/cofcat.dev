@@ -1,11 +1,12 @@
 import { Tab } from '@headlessui/react';
+import { compareDesc } from 'date-fns';
 
 import Card from '@/components/PagesComponents/Project/Card';
 import CustomTab from '@/components/PagesComponents/Project/CustomTab';
-import ContainerWrapper, { Size } from '@/components/Wrapper/ContainerWrapper';
+import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
 
 import { allProject, Project } from '@/data/projects';
-import { compareDesc } from 'date-fns';
+import { Size } from '@/_interface';
 
 export function convertNew2Old(projects: Project[]): Project[] {
   return (

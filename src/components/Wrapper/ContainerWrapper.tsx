@@ -1,15 +1,12 @@
 import clsx from 'clsx';
 import { AnimatePresence, motion as m } from 'framer-motion';
 
+import { Size } from '@/_interface';
+
 interface Props {
   children: React.ReactNode;
   duration?: number;
   size?: Size;
-}
-
-export enum Size {
-  md,
-  lg,
 }
 
 const SizeMap = (size: Size) => {

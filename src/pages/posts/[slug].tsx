@@ -4,6 +4,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/layouts/PostLayout';
 
 import { BlogSEO } from '@/components/SEO';
+
 import mdxComponents from '@/lib/mdxComponents';
 import { allPosts, allPostsNew2Old, Post } from '@/lib/contentLayerAdapter';
 

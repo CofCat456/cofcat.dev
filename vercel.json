@@ -1,3 +1,3 @@
 {
-  "buildCommand": "sh update.sh && next build"
+  "buildCommand": "sh update.sh && next build && next-sitemap --config next-sitemap.config.js"
 }

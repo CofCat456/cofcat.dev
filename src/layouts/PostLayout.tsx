@@ -4,6 +4,7 @@ import PostWrapper from '@/components/Wrapper/PostWrapper';
 import PageTitle from '@/components/Post/PostTitle';
 import PostBody from '@/components/Post/PostBody';
 import TableOfContents from '@/components/Post/TableOfContents';
+import Comment from '@/components/Post/Comment';
 import CustomLink from '@/components/Custom/CustomLink';
 
 import formatDate from '@/lib/formatDate';
@@ -77,6 +78,7 @@ export default function PostLayout({ post, nextPost, prevPost, children }: Props
             </div>
           </div>
           <div className="divide-y divide-gray-200 pb-8 transition-colors dark:divide-gray-700">
+            <Comment />
             <footer>
               <div className="flex flex-col gap-4 pt-4 text-base font-medium sm:flex-row sm:justify-between xl:gap-8 xl:pt-8">
                 {prevPost ? (

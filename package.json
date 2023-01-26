@@ -10,6 +10,7 @@
     "convert": "node convert.js"
   },
   "dependencies": {
+    "@giscus/react": "^2.2.6",
     "@next/font": "13.1.4",
     "contentlayer": "^0.3.0",
     "date-fns": "^2.29.3",

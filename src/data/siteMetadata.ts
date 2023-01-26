@@ -14,6 +14,12 @@ const siteMetadata = {
   github: 'https://github.com/cofcat456',
   resume: 'https://www.cakeresume.com/a25690756',
   medium: 'https://medium.com/@a25690756',
+  giscusConfig: {
+    repo: 'CofCat456/cofcat.dev' as `${string}/${string}`,
+    repoId: 'R_kgDOI1AZeQ',
+    category: 'Announcements',
+    categoryId: 'DIC_kwDOI1AZec4CT0R7',
+  },
 };
 
 export default siteMetadata;

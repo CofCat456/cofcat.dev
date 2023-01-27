@@ -1,12 +1,17 @@
 import { useTheme } from 'next-themes';
 
+import Sun from '@/assets/icon/Sun.svg';
+import Moon from '@/assets/icon/Moon.svg';
+
 import { useState, useEffect } from 'react';
-import { TbMoon, TbSun } from 'react-icons/tb';
 import { motion as m, AnimatePresence } from 'framer-motion';
 
 const ThemeToggleButton: React.FC = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
+
+  const iconClassName =
+    'h-6 w-6 fill-current text-cc-text transition-colors dark:text-cc-dark-text';
 
   const toggleTheme: () => void = () => {
     const t: string = theme === 'light' ? 'dark' : 'light';
@@ -33,9 +38,9 @@ const ThemeToggleButton: React.FC = () => {
         onClick={toggleTheme}
       >
         {theme === 'light' ? (
-          <TbSun key="light" className="text-2xl" />
+          <Sun key="light" className={iconClassName} />
         ) : (
-          <TbMoon key="dark" className="text-2xl" />
+          <Moon key="dark" className={iconClassName} />
         )}
       </m.button>
     </AnimatePresence>

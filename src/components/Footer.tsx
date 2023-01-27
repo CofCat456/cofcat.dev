@@ -5,7 +5,7 @@ import siteMetadata from '@/data/siteMetadata';
 const Footer: React.FC = () => {
   return (
     <footer>
-      <div className="flex flex-col items-center bg-cc-bg pt-16 text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text">
+      <div className="flex flex-col items-center bg-cc-bg pt-16 transition-colors dark:bg-cc-dark-bg">
         <div className="mb-3 flex space-x-4">
           <Icon kind="mail" href={`mailto:${siteMetadata.email}`} />
           <Icon kind="github" href={siteMetadata.github} />

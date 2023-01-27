@@ -29,6 +29,7 @@ const CommonSEO = ({ title, description, ogType, ogImage }: CommonSEOProps) => {
   return (
     <Head>
       <title>{title}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
       <meta name="robots" content="follow, index" />
       <meta name="description" key="description" content={description} />
       <meta property="og:url" key="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />

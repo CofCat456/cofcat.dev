@@ -10,7 +10,7 @@ const Header: React.FC = () => {
       <div className="mx-auto flex h-full max-w-full items-center justify-between px-4 sm:max-w-screen-sm sm:px-0 md:max-w-screen-md lg:max-w-screen-lg">
         <CustomLink
           href="/"
-          className="select-none font-mplus text-2xl font-bold text-cc-text outline-none transition-colors dark:text-cc-dark-text"
+          className="select-none font-mplus text-2xl font-bold outline-none transition-colors"
         >
           {siteMetadata.headerTitle}
         </CustomLink>

@@ -74,7 +74,7 @@ const PostLayout: React.FC<Props> = ({ post, nextPost, prevPost, children }) => 
                     </h2>
                     <CustomLink
                       href={prevPost.path}
-                      className="text-cc-text transition-colors hover:text-sky-500 dark:text-cc-dark-text dark:hover:text-sky-400"
+                      className="transition-colors hover:text-sky-500 dark:hover:text-sky-400"
                     >
                       ← {prevPost.title}
                     </CustomLink>
@@ -89,7 +89,7 @@ const PostLayout: React.FC<Props> = ({ post, nextPost, prevPost, children }) => 
                     </h2>
                     <CustomLink
                       href={nextPost.path}
-                      className="text-cc-text transition-colors hover:text-sky-500 dark:text-cc-dark-text dark:hover:text-sky-400 sm:text-right"
+                      className="transition-colors hover:text-sky-500 dark:hover:text-sky-400 sm:text-right"
                     >
                       {nextPost.title} →
                     </CustomLink>

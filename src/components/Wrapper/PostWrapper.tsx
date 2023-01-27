@@ -15,7 +15,7 @@ const PostWrapper: React.FC<Props> = ({ children, duration = 0.4 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const key: string = router.query.slug ? (router.query.slug as string) : 'default';
   const className =
-    'mx-auto h-full w-full max-w-full bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg';
+    'mx-auto h-full w-full max-w-full transition-colors sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg';
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => setIsLoading(true));

@@ -8,8 +8,8 @@ import RealtimeWeather from '../../public/images/projects/realtime_weather.jpg';
 import AlDente from '../../public/images/projects/AlDente.jpg';
 import PriceComparison from '../../public/images/projects/price_comparison.jpg';
 import JSDungeons from '../../public/images/projects/js_dungeons.jpg';
-import WebLayoutTraining1st from '../../public/images/projects/webLayoutTraining1st.jpeg';
-import HexScoolSummerIntern from '../../public/images/projects/hexScool_summer_intern.png';
+import HexScoolHomePage from '../../public/images/projects/hexScool_homePage.jpg';
+import ChatTalkerAI from '../../public/images/projects/chatTalker_AI.jpg';
 
 export type Project = {
   title: string;
@@ -179,7 +179,7 @@ export const allProject: Record<Category, Project[]> = {
         site: '',
       },
       image: {
-        src: WebLayoutTraining1st,
+        src: ChatTalkerAI,
         alt: '六角學院 公益體驗營',
         placeholder: 'blur',
       },
@@ -195,7 +195,7 @@ export const allProject: Record<Category, Project[]> = {
         site: '',
       },
       image: {
-        src: HexScoolSummerIntern,
+        src: HexScoolHomePage,
         alt: '六角學院 六角大專院校程式體驗營',
         placeholder: 'blur',
       },

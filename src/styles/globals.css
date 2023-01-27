@@ -9,12 +9,14 @@
   --c-text: #111827;
 }
 
+[data-theme='dark'],
 html.dark {
   --c-bg: #202023;
   --c-text: rgba(255, 255, 255, 0.92);
 }
 
-html {
+html,
+body {
   color: var(--c-text);
   background-color: var(--c-bg);
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;

@@ -1,3 +1,5 @@
+import { Post } from 'contentlayer/generated';
+
 import PostWrapper from '@/components/Wrapper/PostWrapper';
 import PageTitle from '@/components/Post/PostTitle';
 import PostBody from '@/components/Post/PostBody';
@@ -7,8 +9,6 @@ import CustomLink from '@/components/Custom/CustomLink';
 
 import formatDate from '@/lib/formatDate';
 
-import { Post } from '@/_interface';
-
 export type RelatedPostForPostLayout = {
   title: string;
   path: string;
@@ -16,8 +16,8 @@ export type RelatedPostForPostLayout = {
 
 type Props = {
   post: Post;
-  nextPost: RelatedPostForPostLayout;
-  prevPost: RelatedPostForPostLayout;
+  nextPost?: RelatedPostForPostLayout;
+  prevPost?: RelatedPostForPostLayout;
   children: React.ReactNode;
 };
 

@@ -1,4 +1,4 @@
-import ProjectLayout from '@/layouts/ProjectLayout';
+import ProjectsLayout from '@/layouts/ProjectsLayout';
 
 import { PageSEO } from '@/components/SEO';
 import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
     <>
       <PageSEO title={`${siteMetadata.title} All Projects`} />
       <ContainerWrapper size={Size.lg}>
-        <ProjectLayout />
+        <ProjectsLayout />
       </ContainerWrapper>
     </>
   );

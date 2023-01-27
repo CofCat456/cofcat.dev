@@ -44,7 +44,7 @@ export const allProject: Record<Category, Project[]> = {
       skills: ['Vue 2', 'Vue Cli', 'Vue Router', 'Bootstrap5'],
       date: '2022-04-19',
       links: {
-        post: '',
+        post: '/projects/cat-coffee',
         github: '',
         site: 'https://cofcat456.github.io/coffeeShop/#/',
       },

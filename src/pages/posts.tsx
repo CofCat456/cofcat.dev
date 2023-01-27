@@ -6,11 +6,11 @@ import PostsLayout from '@/layouts/PostsLayout';
 import { PageSEO } from '@/components/SEO';
 import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
 
-import { allPostsNew2Old } from '@/lib/contentLayerAdapter';
+import { allPostsNew2Old, Post } from '@/lib/contentLayerAdapter';
 
 import siteMetadata from '@/data/siteMetadata';
 import { POSTS_PER_PAGE_ } from '@/data/constants';
-import { Post, Size } from '@/_interface';
+import { Size } from '@/_interface';
 
 type Props = {
   posts: Post[];

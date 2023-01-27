@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import PostLayout, { PostForPostLayout, RelatedPostForPostLayout } from '@/layouts/PostLayout';
+import PostLayout, { RelatedPostForPostLayout } from '@/layouts/PostLayout';
 
 import { BlogSEO } from '@/components/SEO';
 
@@ -10,26 +10,14 @@ import { allPosts, allPostsNew2Old, Post } from '@/lib/contentLayerAdapter';
 
 import siteMetadata from '@/data/siteMetadata';
 
-type PostForPostPage = PostForPostLayout & {
-  title: string;
-  description: string;
-  date: string;
-  socialImage: string;
-  path: string;
-  body: {
-    code: string;
-    raw: string;
-  };
-};
-
 type Props = {
-  post: PostForPostPage;
+  post: Post;
   prevPost: RelatedPostForPostLayout;
   nextPost: RelatedPostForPostLayout;
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = allPosts.map((post) => post.path);
+  const paths = allPosts.map((post: Post) => post.path);
   return {
     paths,
     fallback: false,
@@ -37,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
-  const postIndex = allPostsNew2Old.findIndex((post) => post.slug === params?.slug);
+  const postIndex = allPostsNew2Old.findIndex((post: Post) => post.slug === params?.slug);
   if (postIndex === -1) {
     return {
       notFound: true,
@@ -53,8 +41,13 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     : null;
   const postFull = allPostsNew2Old[postIndex];
   const post: Post = {
+    _id: postFull._id,
+    _raw: postFull._raw,
     title: postFull.title,
+    slug: postFull.slug,
     date: postFull.date,
+    path: postFull.path,
+    type: postFull.type,
     description: postFull.description,
     body: {
       code: postFull.body.code,
@@ -81,7 +74,7 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
     description,
     title,
     date,
-    socialImage,
+    socialImage = '',
     path,
     body: { code },
   } = post;

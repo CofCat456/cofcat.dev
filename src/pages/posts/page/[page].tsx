@@ -4,11 +4,11 @@ import PostsLayout from '@/layouts/PostsLayout';
 
 import { PageSEO } from '@/components/SEO';
 import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
-import { allPostsNew2Old } from '@/lib/contentLayerAdapter';
+import { allPostsNew2Old, Post } from '@/lib/contentLayerAdapter';
 
 import siteMetadata from '@/data/siteMetadata';
 import { POSTS_PER_PAGE_ } from '@/data/constants';
-import { Post, Size } from '@/_interface';
+import { Size } from '@/_interface';
 
 type PathType = {
   params: {
@@ -35,15 +35,23 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { page } = params;
+  const { page } = params as { page: string | string[] };
   const pageStr = typeof page === 'string' ? page : page.join('');
 
   const posts: Post[] = allPostsNew2Old.map((post: Post) => ({
+    _id: post._id,
+    _raw: post._raw,
     title: post.title,
+    slug: post.slug,
+    type: post.type,
     description: post.description,
     date: post.date,
-    slug: post.slug,
     path: post.path,
+    socialImage: post.socialImage,
+    body: {
+      code: post.body.code,
+      raw: post.body.raw,
+    },
   }));
 
   const pageNumber = parseInt(pageStr);

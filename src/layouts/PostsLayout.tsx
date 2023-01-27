@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
+import { Post } from 'contentlayer/generated';
+
 import PostList from '@/components/PagesComponents/Posts/PostList';
 import Pagination, { PaginationType } from '@/components/Pagination';
-
-import { Post } from '@/_interface';
 
 type Props = {
   posts: Post[];

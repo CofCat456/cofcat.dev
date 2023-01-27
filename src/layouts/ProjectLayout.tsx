@@ -1,42 +1,68 @@
-import { Tab } from '@headlessui/react';
-import { compareDesc } from 'date-fns';
+import { Project } from 'contentlayer/generated';
 
-import Card from '@/components/PagesComponents/Project/Card';
-import CustomTab from '@/components/PagesComponents/Project/CustomTab';
-import ContainerWrapper from '@/components/Wrapper/ContainerWrapper';
+import PostWrapper from '@/components/Wrapper/PostWrapper';
+import PageTitle from '@/components/Post/PostTitle';
+import PostBody from '@/components/Post/PostBody';
+import TableOfContents from '@/components/Post/TableOfContents';
 
-import { allProject, Project } from '@/data/projects';
-import { Size } from '@/_interface';
+import formatDate from '@/lib/formatDate';
 
-export function convertNew2Old(projects: Project[]): Project[] {
+export type RelatedPostForPostLayout = {
+  title: string;
+  path: string;
+} | null;
+
+type Props = {
+  project: Project;
+  children: React.ReactNode;
+};
+
+const PostLayout: React.FC<Props> = ({ project, children }) => {
+  const { title, date, body: { raw } = { raw: '' } } = project;
+
   return (
-    projects?.sort((a, b) => {
-      return compareDesc(new Date(a.date), new Date(b.date));
-    }) || []
-  );
-}
-
-const ProjectLayout = () => {
-  return (
-    <>
-      <CustomTab>
-        {Object.values(allProject).map((projects, idx) => (
-          <Tab.Panel
-            key={idx}
-            className="focus:ring-3 p-4 ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none"
-          >
-            <ContainerWrapper duration={0.6} size={Size.lg}>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
-                {convertNew2Old(projects).map((project) => (
-                  <Card key={project.title} project={project} />
-                ))}
+    <article>
+      <PostWrapper>
+        <div
+          key={title}
+          className="divide-y divide-gray-200 transition-colors dark:divide-gray-700"
+        >
+          <header className="py-6">
+            <div className="space-y-1 text-center">
+              <div className="mb-4">
+                <PageTitle>{title}</PageTitle>
               </div>
-            </ContainerWrapper>
-          </Tab.Panel>
-        ))}
-      </CustomTab>
-    </>
+
+              <dl className="space-y-10">
+                <div>
+                  <dt className="sr-only">發佈時間</dt>
+                  <dd className="text-base font-medium leading-6 transition-colors">
+                    <time dateTime={date}>{formatDate(date)}</time>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </header>
+
+          <div className="divide-y divide-gray-200 pt-10 pb-8 transition-colors dark:divide-gray-700">
+            <div
+              className="pb-8 transition-colors lg:grid lg:grid-cols-4 lg:gap-x-6"
+              style={{ gridTemplateRows: 'auto 1fr' }}
+            >
+              <div className="divide-y divide-gray-200 pt-10 pb-8 transition-colors dark:divide-gray-700 lg:col-span-3">
+                <PostBody>{children}</PostBody>
+              </div>
+              <aside>
+                <div className="hidden lg:sticky lg:top-24 lg:col-span-1 lg:block">
+                  <TableOfContents source={raw} />
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </PostWrapper>
+    </article>
   );
 };
 
-export default ProjectLayout;
+export default PostLayout;

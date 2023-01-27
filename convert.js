@@ -6,6 +6,7 @@ const grayMatter = require('gray-matter');
 const contentDir = 'content';
 const pagesDir = 'pages';
 const postsDir = 'posts';
+const projectsDir = 'projects';
 
 const processDirectory = (dir) => {
   fs.readdirSync(dir).forEach((file) => {
@@ -37,3 +38,4 @@ const processDirectory = (dir) => {
 
 processDirectory(path.join(contentDir, pagesDir));
 processDirectory(path.join(contentDir, postsDir));
+processDirectory(path.join(contentDir, projectsDir));

@@ -1,8 +1,8 @@
+import { Post } from 'contentlayer/generated';
+
 import CustomLink from '@/components/Custom/CustomLink';
 
 import formatDate from '@/lib/formatDate';
-
-import { Post } from '@/_interface';
 
 type Props = {
   posts: Post[];

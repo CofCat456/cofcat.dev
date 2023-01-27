@@ -26,7 +26,7 @@ const ContainerWrapper: React.FC<Props> = ({ children, duration = 0.4, size = Si
         exit={{ y: 20, opacity: 0 }}
         transition={{ duration, ease: 'easeInOut' }}
         className={clsx(
-          'mx-auto h-full w-full max-w-full transition-colors sm:max-w-screen-sm md:max-w-screen-md',
+          'mx-auto h-full w-full max-w-full sm:max-w-screen-sm md:max-w-screen-md',
           SizeMap(size),
         )}
       >

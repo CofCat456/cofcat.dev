@@ -14,7 +14,7 @@ const AboutMe: React.FC<Props> = () => {
         <h1 className="mb-4 inline-flex items-end gap-1 text-4xl font-extrabold">
           {siteMetadata.title}
         </h1>
-        <p className="text-lg leading-[1.75] text-cc-text transition-colors dark:text-cc-dark-text">
+        <p className="text-lg leading-[1.75] text-cc-text dark:text-cc-dark-text">
           {siteMetadata.industry}
           <br />
           {siteMetadata.motto}

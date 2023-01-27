@@ -10,7 +10,7 @@ const ThemeToggleButton: React.FC = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
-  const iconClassName = 'h-6 w-6 fill-current transition-colors';
+  const iconClassName = 'h-6 w-6 fill-current';
 
   const toggleTheme: () => void = () => {
     const t: string = theme === 'light' ? 'dark' : 'light';

@@ -11,7 +11,7 @@ const CustomTab: React.FC<Props> = ({ children }) => {
   return (
     <div className="mx-auto w-full">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1 transition-colors">
+        <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
           {Object.keys(Category).map((category) => (
             <Tab
               key={category}

@@ -7,7 +7,7 @@ interface Props {
 
 const LayoutWrapper: React.FC<Props> = ({ children }) => {
   return (
-    <div className="flex min-h-screen w-full flex-col justify-between bg-cc-bg text-cc-text transition-colors dark:bg-cc-dark-bg dark:text-cc-dark-text">
+    <div className="flex min-h-screen w-full flex-col justify-between text-cc-text transition-colors dark:text-cc-dark-text">
       <Header />
       <main className="mb-auto flex-1 px-4 pt-8 sm:p-10 md:p-0">
         <div className="mx-auto md:py-10">

@@ -20,13 +20,14 @@ html {
 }
 
 body {
+  min-height: 100%;
   font-family: Quicksand, 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 @layer base {
   .nav {
-    @apply flex items-center gap-1 overflow-hidden transition-colors;
+    @apply flex items-center gap-1 overflow-hidden;
   }
   .navItem {
     @apply cursor-pointer p-2 text-base opacity-70 outline-none transition-opacity hover:opacity-100;

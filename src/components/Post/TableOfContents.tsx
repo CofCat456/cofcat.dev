@@ -75,9 +75,7 @@ const TableOfContents = ({ source }: Props) => {
 
   return (
     <div className="mt-10">
-      <p className="mb-5 text-lg font-semibold text-gray-900 transition-colors dark:text-gray-100">
-        目錄
-      </p>
+      <p className="mb-5 text-lg font-semibold text-gray-900 dark:text-gray-100">目錄</p>
       <div className="flex flex-col items-start justify-start">
         {headings.map((heading, index) => {
           return (
@@ -89,7 +87,7 @@ const TableOfContents = ({ source }: Props) => {
                   ? 'font-medium text-sky-500 hover:text-sky-600 dark:hover:text-sky-400'
                   : 'font-normal text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200',
                 heading.level === 3 && 'pl-4',
-                'mb-3 text-left text-sm transition-colors hover:underline',
+                'mb-3 text-left text-sm hover:underline',
               )}
               onClick={(e) => {
                 e.preventDefault();

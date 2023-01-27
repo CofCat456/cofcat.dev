@@ -10,6 +10,7 @@ import PriceComparison from '../../public/images/projects/price_comparison.jpg';
 import JSDungeons from '../../public/images/projects/js_dungeons.jpg';
 import HexScoolHomePage from '../../public/images/projects/hexScool_homePage.jpg';
 import ChatTalkerAI from '../../public/images/projects/chatTalker_AI.jpg';
+import JS2022CLASS from '../../public/images/projects/js-2022-autumn-class.jpg';
 
 export type Project = {
   title: string;
@@ -197,6 +198,22 @@ export const allProject: Record<Category, Project[]> = {
       image: {
         src: HexScoolHomePage,
         alt: '六角學院 六角大專院校程式體驗營',
+        placeholder: 'blur',
+      },
+    },
+    {
+      title: 'JS 工程師養成直播班 - 2022 秋季',
+      description: '參加六角學院於 2022 舉辦 JS 工程師養成直播班 - 2022 秋季的期間作品',
+      skills: ['JS'],
+      date: '2022-11-05',
+      links: {
+        post: '/projects/js-2022-autumn-class',
+        github: '',
+        site: '',
+      },
+      image: {
+        src: JS2022CLASS,
+        alt: '六角學院 JS 工程師養成直播班 - 2022 秋季',
         placeholder: 'blur',
       },
     },

@@ -6,13 +6,10 @@ import LivePhotos from '../../public/images/projects/LivePhotos.jpg';
 import FacebookUI from '../../public/images/projects/facebook_UI.jpg';
 import RealtimeWeather from '../../public/images/projects/realtime_weather.jpg';
 import AlDente from '../../public/images/projects/AlDente.jpg';
-import HexDessertRestaurant from '../../public/images/projects/dessert_restaurant.jpg';
-import ChatTalkerAI from '../../public/images/projects/chatTalker_AI.jpg';
 import PriceComparison from '../../public/images/projects/price_comparison.jpg';
-import MultiplicationTable from '../../public/images/projects/multiplication_table.jpg';
-import Clock from '../../public/images/projects/clock.jpg';
-import JSToDo from '../../public/images/projects/js_todoList.jpg';
-import HexScoolHomePage from '../../public/images/projects/hexScool_homePage.jpg';
+import JSDungeons from '../../public/images/projects/js_dungeons.jpg';
+import WebLayoutTraining1st from '../../public/images/projects/webLayoutTraining1st.jpeg';
+import HexScoolSummerIntern from '../../public/images/projects/hexScool_summer_intern.png';
 
 export type Project = {
   title: string;
@@ -34,12 +31,13 @@ export type Project = {
 export enum Category {
   Project = 'Project',
   Exerecise = 'Exerecise',
+  Train = 'Train',
 }
 
 export const allProject: Record<Category, Project[]> = {
   Project: [
     {
-      title: '貓咖啡 CatCof',
+      title: '貓咖啡 Cat Coffee',
       description: '咖啡電商網站，有前後台功能',
       skills: ['Vue 2', 'Vue Cli', 'Vue Router', 'Bootstrap5'],
       date: '2022-04-19',
@@ -60,7 +58,7 @@ export const allProject: Record<Category, Project[]> = {
       skills: ['React', 'React Hook', 'React Router'],
       date: '2022-08-21',
       links: {
-        post: '',
+        post: '/projects/react-api-todolist',
         github: '',
         site: 'https://cofcat456.github.io/react-todoList/',
       },
@@ -137,38 +135,6 @@ export const allProject: Record<Category, Project[]> = {
       },
     },
     {
-      title: '六角甜點餐廳',
-      description: 'TailwindCSS 練習作品',
-      skills: ['HTML 5', 'CSS'],
-      date: '2022-08-26',
-      links: {
-        post: '',
-        github: '',
-        site: 'https://cofcat456.github.io/HexSchool_webLayoutTraining1st/Task-1/',
-      },
-      image: {
-        src: HexDessertRestaurant,
-        alt: '六角學院 甜點餐廳',
-        placeholder: 'empty',
-      },
-    },
-    {
-      title: 'chatTalker AI 機器人',
-      description: 'TailwindCSS 練習作品',
-      skills: ['HTML 5', 'CSS'],
-      date: '2022-08-26',
-      links: {
-        post: '',
-        github: '',
-        site: 'https://cofcat456.github.io/HexSchool_webLayoutTraining1st/Task-2/',
-      },
-      image: {
-        src: ChatTalkerAI,
-        alt: 'chatTalker AI 機器人',
-        placeholder: 'empty',
-      },
-    },
-    {
       title: '農產品比價網',
       description: '輕鬆查詢全台蔬菜、水果、花卉等價格',
       skills: ['Axios', 'Bootstrap 5'],
@@ -185,67 +151,53 @@ export const allProject: Record<Category, Project[]> = {
       },
     },
     {
-      title: '九九乘法表',
-      description: ' 新手 JS 地下城，1F Boss 關卡',
-      skills: ['Vue 2', 'JavaScript'],
-      date: '2022-02-08',
+      title: '新手 JS 地下城',
+      description: '六角學院 - 新手 JS 地下城闖關過程紀錄',
+      skills: ['JS'],
+      date: '2022-02-06',
       links: {
-        post: '',
+        post: '/projects/js-dungeons',
         github: '',
-        site: 'https://cofcat456.github.io/JS-Dungeons/1F/',
+        site: '',
       },
       image: {
-        src: MultiplicationTable,
-        alt: '六角學院 新手 JS 地下城 1F',
-        placeholder: 'empty',
+        src: JSDungeons,
+        alt: '六角學院 新手 JS 地下城',
+        placeholder: 'blur',
+      },
+    },
+  ],
+  Train: [
+    {
+      title: '公益體驗營',
+      description: '參加六角學院於 2022 舉辦公益體驗營的期間作品',
+      skills: ['JS'],
+      date: '2022-08-26',
+      links: {
+        post: '/projects/webLayoutTraining1st',
+        github: '',
+        site: '',
+      },
+      image: {
+        src: WebLayoutTraining1st,
+        alt: '六角學院 公益體驗營',
+        placeholder: 'blur',
       },
     },
     {
-      title: '時鐘',
-      description: '新手 JS 地下城，2F Boss 關卡',
-      skills: ['Vue 2', 'JavaScript'],
-      date: '2022-02-08',
-      links: {
-        post: '',
-        github: '',
-        site: 'https://cofcat456.github.io/JS-Dungeons/2F/',
-      },
-      image: {
-        src: Clock,
-        alt: '六角學院 新手 JS 地下城 2F',
-        placeholder: 'empty',
-      },
-    },
-    {
-      title: 'JS TodoList',
-      description: '使用 JS 練習Todolist。',
-      skills: ['HTML 5', 'JavaScript', 'Bootstrap 5'],
-      date: '2022-01-25',
-      links: {
-        post: '',
-        github: '',
-        site: 'https://cofcat456.github.io/Todolist/',
-      },
-      image: {
-        src: JSToDo,
-        alt: 'JavaScript TodoList',
-        placeholder: 'empty',
-      },
-    },
-    {
-      title: '六角 HexScool 首頁',
-      description: '六角大專院校程式體驗營作品',
-      skills: ['HTML 5', 'JavaScript', 'Bootstrap 5'],
+      title: '六角大專院校程式體驗營',
+      description: '參加六角學院於 2022 舉辦大專院校程式體驗營的期間作品',
+      skills: ['JS'],
       date: '2022-04-03',
       links: {
-        post: '',
+        post: '/projects/hexScool_summer_intern',
         github: '',
-        site: 'https://cofcat456.github.io/HexSchoolWork/jQuery/',
+        site: '',
       },
       image: {
-        src: HexScoolHomePage,
-        alt: '六角學院 首頁',
-        placeholder: 'empty',
+        src: HexScoolSummerIntern,
+        alt: '六角學院 六角大專院校程式體驗營',
+        placeholder: 'blur',
       },
     },
   ],

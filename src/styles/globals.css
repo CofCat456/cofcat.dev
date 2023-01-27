@@ -21,34 +21,6 @@ body {
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-*::-webkit-scrollbar {
-  width: 0px;
-}
-*::-webkit-scrollbar:horizontal {
-  height: 0px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--cc-background);
-}
-
-*::-webkit-scrollbar-thumb {
-  transition: background 0.2s ease-in-out;
-  border: 3px solid transparent;
-  background: var(--cc-scrollbar);
-  border-radius: 9999px;
-  background-clip: content-box;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--cc-scrollbar-hover);
-  background-clip: content-box;
-}
-
-*::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
 @layer base {
   .nav {
     @apply flex items-center gap-1 overflow-hidden;

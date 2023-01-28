@@ -20,6 +20,7 @@ const Comment: React.FC = () => {
         emitMetadata="0"
         inputPosition="top"
         theme={theme === 'dark' || theme === 'system' ? 'transparent_dark' : 'light'}
+        lang="zh-TW"
         loading="lazy"
       />
     </div>

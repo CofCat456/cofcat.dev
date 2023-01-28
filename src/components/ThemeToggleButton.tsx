@@ -33,7 +33,7 @@ const ThemeToggleButton: React.FC = () => {
         exit={{ y: 20, opacity: 0 }}
         transition={{ duration: 0.3, ease: 'linear' }}
         type="button"
-        className="navItem themeToggleBtn"
+        className="navItem themeToggleBtn rounded-full transition-colors hover:bg-gray-200 dark:hover:bg-stone-700"
         onClick={toggleTheme}
       >
         {theme === 'light' ? (

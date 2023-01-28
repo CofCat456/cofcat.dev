@@ -44,8 +44,7 @@ const PostLayout: React.FC<Props> = ({ post, nextPost, prevPost, children }) => 
               </dl>
             </div>
           </header>
-
-          <div className="divide-y divide-gray-200 pt-10 pb-8 dark:divide-gray-700">
+          <div className="divide-y divide-gray-200 pt-10 pb-8 transition-colors dark:divide-gray-700">
             <div
               className="pb-8 lg:grid lg:grid-cols-4 lg:gap-x-6"
               style={{ gridTemplateRows: 'auto 1fr' }}

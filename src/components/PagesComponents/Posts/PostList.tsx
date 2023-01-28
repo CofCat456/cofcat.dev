@@ -10,7 +10,7 @@ type Props = {
 
 export default function PostList({ posts = [] }: Props) {
   return (
-    <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+    <ul className="dark:border-divide-neutral-700 border-divide-neutral-200 divide-y">
       {posts.map((post) => {
         const { slug, date, title, description, path } = post;
         return (

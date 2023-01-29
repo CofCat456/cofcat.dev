@@ -5,7 +5,7 @@ import Error from '@/assets/icon/Error';
 
 const ErrorPage = () => {
   return (
-    <div className="mx-auto flex max-w-2xl flex-col gap-y-6 px-5 py-4">
+    <div className="mx-auto flex h-full max-w-2xl flex-col justify-center gap-y-6 px-5 py-4">
       <Error />
       <p>You have found a secret place.</p>
       <p>

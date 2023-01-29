@@ -2,7 +2,7 @@ import Image, { ImageProps } from 'next/image';
 
 type Props = ImageProps & { base64?: string };
 
-export default function CustomImage({ src, height, width, base64, alt, ...otherProps }: Props) {
+const CustomImage = ({ src, height, width, base64, alt, ...otherProps }: Props) => {
   if (!src) return null;
   if (typeof src === 'string' && (!height || !width)) {
     return (
@@ -24,3 +24,5 @@ export default function CustomImage({ src, height, width, base64, alt, ...otherP
     />
   );
 }
+
+export default CustomImage;

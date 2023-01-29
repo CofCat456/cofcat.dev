@@ -17,7 +17,7 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps<Props> = () => {
-  const posts = allPostsNew2Old.filter(({isDraft}) => isDraft !== true).map((post) => ({
+  const posts = allPostsNew2Old.map((post) => ({
     slug: post.slug,
     date: post.date,
     title: post.title,

@@ -9,7 +9,6 @@ import mdxComponents from '@/lib/mdxComponents';
 import { allPosts, allPostsNew2Old, Post } from '@/lib/contentLayerAdapter';
 
 import siteMetadata from '@/data/siteMetadata';
-import PageTitle from '@/components/Post/PostTitle';
 
 type Props = {
   post: Post;
@@ -49,7 +48,6 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     date: postFull.date,
     path: postFull.path,
     type: postFull.type,
-    isDraft: postFull.isDraft || null,
     description: postFull.description,
     body: {
       code: postFull.body.code,
@@ -78,7 +76,6 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
     date,
     socialImage = '',
     path,
-    isDraft,
     body: { code },
   } = post;
 
@@ -86,30 +83,16 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
 
   return (
     <>
-      {isDraft !== true ? (
-        <>
-          <BlogSEO
-            url={`${siteMetadata.siteUrl}${path}`}
-            title={`${title} - ${siteMetadata.title}`}
-            description={description}
-            date={date}
-            socialImage={socialImage}
-          />
-          <PostLayout post={post} prevPost={prevPost} nextPost={nextPost}>
-            <MDXContent components={mdxComponents} />
-          </PostLayout>
-          )
-        </>
-      ) : (
-        <div className="mt-24 text-center">
-          <PageTitle>
-            Under Construction{' '}
-            <span role="img" aria-label="roadwork sign">
-              🚧
-            </span>
-          </PageTitle>
-        </div>
-      )}
+      <BlogSEO
+        url={`${siteMetadata.siteUrl}${path}`}
+        title={`${title} - ${siteMetadata.title}`}
+        description={description}
+        date={date}
+        socialImage={socialImage}
+      />
+      <PostLayout post={post} prevPost={prevPost} nextPost={nextPost}>
+        <MDXContent components={mdxComponents} />
+      </PostLayout>
     </>
   );
 };

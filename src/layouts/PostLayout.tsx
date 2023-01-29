@@ -1,4 +1,5 @@
 import { Post } from 'contentlayer/generated';
+import Balancer from 'react-wrap-balancer';
 
 import PostWrapper from '@/components/Wrapper/PostWrapper';
 import PageTitle from '@/components/Post/PostTitle';
@@ -33,7 +34,6 @@ const PostLayout: React.FC<Props> = ({ post, nextPost, prevPost, children }) => 
               <div className="mb-4">
                 <PageTitle>{title}</PageTitle>
               </div>
-
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">發佈時間</dt>
@@ -62,37 +62,77 @@ const PostLayout: React.FC<Props> = ({ post, nextPost, prevPost, children }) => 
           <div className="divide-y divide-gray-200 pb-8 dark:divide-gray-700">
             <Comment />
             <footer>
-              <div className="flex flex-col gap-4 pt-4 text-base font-medium sm:flex-row sm:justify-between xl:gap-8 xl:pt-8">
-                {prevPost ? (
+              <div className="flex flex-col gap-8 py-8 text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
+                {prevPost && (
                   <div className="basis-6/12">
-                    <h2 className="mb-1 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <p className="mb-1 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       上一篇
-                    </h2>
+                    </p>
                     <CustomLink
                       href={prevPost.path}
-                      className="duration-300 hover:text-sky-500 dark:hover:text-sky-400"
+                      className="flex gap-1 transition-colors duration-300 hover:text-sky-500 dark:hover:text-sky-400"
                     >
-                      ← {prevPost.title}
+                      <span>&larr;</span>
+                      <span className="grow">
+                        <Balancer>{prevPost.title}</Balancer>
+                      </span>
                     </CustomLink>
                   </div>
-                ) : (
-                  <div />
                 )}
                 {nextPost && (
-                  <div className="inline-flex basis-6/12 flex-col items-end">
-                    <h2 className="mb-1 text-left text-xs uppercase tracking-wide text-gray-500 duration-300 dark:text-gray-400 sm:text-right">
+                  <div className="basis-6/12">
+                    <h2 className="mb-1 text-left text-xs uppercase tracking-wide text-gray-500 transition-colors duration-300 dark:text-gray-400 sm:text-right">
                       下一篇
                     </h2>
                     <CustomLink
                       href={nextPost.path}
-                      className="duration-300 hover:text-sky-500 dark:hover:text-sky-400 sm:text-right"
+                      className="flex gap-1 transition-colors duration-300 hover:text-sky-500 dark:hover:text-sky-400 sm:flex-row-reverse sm:text-right"
                     >
-                      {nextPost.title} →
+                      <span>&rarr;</span>
+                      <span className="grow">
+                        <Balancer>{nextPost.title}</Balancer>
+                      </span>
                     </CustomLink>
                   </div>
                 )}
               </div>
             </footer>
+            {/* <footer>
+              <div className="flex flex-col gap-8 py-8 text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
+                {prev && (
+                  <div className="basis-6/12">
+                    <p className="mb-1 text-xs uppercase tracking-wide text-gray-500 transition-colors dark:text-gray-400">
+                      {t('previous-article')}
+                    </p>
+                    <CustomLink
+                      href={prev.path}
+                      className="flex gap-1 text-primary-500 transition-colors hover:text-primary-600 dark:hover:text-primary-400"
+                    >
+                      <span>&larr;</span>
+                      <span className="grow">
+                        <Balancer>{prev.title}</Balancer>
+                      </span>
+                    </CustomLink>
+                  </div>
+                )}
+                {next && (
+                  <div className="basis-6/12">
+                    <p className="mb-1 text-left text-xs uppercase tracking-wide text-gray-500 transition-colors dark:text-gray-400 sm:text-right">
+                      {t('next-article')}
+                    </p>
+                    <CustomLink
+                      href={next.path}
+                      className="flex gap-1 text-primary-500 transition-colors hover:text-primary-600 dark:hover:text-primary-400 sm:flex-row-reverse sm:text-right"
+                    >
+                      <span>&rarr;</span>
+                      <span className="grow">
+                        <Balancer>{next.title}</Balancer>
+                      </span>
+                    </CustomLink>
+                  </div>
+                )}
+              </div>
+            </footer> */}
           </div>
         </div>
       </PostWrapper>

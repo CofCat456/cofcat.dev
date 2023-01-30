@@ -20,6 +20,18 @@ const siteMetadata = {
     category: 'Announcements',
     categoryId: 'DIC_kwDOI1AZec4CT0R7',
   },
+  EasterEgg: `
+/**
+    /\\_____/\\     meow
+   /  o   o   \\
+  ( ==  ^  ==  )
+   )          (
+  (            )
+ ( (  )    (  ) )
+(__(__)____(__)__)
+  你怎麼發現我的真身了
+*/
+`,
 };
 
 export default siteMetadata;

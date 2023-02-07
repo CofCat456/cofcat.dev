@@ -11,6 +11,7 @@ import JSDungeons from '../../public/images/projects/js_dungeons.jpg';
 import HexScoolHomePage from '../../public/images/projects/hexScool_homePage.jpg';
 import ChatTalkerAI from '../../public/images/projects/chatTalker_AI.jpg';
 import JS2022CLASS from '../../public/images/projects/js-2022-autumn-class.jpg';
+import TheMovies from '../../public/images/projects/the_movies.jpg';
 
 export type Project = {
   title: string;
@@ -87,6 +88,22 @@ export const allProject: Record<Category, Project[]> = {
     },
   ],
   Exerecise: [
+    {
+      title: 'The Movies',
+      description: '使用 Next.js 串接 TMDB API',
+      skills: ['Next', 'fetch API'],
+      date: '2023-02-02',
+      links: {
+        post: '',
+        github: '',
+        site: 'https://the-movies-mauve.vercel.app/',
+      },
+      image: {
+        src: TheMovies,
+        alt: 'The Movies',
+        placeholder: 'blur',
+      },
+    },
     {
       title: 'Faceboock UI',
       description: 'TailwindCSS 實作 Facebook 頁面',

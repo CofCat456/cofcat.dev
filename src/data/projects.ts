@@ -3,15 +3,16 @@ import { StaticImageData } from 'next/image';
 import CoffeeShop from '../../public/images/projects/coffeeShop.jpg';
 import ReactTodo from '../../public/images/projects/react_todoList.jpg';
 import LivePhotos from '../../public/images/projects/LivePhotos.jpg';
-import FacebookUI from '../../public/images/projects/facebook_UI.jpg';
+import FacebookUI from '../../public/images/projects/facebook_ui.jpg';
 import RealtimeWeather from '../../public/images/projects/realtime_weather.jpg';
 import AlDente from '../../public/images/projects/AlDente.jpg';
 import PriceComparison from '../../public/images/projects/price_comparison.jpg';
 import JSDungeons from '../../public/images/projects/js_dungeons.jpg';
 import HexScoolHomePage from '../../public/images/projects/hexScool_homePage.jpg';
-import ChatTalkerAI from '../../public/images/projects/chatTalker_AI.jpg';
+import ChatTalkerAI from '../../public/images/projects/chatTalker_ai.jpg';
 import JS2022CLASS from '../../public/images/projects/js-2022-autumn-class.jpg';
 import TheMovies from '../../public/images/projects/the_movies.jpg';
+import InstagramUI from '../../public/images/projects/instagram_ui.jpg';
 
 export type Project = {
   title: string;
@@ -88,6 +89,30 @@ export const allProject: Record<Category, Project[]> = {
     },
   ],
   Exerecise: [
+    {
+      title: 'Instagram UI',
+      description: '使用 React、Typescript、TailwindCSS 實作 Instagram UI',
+      skills: [
+        'React',
+        'React Hooks',
+        'Redux',
+        'Redux Toolkit',
+        'TypeScript',
+        'Tailwind CSS',
+        'JSON Server',
+      ],
+      date: '2023-03-07',
+      links: {
+        post: '',
+        github: '',
+        site: 'https://instagram-ui-one.vercel.app/',
+      },
+      image: {
+        src: InstagramUI,
+        alt: 'Instagram UI',
+        placeholder: 'blur',
+      },
+    },
     {
       title: 'The Movies',
       description: '使用 Next.js 串接 TMDB API',

@@ -5,7 +5,7 @@ export type PaginationType = {
   totalPages: number;
 };
 
-export default function Pagination({ totalPages, currentPage }: PaginationType) {
+const Pagination = ({ totalPages, currentPage }: PaginationType) => {
   const prevPage = currentPage - 1 > 0;
   const nextPage = currentPage + 1 <= totalPages;
 
@@ -38,4 +38,6 @@ export default function Pagination({ totalPages, currentPage }: PaginationType) 
       </nav>
     </div>
   );
-}
+};
+
+export default Pagination;

@@ -26,7 +26,11 @@ const config = {
   },
   ignorePatterns: ['**/*.md'],
   plugins: ['@typescript-eslint', 'perfectionist', 'unused-imports'],
-  extends: ['next/core-web-vitals', 'plugin:perfectionist/recommended-natural', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'next/core-web-vitals',
+    'plugin:perfectionist/recommended-natural',
+    'plugin:@typescript-eslint/recommended',
+  ],
   rules: {
     '@typescript-eslint/consistent-type-imports': [
       'warn',

@@ -1,17 +1,22 @@
 // contentlayer.config.ts
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 
-export const Post = defineDocumentType(() => ({
+export const Page = defineDocumentType(() => ({
   computedFields: {
-    url: { resolve: (post) => `/posts/${post._raw.flattenedPath}`, type: 'string' },
+    url: {
+      resolve: (page) => `/pages/${page._raw.flattenedPath}`,
+      type: 'string',
+    },
   },
   contentType: 'mdx',
   fields: {
     date: { required: true, type: 'date' },
+    public: { required: true, type: 'boolean' },
+    slug: { required: true, type: 'string' },
     title: { required: true, type: 'string' },
   },
   filePathPattern: `**/*.mdx`,
-  name: 'Post',
-}))
+  name: 'Page',
+}));
 
-export default makeSource({ contentDirPath: 'posts', documentTypes: [Post] })
+export default makeSource({ contentDirPath: 'content', documentTypes: [Page] });

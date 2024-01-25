@@ -6,7 +6,7 @@ const {
   INKDROP_USERNAME = '',
   INKDROP_PASSWORD = '',
   INKDROP_PORT,
-  INKDROP_BOOKID_PAGES = '',
+  INKDROP_BOOKID_POSTS = '',
 } = process.env;
 
 const liveExport = new LiveExporter({
@@ -15,16 +15,18 @@ const liveExport = new LiveExporter({
   port: Number(INKDROP_PORT),
 });
 
-const basePath = `./content/pages`;
-const publicPath = `./public/pages`;
+const basePath = `./content/posts`;
+const publicPath = `./public/posts`;
 
 (async () =>
   await liveExport.start({
     live: true,
-    bookId: INKDROP_BOOKID_PAGES,
-    preProcessNote: ({ note, frontmatter }) => {
+    bookId: INKDROP_BOOKID_POSTS,
+    preProcessNote: ({ note, frontmatter, tags }) => {
       frontmatter.title = note.title;
-      // Convert note title to kebab case (eg. "kebab-case-note-title")
+      frontmatter.tags = tags?.map((t) => t.name) ?? [];
+      frontmatter.createdAt = note.createdAt;
+      frontmatter.updatedAt = note.updatedAt;
     },
     pathForNote: ({ /* note, */ frontmatter }) => {
       // export only if it's public
@@ -34,7 +36,7 @@ const publicPath = `./public/pages`;
     },
     urlForNote: ({ frontmatter }) => {
       if (frontmatter.public) {
-        return `/pages/${frontmatter.slug}`;
+        return `/posts/${frontmatter.slug}`;
       } else return false;
     },
     pathForFile: ({ mdastNode, /* note, file, */ extension, frontmatter }) => {
@@ -44,7 +46,7 @@ const publicPath = `./public/pages`;
         )}${extension}`;
         const res = {
           filePath: `${publicPath}/${fn}`,
-          url: `/pages/${fn}`,
+          url: `/posts/${fn}`,
         };
         // If the `alt` attribute of the image is 'thumbnail', use it as a hero image
         if (mdastNode.alt === 'thumbnail') {

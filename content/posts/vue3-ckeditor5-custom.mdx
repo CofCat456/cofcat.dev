@@ -1,0 +1,197 @@
+---
+title: Vue3 CKEditor5 (2)：自定義編輯器
+description: >-
+  當你使用官網提供的 6 個模板時，如果你還想再新增其他 plugin 的話，很可能就會遇到
+  「ckeditor-duplicated-modules」的錯誤警告，而這時你就需要通過自定義編輯器的方式來解決，這篇文章將紀錄自定義編輯器及導入專案的過程
+slug: vue3-ckeditor5-custom
+type: Post
+socialImage: https://i.imgur.com/iPrhdOS.jpg
+public: true
+pin: false
+tags:
+  - Vue
+createdAt: 1693936172484.2358
+updatedAt: 1706157562142
+---
+
+![CKEditor 5](https://i.imgur.com/iPrhdOS.jpg)
+
+## 前言
+
+當你使用官網提供的 6 個模板時，如果你還想再新增其他 plugin 的話，很可能就會遇到 「ckeditor-duplicated-modules」的錯誤警告，而這時你就需要通過自定義編輯器的方式來解決，這篇文章將紀錄下載套件及整個安裝過程。
+
+## 錯誤訊息
+
+首先我們必須知道的是，為什麼會有「ckeditor-duplicated-modules」的錯誤警告呢？
+
+![Imgur](https://i.imgur.com/XTMWB1Y.png)
+
+官網所提供能夠直接 `npm install` 的模板，都是包含了預設工具的的套件，而其中包含了 `CKEditor` 最核心的 `@ckeditor/ckeditor5-engine` 和 `@ckeditor/ckeditor5-utils` 等套件
+
+![Imgur](https://i.imgur.com/7oK6ezv.png)
+
+而當你引入其他 `plugin` 時，也會引入核心套件，這就導致了錯誤的發生
+
+![Imgur](https://i.imgur.com/KH2rFGJ.png)
+
+除非你要引入的 `plugin` 沒有任何依賴關係，否則沒辦法直接使用。
+
+> 還有一種引發「ckeditor-duplicated-modules」錯誤的可能是，引入插件的版本衝突或是過舊，這時只需要將版本都統一即可解決。
+
+## 解決方法
+
+官方建議的方式，是下載完整的模板包，直接將所需新增的套件加入後，再打包丟到專案中使用。
+
+詳情請看[官方文件](https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html)
+
+還有一種更方便的方式是使用官網提供的 [online-builder](https://ckeditor.com/ckeditor-5/online-builder/) ，以下將示範這種方式。
+
+## 樣式選擇
+
+1. 打開頁面之後，總共有 5 個版型可供選擇，我們一樣選擇 `Classic` 即可
+
+![Imgur](https://i.imgur.com/tLF9fwy.png)
+
+> 點擊 `Next Step` 會到下一步，途中如果想回到上一步可以點擊 `Previous Setp`
+
+2. 這裡可以直接點擊 `Add` 你想要的工具，預設已經有幾種，不喜歡的話也可以選擇 `Remove`
+
+![Imgur](https://i.imgur.com/hUaazev.png)
+
+> 工具欄上帶有星星是要收費的，如果沒有要付費的話，記得移除。
+
+3. 這裡可以讓你選擇默認的 `plugin`，也可以調整順序
+
+![Imgur](https://i.imgur.com/tLVtSmN.png)
+
+4. 這裡可以選擇語言，往下滑會看到 `Chinese(Taiwan)`，  
+
+![Imgur](https://i.imgur.com/H7a0ysL.png)
+
+5. 確認沒問題之後，點擊 `Start` 開始生成，然後再點擊 `Download your custom CKEditor 5 build` 按鈕。
+
+![Imgur](https://i.imgur.com/tiBjDlp.png)
+
+> 如果頁面跟我長得不一樣，有紅色框框的話，記得往前到第二步，很可能是你選到付費的 `plugin` 了
+
+## 瀏覽編輯器
+
+這時你應該會拿到一個 `zip` 壓縮檔案，將它解壓縮後使用 `VS Code` 打開
+
+![Imgur](https://i.imgur.com/WAS7PFS.png)
+
+就會看到這些檔案，其中 `ckeditor.js` 就是我們的主文件，而 `build` 則是使用 `webpack` 打包過的檔案，如果對 `webpack`不熟也沒關係，這邊都是已經設定好的
+
+如過還有需要添加其他的功能或是調整工具欄的話，到下方就可以進行調整
+
+![Imgur](https://i.imgur.com/xrzR95l.png)
+
+可以透過 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 來測試編輯器是否有安裝成功
+
+> 點擊 `GO Live` >> 選擇 `sample` 資料夾
+
+有看到以下畫面的話，就代表成功運行了。
+
+![Imgur](https://i.imgur.com/09yvn8v.png)
+
+## 導入專案
+
+如果編輯器沒問題，接下來準備要來導入我們要使用的專案
+
+我們將解壓縮完後的資料夾丟到專案資料夾中，檔名更改為 `Ckeditor` 
+
+![Imgur](https://i.imgur.com/ALPZXwv.png)
+
+> 記得放在根目錄，別放錯地方了！
+
+放好後，這裡我們要將他安裝進我們的專案內，但在安裝前，需要先設定我們的 `vite.config`
+
+```js:vite.config.js showLineNumbers {9-16}
+import { defineConfig } from 'vite';
+
+import vue from '@vitejs/plugin-vue';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+  ],
+  optimizeDeps: {
+    include: ['ckeditor5-custom-build/build/ckeditor']
+  },
+  build: {
+    commonjsOptions: {
+      include: ['ckeditor5-custom-build/build/ckeditor']
+    }
+  }
+});
+```
+ 
+> 當我們將 `Ckeditor` 添加到 `node_modules` 時，由於他屬於 **UMD 模塊**，而 `Vite`  似乎乎略掉了他，所以這裡我們進行手動設定
+> 
+> 下方會放上相關連結說明此問題
+
+設定完後，我們將 `Ckeditor` 進行安裝
+
+```bash showLineNumbers 
+npm install file:./ckeditor
+```
+
+安裝完後你可以看到 `package.json` 多出了 `ckeditor5-custom-build`
+
+![Imgur](https://i.imgur.com/27OZmcf.png)
+
+並且打開 `package-lock.json` 可以清楚看到 `ckeditor` 的安裝項目
+
+![Imgur](https://i.imgur.com/4kCjHQO.png)
+
+接下來只要修改 `Ckeditor.vue` 就可以了
+
+```js:Ckeditor.vue showLineNumbers {6, 13}
+// 中文包
+// old
+// import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
+
+// new
+import 'ckeditor5-custom-build/build/translations/zh-cn';
+
+// 經典版型
+// old
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+// new
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
+```
+
+這樣就大功告成啦～
+
+![Imgur](https://i.imgur.com/NIP5LS5.png)
+
+## 結尾
+
+這次的設定相對複雜許多，尤其是載入到專案時，不斷的出錯，翻了好久的 issues 才發現是 `Vite` 的問題 Q
+
+這次一樣會放上連結，有遇到問題的朋友可以參考！
+
+## 相關連結
+
+- [程式碼 Github](https://github.com/CofCat456/vue3-ckeditor5/tree/ckeditor-custom)
+
+
+## 參考文獻
+
+- [CKEditor 官方文檔](https://ckeditor.com/docs/ckeditor5/latest/installation/integrations/vuejs-v3.html)
+- [Vite 解析 UMD 模組 issue](https://github.com/ckeditor/ckeditor5/issues/12963)
+- [ckeditor-duplicated-modules issue](https://github.com/ckeditor/ckeditor5/issues/6566)
+
+
+
+
+
+
+
+
+
+
+
+
+

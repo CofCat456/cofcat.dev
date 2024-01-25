@@ -1,0 +1,366 @@
+---
+title: 關於在 Vue3 Typescript 中定義 Props
+description: >-
+  最近在 Vue3 的專案中導入了 Typescript 來使用，比起過往定義 props、emit 的方式，變化不少，而當我更深入研究後發現，關於
+  Props 的坑非常大，覺得過程非常有趣，希望用文章的方式記錄自己研究的過程
+slug: vue3-typescript-props
+type: Post
+socialImage: null
+public: true
+pin: true
+tags:
+  - Vue
+  - TypeScript
+createdAt: 1690581997000.532
+updatedAt: 1706157576898
+---
+
+## 前言
+
+最近在 Vue3 的專案中導入了 Typescript 來使用，比起過往定義 props、emit 的方式，變化不少，而當我更深入研究後發現，關於 Props 的坑非常大，覺得過程非常有趣，希望用文章的方式記錄自己研究的過程。
+
+## 有無 Typescript 的區別
+
+首先我們必須先釐清，在導入 Typescript 的前後，我們是怎麼定義 Props 的。
+
+根據[官網說明](https://cn.vuejs.org/guide/components/props.html)，我們可以看到，需要透過 `defineProps`語法糖 來定義 Props 的型別、預設值、以及是否必須傳入
+
+```html showLineNumbers
+<script setup>
+	const props = defineProps({
+	  title: {
+			type: String,
+			required: true
+	  },
+	  likes: {
+			type: Number,
+			default: 100
+	  }
+	})
+</script>
+```
+
+可以看到這種方式中，針對每個傳入的屬性都定義了**型別**，以便讓 Vue 能夠得知從外部傳入的哪些是 props，哪些是 attribute。
+
+可以看到官方文檔中的說明：
+
+> 這被稱之為"運行時聲明"，因為傳遞給`defineProps()`的參數會作為運行時的`props` 選項使用。
+
+而當我們導入 Typescript 後，定義方式則會變成這樣
+
+```html showLineNumbers
+<script setup lang="ts"> 
+	const props = defineProps<{
+		foo: string
+		bar?: number 
+	}>()
+</script>
+```
+
+從 `<script setup>` 中不但加入了 `lang="ts"` 以外，`defineProps` 原先接收的參數從 **物件** 變成了 **型別**
+
+這樣的方式省略了 `required`，在 Typescript 的世界中，在參數後方加入 ? 的做法叫做 **可選引數**，一般用於 Function 中來決定哪些參數是必須傳入，哪些則是可傳可不傳的。
+
+我們來看看官方文檔的說明：
+
+> 這被稱之為"基於類型的聲明"。編譯器會盡可能地嘗試根據類型參數推導出等價的運行時選項。在這種場景下，我們第二個例子中編譯出的運行時選項和第一個是完全一致的。
+
+而官方也指出，兩種方式都可以擇一使用，但不能同時使用。
+
+當看到這裡會發現，會發現，這樣的方式定義了屬性的型別以及是否必須傳入，但卻少了預設值的設定，這也是這個方式的缺點，畢竟 Typescript 的重點是**型別**
+
+但不能設定預設值，總會帶來不少的麻煩，這裡 Vue 官方給出的解決辦法是 `withDefaults`語法糖，使用方式如下
+
+```ts showLineNumbers
+interface Props {
+	msg?: string
+	labels?: string[]
+}
+
+withDefaults(defineProps<Props>(), {
+	msg: '',
+	labels: () => ['one', 'two']
+});
+```
+
+這樣就成功設定了預設值！
+
+## 型別抽離
+
+而當然既然都使用到了 Typescript ，我們可以像 React 定義 Props 一樣，將型別先抽離出來定義，再放入 `defineProps` 中
+ 
+```html showLineNumbers
+<script setup lang="ts">
+interface Props { 
+	foo: string
+	bar?: number
+}
+		
+const props = defineProps<Props>()
+</script>
+```
+
+整體看下來，這樣的方式雖說直觀，但會使程式碼更加冗長，不過對於 React 的使用者來說會非常親切，兩種方法都可以，以自己喜好為主。
+
+## 深入探討
+
+而接下來就是我在使用中遇到最大的坑
+
+在比較龐大的專案中，總會有需要複用的 type 或者是 interface，舉例來說
+
+我們有兩個元件都會需要用到 product 這個資料，因此我們分別在這兩個元件中對 product 的型別進行定義
+
+```html:ProductView.vue showLineNumbers
+<script setup lang="ts">
+interface Product { 
+	id: number
+	name: string
+	price: number
+	description: string
+	category: string
+}
+		
+const props = defineProps<Product>()
+
+// ...其他程式碼
+</script>
+```
+
+<br />
+
+```html:addProduct.vue showLineNumbers
+<script setup lang="ts">
+interface Product { 
+	id: number
+	name: string
+	price: number
+	description: string
+	category: string
+}
+		
+const props = defineProps<Product>()
+
+// ...其他程式碼
+</script>
+```
+
+根據模組化的概念，此時我們就會很想要將 Product 抽離出來，用 `import` 的方式來導入到不同的元件中，所以概念會像是
+
+我們會有一個關於 product 的 interface
+
+```ts:types.ts showLineNumbers
+export interface Product {
+	id: number
+	name: string
+	price: number
+	description: string
+	category: string
+}
+```
+
+分別導入到不同的元件中
+
+```html:ProductView.vue showLineNumbers
+<script setup lang="ts">
+import type { Product } from './types'
+		
+const props = defineProps<Product>()
+
+// ...其他程式碼
+</script>
+```
+
+<br />
+
+```html:addProduct.vue showLineNumbers
+<script setup lang="ts">
+import type { Product } from './types'
+		
+const props = defineProps<Product>()
+
+// ...其他程式碼
+</script>
+```
+
+然而當我們真的這麼做的時候，會發現 Vite 跳出了一個編譯錯誤
+
+![Imgur](https://i.imgur.com/0wXidaM.png)
+
+而會有這個錯誤的原因，官方文檔案也有敘述：
+
+> 在3.2 及以下版本中，`defineProps()`的泛型類型參數僅限於類型文字或對本地接口的引用。
+
+對於 Typescript 的使用者來說，或許會想嘗試這麼做
+
+```html:addProduct.vue showLineNumbers
+<script setup lang="ts">
+import type { Product } from './types'
+
+interface ProductBasicProp extends Product {}
+		
+const props = defineProps<ProductBasicProp>()
+
+// ...其他程式碼
+</script>
+```
+
+然而很遺憾的，這個方案並不能解決，可以參考相關 [issues](https://github.com/vuejs/core/issues/4989)。
+
+對於這個問題我們也可以在 vuejs/core 的 [issues#4294](https://github.com/vuejs/core/issues/4294)中了解到，最早是由 [Otto-J](https://github.com/Otto-J)在2021年8月10日提出
+
+> I want to extract the interface of props, but an error will be reported. If the interface component is defined, it will render normally
+
+尤雨溪大大當時回覆：
+
+> We'll mark it as an enhancement for the future.
+
+這個 `issues`引發了不小的騷動，畢竟在 React 中，要做到這樣的功能非常簡單，當然這也是因為兩個框架的核心技術不同所導致，對於 Vue 的使用者來說，[dakt](https://github.com/dakt)說出了大部分人的心聲：
+
+> [Quite idiotic thing isn't it? It's like buying a car and not having a windscreen wipers.  
+And the pattern of importing Props is not so rare.....I use it all the time and it's immensely powerful.  
+Vue3 is, in terms of code readability and speed, one of the best frameworks out there...beating React by miles, but things like this and the lack of generic components is just stupid.]((https://github.com/vuejs/core/issues/4294#issuecomment-1508139655))
+> 
+> 這確實有些莫名其妙，就像買了一輛汽車但沒有雨刷一樣。
+> 而且匯入 Props 的模式並不少見，我一直都在使用，而且非常強大。
+> 在代碼可讀性和性能方面，Vue 3 確實是最優秀的框架之一，遠遠超越 React，但是這樣的事情和缺乏通用組件的支持實在有些愚蠢。
+
+## 解決方案
+
+當然也有人試著提出暫時的解決方案
+
+1. 重新命名
+
+操作其實很間單，如下
+
+```html showLineNumbers
+<script setup lang="ts">
+import type { Product } from './types'
+		
+const props = defineProps<{
+	product: Product
+}>()
+
+// ...其他程式碼
+</script>
+```
+
+這個方式是可行的，畢竟在複雜的元件中，需要傳入的資料可能會很多，例如
+
+```html showLineNumbers
+<script setup lang="ts">
+import type { User, Product } from './types'
+		
+const props = defineProps<{
+	user: User
+	product: Product
+}>()
+
+// ...其他程式碼
+</script>
+```
+
+但這樣的方案明顯不被其他人接受，畢竟在有些時候，你希望在元件的外層使用 `v-bind` 這樣的語法糖直接對物件進行解構傳入
+
+```html
+<BlogPost v-bind="post" />
+```
+
+而且這樣的方式，讓資料變成了物件，不僅造成使用上的麻煩，也可能會導致 **單向數據流** 被破壞。
+
+2. Plugin
+
+有大神就針對這個問題，做了一個 Vite 的[插件](https://github.com/wheatjs/vite-plugin-vue-type-imports)
+
+```bash showLineNumbers
+# Install Plugin
+npm i -D vite-plugin-vue-type-imports
+```
+
+接著在 `vite.config.ts` 中加入插件
+
+```ts:vite.config.ts showLineNumbers
+
+import { defineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+import VueTypeImports from 'vite-plugin-vue-type-imports'
+
+export default defineConfig({
+  plugins: [
+    Vue(), 
+    VueTypeImports(),
+  ],
+})
+```
+
+這樣的方式明顯被較多人所接受，但雖然解決了燃煤之急，還是有不少人希望原生能夠支持這個功能
+
+## 版本更新
+
+終於，歷經將近兩年的時間，在今年的 4 月，由尤雨溪大大終於提出了 PR，並提到從`3.3` 版本開始，這個問題將會解決，官方文檔說明如下：
+
+> 這個限制在3.3 中得到了解決。最新版本的Vue 支持在類型參數位置引用導入和有限的複雜類型。但是，由於類型到運行時轉換仍然基於AST，一些需要實際類型分析的複雜類型，例如條件類型，還未支持。您可以使用條件類型來指定單個prop 的類型，但不能用於整個props 對象的類型。
+
+現在你可以這樣來定義 Props
+
+```html showLineNumbers
+<script setup lang="ts">
+import type { Product } from './types'
+		
+const props = defineProps<Product>()
+
+// ...其他程式碼
+</script>
+```
+
+當你需要定義預設值時可以這麼做
+
+```html showLineNumbers
+<script setup lang="ts">
+import type { Product  } from './types'
+		
+withDefaults(defineProps<Product>(), {
+	name: ''
+	price: 0
+	description: ''
+	category: '門票'
+})
+</script>
+```
+
+或是當你需要同時放入兩個類型時，你可以這麼做
+
+```html showLineNumbers
+<script setup lang="ts">
+import type { User, Product  } from './types'
+		
+const props = defineProps<User & Product>()
+
+// ...其他程式碼
+</script>
+```
+
+> 這是 Typescript 本身的交叉類型(intersection types)
+
+有趣的地方是，在一開始提出時，雖然確實解決了導入的問題，但很快有人提出[全域類型是否也可以當作 `defineProps` 傳入的對象呢？](https://github.com/vuejs/core/pull/8083#issuecomment-1508357007)
+
+尤雨溪大大也馬上增加了這個功能，詳細方式可以參考我[另一篇文章](https://www.cofcat.com/posts/vue3-typescript-global.d)。
+
+順帶一提，現在也支持了 Typescript 複雜類型(extends)的問題，不過這些功能都只能在 **`3.3` 版本後才能使用**，對於以前的版本，例如 `2.7`，可以使用由官方人員[三咲智子 Kevin Deng](https://github.com/sxzz)所開發的 [Vue Macros](https://vue-macros.sxzz.moe/)套件，裡面的 [betterDefine](https://vue-macros.sxzz.moe/features/better-define.html#betterdefine)也能滿足需求。
+
+## 結尾
+
+雖然找資料及測試的時間花了整整快一天時間，但過程還是挺開心的，喜歡這種透過不斷翻找資料求證的過程，也讓我對於 Vue 有著更近一步的了解，隨著 Vue 推出愈來愈多的功能及插件同時，非常大家多看看官方的文檔及 issues ，你會更加了解整個演變的過程，相信你會更了解整個 Vue 生態圈發展的過程！
+
+順帶一提，我的專案是在今年年初時建立的，使用的版本是 `3.2.47`， 而這個功能就在幾個月後就新增了，結果我到現在才知道 XD。
+
+## 參考文獻
+
+- [Vue 官方文檔](https://cn.vuejs.org/guide/typescript/composition-api.html)
+- [vuejs/core issues #4294](https://github.com/vuejs/core/issues/4294)
+- [vuejs/core issues #4989](https://github.com/vuejs/core/issues/4989)
+- [vuejs/core PR #8083](https://github.com/vuejs/core/pull/8083)
+- [Vue Macros](https://vue-macros.sxzz.moe/)
+- [TypeScript 中文手册](https://www.tsdev.cn/)
+- [vite-plugin-vue-type-imports](https://github.com/wheatjs/vite-plugin-vue-type-imports)
+
+

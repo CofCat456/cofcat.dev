@@ -1,0 +1,195 @@
+---
+title: Vue3 CKEditor5 (3)：圖片上傳
+description: >-
+  在 Ckeditor 中如果想要上傳圖片的話，需要透過前一篇的自定義編輯器中添加 plugin
+  ，或者是選擇自定義圖片上傳的配置，此篇文章記錄兩種作法的設置過程
+slug: vue3-ckeditor5-image-upload
+type: Post
+socialImage: https://i.imgur.com/iPrhdOS.jpg
+public: true
+pin: false
+tags:
+  - Vue
+createdAt: 1690567483436.734
+updatedAt: 1706157564131
+---
+
+## 前言
+
+在 Ckeditor 中如果想要上傳圖片的話，需要透過[前一篇](
+https://www.cofcat.com/posts/vue3-ckeditor5-custom)的自定義編輯器中添加 plugin ，或者是選擇 Custom upload adapter 的方式，此篇文章記錄兩種作法的設置過程。
+
+## 方法說明
+
+官方有提供幾種做法
+
+1. [使用 File managers (CKBox、CKFinder)](https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/using-file-managers.html)
+2. [使用 Easy Image](https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/easy-image.html)
+3. [Base64 upload adapter](https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html)
+4. [Simple upload adapter](https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/simple-upload-adapter.html)
+
+除了上面兩項是官方提供的付費功能外，下面兩項則是比較親民的選擇，
+當然，如果你都不喜歡的話，官方也提供 [Custom upload adapter](https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/upload-adapter.html#implementing-a-custom-upload-adapter)。 
+
+## 示範 Base64 upload adapter
+
+採用 Base64 upload adapter 雖然迅速，但缺點是效率低，猶如官方所說：
+
+> 請記住，儘管 Base64 上傳是一個非常簡單的解決方案，但它也非常低效。圖像檔本身被保留為數據存儲在資料庫中，這產生了更重的數據負載和更高的傳輸量。Base64 圖像永遠不會被瀏覽器緩存，因此加載和保存此類數據始終會比較慢。
+
+要使用 Base64 upload adapter 的大前提是你的編輯器是透過**自定義**的方式組成。
+
+> 自定義的配置請參考 [Vue3 CKEditor5 (2)：自定義編輯器](https://www.cofcat.com/posts/vue3-ckeditor5-custom)
+
+你可以在一開始挑選工具時就直接添加
+
+![Imgur](https://i.imgur.com/r1JYoJe.png)
+
+也可以在你構建好的編輯器中，使用 `npm` 下載
+
+```bash showLineNumbers
+npm install --save @ckeditor/ckeditor5-upload
+```
+
+接著在主檔案中 `import` 進來
+
+```js:ckeditor.js showLineNumbers
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter.js';
+```
+
+接著加入 `Editor` 的 `config` 中
+
+```js:ckeditor.js showLineNumbers
+Editor.builtinPlugins = [
+	Base64UploadAdapter,
+	// ...other config
+];
+```
+
+這樣就可以使用啦～
+
+![Imgur](https://i.imgur.com/eiYUSg4.gif)
+
+## Custom upload adapter
+
+自定義的好處在於，可以直接使用官方提供的模板導入使用，而且自由度高，一樣可以達到 Base64 upload adapter 的效果，或是串接圖片的 api 也沒問題。
+
+關於編輯器的設定可以參考 [Vue3 CKEditor5 (1)：設置教學](https://www.cofcat.com/posts/vue3-ckeditor5-install)
+
+首先需要新增一隻檔案，用來撰寫我們的 custom upload adapter
+
+```js:myUploadAdapter.js showLineNumbers
+function MyUploadAdapter(loader) {
+  const upload = async () => {
+
+  };
+
+  return { upload };
+}
+
+export function MyAdapterPlugin(editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+    return MyUploadAdapter(loader);
+  };
+}
+
+export default MyAdapterPlugin;
+```
+
+檔案內的 `MyUploadAdapter` 主要放入處理照片的邏輯 (api or base64)，而 `MyAdapterPlugin` 再做的就是將 `FileRepository` 這個 plugin 的內容替換為我們寫好的 `adapter`
+
+> 如果有看官方文檔的話，會發現這裡都是用 Class 方式去做撰寫，由於我自己偏好 Function 的寫法，就稍微改寫了一下。
+
+導入 `axios` 模擬串接 api
+
+```js:myUploadAdapter.js showLineNumbers
+import axios from 'axios';
+
+const { VITE_URL, VITE_PATH } = import.meta.env;
+
+function MyUploadAdapter(loader) {
+  const upload = async () => {
+    const data = new FormData();
+    data.append('file', await loader.file);
+
+    const res = await axios({
+      url: `${VITE_URL}api/${VITE_PATH}/upload`,
+      method: 'POST',
+      data
+    });
+
+    // 方法需要返回一個：{ default： 圖片網址 }
+    return {
+      default: res.data.data.url
+    };
+  };
+
+  return { upload };
+}
+
+export function MyAdapterPlugin(editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+    return MyUploadAdapter(loader);
+  };
+}
+
+export default MyAdapterPlugin;
+```
+
+> 特別需要說的是，`loader.file` 前面要加上 `await` 的原因是因為他是一個 Promise 物件 
+
+到我們的編輯器的檔案中，導入我們自定義的插件
+
+```js:Ckeditor.vue showLineNumbers {1, 5}
+import MyAdapterPlugin from '../utlis/myUploadAdapter';
+
+// 存放 Editor 的設定 (Ex: 工具列)
+const editorConfig = {
+  extraPlugins: [MyAdapterPlugin],
+  // 語言 中文
+  language: 'zh-cn',
+
+  // 工具列
+  toolbar: {
+    items: [
+      'heading',
+      '|',
+      'bold',
+      'italic',
+      'link',
+      'bulletedList',
+      'numberedList',
+      '|',
+      'outdent',
+      'indent',
+      '|',
+      'imageUpload',
+      'blockQuote',
+      'insertTable',
+      'mediaEmbed',
+      'undo',
+      'redo'
+    ]
+  }
+};
+```
+
+這樣一樣就大功告成囉～
+
+## 結尾
+
+關於 CKEditor 的設定算是告一段落了，爬了不少的文章，總算是配置成能符合專案的需求了，也因為版本的不同，中間走了蠻多歪路了，希望這幾篇文章能夠幫助正打算配置或配置出問題的朋友！
+
+## 相關連結
+
+- [程式碼 Github](https://github.com/CofCat456/vue3-ckeditor5)
+
+## 參考文獻
+
+- [CKEditor 官方文檔](https://ckeditor.com/docs/ckeditor5/latest/installation/integrations/vuejs-v3.html)
+- [Custom image upload adapter 官方文檔](https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/upload-adapter.html)
+
+
+
+
+

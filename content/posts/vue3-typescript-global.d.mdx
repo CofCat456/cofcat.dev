@@ -1,0 +1,147 @@
+---
+title: 如何在 Vue3 中使用 Typescript 的全域類型
+description: >-
+  在爬關於 Vue3 及 Typescipt 的專案中，如何導入型別來定義 props 時，意外發現了一個透過全域類型來定義 props 的功能，由於接觸
+  Typescript 的時間並不長，加上網路上找到的資料也較少，所以透過這篇文章記錄一下做法
+slug: vue3-typescript-global.d
+type: Post
+socialImage: null
+public: true
+pin: false
+tags:
+  - Vue
+  - TypeScript
+createdAt: 1690580167283.49
+updatedAt: 1706157581273
+---
+
+## 前言
+
+在爬有關於 Vue3 及 Typescipt 的專案中如何導入型別來定義 props 時，意外發現了一個透過全域類型來定義 props 的功能，由於接觸 Typescript 的時間並不長，加上網路上找到的資料也較少，所以透過這篇文章記錄一下做法。
+
+## 環境建立
+
+首先我們先透過 Vite 快速建立環境
+
+```bash
+npm create vite@latest
+```
+
+由於全域類型是 Typescript 的功能，所以安裝時也需要一併將 Typescript 加入
+
+> 此功能需要 Vue >= 3.3
+
+## 檔案建立
+
+這個功能需要建立一個 `.d.ts` 檔案，為了方便我們就建立一個 `global.d.ts` 檔案
+
+> `.d.ts` 是 Typescript 的宣告檔案，d 是 declare 的縮寫
+
+你可以把它放在任何地方，只需要確保你的 `tsconfig.json` 能夠讀取到即可
+
+例如我想把它放在根目錄的話，我的 `tsconfig.json` 就必須加入他
+
+```ts:global.d.ts showLineNumbers {23}
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "global.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+```
+
+一般我會放在 `src/types/global.d.ts` 下
+
+## 如何使用
+
+接著我們在檔案內使用 Typescript 的關鍵字 `declare` 來宣導 `global` 變數
+
+```ts:global.d.ts showLineNumbers
+declare global {
+	interface Test {
+		text: string
+	}
+}
+
+export {}
+```
+
+> 記得要加入 export {} 讓檔案變成模組
+
+這時我們來測試一下是否已經成功，預設的元件中應該有一個 `HelloWorld.vue` 我們稍微修改一下試試看
+
+```html:HelloWorld.vue showLineNumbers
+<script setup lang="ts">
+	defineProps<Test>()
+
+	// ...其他程式碼
+</script>
+
+<template>
+	<h1>{{ text }}</h1>
+
+	<!-- ...其他程式碼 --->
+</template>
+```
+
+這時我們已經能看到 `text` 上已經有 `string` 的型別了！
+
+![Imgur](https://i.imgur.com/KKdvq11.png)
+
+但這時你應該會發現有一個錯誤
+
+![Imgur](https://i.imgur.com/iBPb2PH.png)
+
+而我們要解決這個錯誤很簡單，只需要在 `vite.config.ts` 中加入 `global.d.ts ` 的路徑即可
+
+```ts:vite.config.ts showLineNumbers {8-12}
+import { defineConfig } from 'vite'
+
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+	plugins: [vue({
+		script: {
+			globalTypeFiles: [
+				'./global.d.ts'
+			]
+		}
+	})],
+})
+```
+
+這樣錯誤就解決惹！
+
+![Imgur](https://i.imgur.com/YPdFfyQ.png)
+
+## 結尾
+
+個人看起來，這應該算是一個 Bug？
+
+因為在 VS Code 中，我們可以透過 Volar 來看到型別，但是編譯時卻會有錯誤，說實話有點奇怪，這部分並沒有在文檔跟網上找到太多資訊，只有看到相關的 `issues`
+
+## 參考文獻
+
+- [vuejs/core issues #8612](https://github.com/vuejs/core/issues/8612)
+- [TypeScript 中文手册](https://www.tsdev.cn/)
+- [How to declare global types in TypeScript](https://bobbyhadz.com/blog/typescript-make-types-global)

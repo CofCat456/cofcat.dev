@@ -7,6 +7,8 @@ export { ArrowRightIcon } from './icons/ArrowRight';
 export { ArrowToTopLineIcon } from './icons/ArrowToTopLineIcon';
 export { BriefcaseIcon } from './icons/BriefcaseIcon';
 export { CalendarIcon } from './icons/CalendarIcon';
+export { ClipboardCheckIcon } from './icons/ClipboardCheckIcon';
+export { ClipboardDataIcon } from './icons/ClipboardDataIcon';
 export { ExternalLinkIcon } from './icons/ExternalLinkIcon';
 export { GitHubBrandIcon } from './icons/GitHubBrandIcon';
 export { GitHubIcon } from './icons/GitHubIcon';

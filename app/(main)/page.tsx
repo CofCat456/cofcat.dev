@@ -3,7 +3,7 @@ import { type MDXComponents } from 'mdx/types';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import About from '~/app/(main)/About';
-import Body from '~/components/md/Body';
+import { Post } from '~/components/md/Post';
 import mdxComponents from '~/lib/mdxComponents';
 
 function getAboutPage() {
@@ -18,9 +18,9 @@ export default function BlogHomePage() {
   return (
     <div className="mx-auto max-w-5xl">
       <About>
-        <Body>
+        <Post.Body>
           <MDXContent components={mdxComponents as MDXComponents} />
-        </Body>
+        </Post.Body>
       </About>
     </div>
   );

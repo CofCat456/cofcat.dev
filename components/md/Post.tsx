@@ -5,8 +5,10 @@ import { Balancer } from 'react-wrap-balancer';
 import { ArrowRightIcon, CalendarIcon, PostPinIcon, TagIcon } from '~/assets';
 import HoverOverlay from '~/components/md/HoverOverlay';
 import Link from '~/components/ui/Link';
-import { RelativeTime } from '~/components/ui/RelativeTime';
+import RelativeTime from '~/components/ui/RelativeTime';
 import BottomToUpTransitionView from '~/components/ui/transition/BottomToUpTransitionView';
+
+import styles from './body.module.scss';
 
 function Item({
   createdAt,
@@ -101,7 +103,21 @@ function List({ posts }: { posts: PostType[] }) {
   );
 }
 
+function Body({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      className={clsx(
+        'prose max-w-none transition-colors dark:prose-dark',
+        styles.postBody
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
 export const Post = {
+  Body,
   Item,
   List,
 } as const;

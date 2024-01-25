@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { parseDate, relativeTimeFromNow } from '~/lib/dateTime';
 
-export const RelativeTime: React.FC<{
+const RelativeTime: React.FC<{
   date: Date | number | string;
   displayAbsoluteTimeAfterDay?: number;
 }> = (props) => {
@@ -35,3 +35,5 @@ export const RelativeTime: React.FC<{
 
   return <>{relative}</>;
 };
+
+export default RelativeTime;

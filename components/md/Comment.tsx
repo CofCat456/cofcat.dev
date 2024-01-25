@@ -1,0 +1,31 @@
+import Giscus from '@giscus/react';
+import { useTheme } from 'next-themes';
+
+import siteMetadata from '~/config/siteMetadata';
+
+const Comment: React.FC = () => {
+  const { theme } = useTheme();
+  const { giscusConfig } = siteMetadata;
+
+  return (
+    <div className="mx-auto max-w-prose py-6" id="comment">
+      <Giscus
+        category={giscusConfig.category}
+        categoryId={giscusConfig.categoryId}
+        emitMetadata="0"
+        inputPosition="top"
+        lang="zh-TW"
+        loading="lazy"
+        mapping="pathname"
+        reactionsEnabled="1"
+        repo={giscusConfig.repo}
+        repoId={giscusConfig.repoId}
+        theme={
+          theme === 'dark' || theme === 'system' ? 'transparent_dark' : 'light'
+        }
+      />
+    </div>
+  );
+};
+
+export default Comment;

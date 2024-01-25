@@ -194,9 +194,13 @@ const config: Config = {
               marginTop: theme('spacing.20'),
             },
             li: {
-              marginBottom: theme('spacing.6'),
-              marginTop: theme('spacing.6'),
+              marginBottom: theme('spacing.0'),
+              marginTop: theme('spacing.0'),
               paddingLeft: theme('spacing[3.5]'),
+            },
+            'li :is(li, a)': {
+              marginBottom: theme('spacing.3'),
+              marginTop: theme('spacing.3'),
             },
             'li :is(li, p)': {
               marginBottom: theme('spacing.3'),

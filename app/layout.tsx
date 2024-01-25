@@ -5,6 +5,8 @@ import { sansFont } from '~/lib/font';
 import { seo } from '~/lib/seo';
 
 import './globals.css';
+import './prism-one-dark.css';
+import './prism-plus.css';
 
 export const metadata: Metadata = {
   description: seo.description,

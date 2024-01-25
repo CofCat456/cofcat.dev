@@ -5,6 +5,7 @@ import { ExternalLinkIcon } from '~/assets';
 type Props = React.ComponentPropsWithoutRef<'a'>;
 
 const CustomLink = ({ children, href, ...rest }: Props) => {
+  console.log(href);
   const isInternalLink = href && href.startsWith('/');
   const isAnchorLink = href && href.startsWith('#');
 

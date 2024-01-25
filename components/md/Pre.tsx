@@ -1,6 +1,9 @@
+'use client';
+
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
+import { ClipboardCheckIcon, ClipboardDataIcon } from '~/assets';
 import { copyToClipboard } from '~/lib/copyToClipboard';
 import { removeDuplicateNewLine } from '~/lib/removeDuplicateNewLine';
 
@@ -54,32 +57,11 @@ function CustomPre({ children, className, ...props }: Props) {
             onClick={onClick}
             type="button"
           >
-            <svg
-              className={clsx('pointer-events-none h-4 w-4', {
-                'text-gray-400 dark:text-gray-400': !copied,
-                'text-green-400': copied,
-              })}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                className={clsx({ block: !copied, hidden: copied })}
-                d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-              />
-
-              <path
-                className={clsx({ block: copied, hidden: !copied })}
-                d="M5 13l4 4L19 7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-              />
-            </svg>
+            {copied ? (
+              <ClipboardCheckIcon className="text-green-400" />
+            ) : (
+              <ClipboardDataIcon />
+            )}
           </button>
         </div>
 

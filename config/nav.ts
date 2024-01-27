@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { createElement as h } from 'react';
 
-import { MoonIcon } from '~/assets';
+import { FileIcon, HomeIcon, SparkleIcon } from '~/assets';
 
 export interface NavigationItem {
   icon?: ReactNode;
@@ -14,13 +14,13 @@ export interface NavigationItem {
 
 export const navigationItems: NavigationItem[] = [
   {
-    icon: h(MoonIcon),
+    icon: h(HomeIcon),
     path: '/',
     title: '首頁',
     type: 'Home',
   },
   {
-    icon: h(MoonIcon),
+    icon: h(SparkleIcon),
     path: '/posts',
     subMenu: [
       {
@@ -32,6 +32,7 @@ export const navigationItems: NavigationItem[] = [
     type: 'Post',
   },
   {
+    icon: h(FileIcon),
     path: '/projects',
     title: '專案',
     type: 'Project',

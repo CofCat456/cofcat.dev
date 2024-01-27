@@ -1,15 +1,20 @@
 'use client';
 
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { ClipboardCheckIcon, ClipboardDataIcon } from '~/assets';
 import { copyToClipboard } from '~/lib/copyToClipboard';
 import { removeDuplicateNewLine } from '~/lib/removeDuplicateNewLine';
 
-type Props = React.ComponentPropsWithoutRef<'pre'>;
+type CustomPreProps = ComponentPropsWithoutRef<'pre'>;
 
-function CustomPre({ children, className, ...props }: Props) {
+function CustomPre({ children, className, ...props }: CustomPreProps) {
   const preRef = useRef<HTMLPreElement>(null);
 
   const [copied, setCopied] = useState(false);

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { type Post as PostType } from 'contentlayer/generated';
+import { type PropsWithChildren } from 'react';
 import { Balancer } from 'react-wrap-balancer';
 
 import { ArrowRightIcon, CalendarIcon, PostPinIcon, TagIcon } from '~/assets';
@@ -103,7 +104,7 @@ function List({ posts }: { posts: PostType[] }) {
   );
 }
 
-function Body({ children }: { children: React.ReactNode }) {
+function Body({ children }: PropsWithChildren) {
   return (
     <div
       className={clsx(

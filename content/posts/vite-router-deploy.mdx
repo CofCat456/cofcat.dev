@@ -24,17 +24,16 @@ updatedAt: 1706157567945
 
 - vite.config  
   首先需要先確認專案底下是否有 `vite.config.js` 的檔案，沒有的話請建立一個，接著我們需要將 Repository 的名稱加入設定檔中。
-  
+
 ```js showLineNumbers {6}
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/REPO/',
   plugins: [vue()],
-})
-
+});
 ```
 
 這樣就設定完 Vite
@@ -52,17 +51,16 @@ const routes = [
   {
     path: '/',
     name: 'Hello',
-    component: HelloWrold
+    component: HelloWrold,
   },
   {
     path: '/test',
     name: 'RouterTest',
-    component: RouterTest
-  }
+    component: RouterTest,
+  },
 ];
 
 export default createRouter({ history, routes });
-
 ```
 
 都設定好後就可以進入部署的環節。
@@ -97,7 +95,7 @@ git push -u origin main
 
 這樣就將整個專案推送到 Github 的 Repository 上了。
 
->順帶一提，`commit` 時如果不帶 `-m` 參數的話，會進入到 vi 或 vim 編輯器中，一樣能進行 `commit` ，不過可能會遇到出不來、不能打字的問題，這樣的話就是另一段故事了...
+> 順帶一提，`commit` 時如果不帶 `-m` 參數的話，會進入到 vi 或 vim 編輯器中，一樣能進行 `commit` ，不過可能會遇到出不來、不能打字的問題，這樣的話就是另一段故事了...
 
 目前我們的專案還沒辦法掛到 GitHub Pages 上。
 我們真正要掛載的是，打包出來的檔案。
@@ -163,15 +161,14 @@ cd -
 - vite.config
 
 ```js showLineNumbers {6}
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/REPO/' : '',
   plugins: [vue()],
-})
-
+});
 ```
 
 這裡我們透過 `process.env.NODE_ENV` 的方式來得知當前的環境是在開發還是正式。
@@ -183,23 +180,22 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HelloWrold from '../components/HelloWorld.vue';
 import RouterTest from '../components/RouterTest.vue';
 
-const path = process.env.NODE_ENV === 'production' ? '/REPO/' : ''
+const path = process.env.NODE_ENV === 'production' ? '/REPO/' : '';
 const history = createWebHistory(path);
 const routes = [
   {
     path: '/',
     name: 'Hello',
-    component: HelloWrold
+    component: HelloWrold,
   },
   {
     path: '/test',
     name: 'RouterTest',
-    component: RouterTest
-  }
+    component: RouterTest,
+  },
 ];
 
 export default createRouter({ history, routes });
-
 ```
 
 這是也是一樣的原理，到這裡就設定結束了 🎉
@@ -210,14 +206,3 @@ export default createRouter({ history, routes });
 
 - [30 天精通 Git 版本控管 (25)：使用 GitHub 遠端儲存庫 - 觀念篇](https://ithelp.ithome.com.tw/articles/10140055) iThome 鐵人賽
 - [Git & GitHub 教學手冊](https://w3c.hexschool.com/category/repo) W3Hexschool
-
-
-
-
-
-
-
-
-
-
- 

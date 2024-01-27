@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from '~/assets';
 import Link from '~/components/ui/Link';
 
-const Error: React.FC = () => {
+const Error = () => {
   return (
     <svg width="100%">
       <text className="errorIcon" fill="rgb(229 231 235)" x="50%" y="50%">

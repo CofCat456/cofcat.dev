@@ -1,6 +1,6 @@
 import Image, { type ImageProps } from 'next/image';
 
-type Props = ImageProps & { base64?: string };
+type CustomImageProps = ImageProps & { base64?: string };
 
 const imageStyle = {
   borderRadius: '6px',
@@ -13,7 +13,7 @@ const CustomImage = ({
   src,
   width,
   ...otherProps
-}: Props) => {
+}: CustomImageProps) => {
   if (!src) return null;
 
   if (typeof src === 'string' && (!height || !width)) {

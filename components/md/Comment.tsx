@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes';
 
 import siteMetadata from '~/config/siteMetadata';
 
-const Comment: React.FC = () => {
+const Comment = () => {
   const { theme } = useTheme();
   const { giscusConfig } = siteMetadata;
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { type PropsWithChildren } from 'react';
 import Balancer from 'react-wrap-balancer';
 
 import Avatar from '~/app/(main)/Avatar';
@@ -8,11 +9,7 @@ import Resume from '~/app/(main)/Resume';
 import SocialLink from '~/components/SocialLink';
 import siteMetadata from '~/config/siteMetadata';
 
-interface Props {
-  children: React.ReactNode;
-}
-
-const About = ({ children }: Props) => {
+const About = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex w-full flex-col flex-wrap items-start justify-center pt-4 font-bold sm:my-12 md:flex-row md:gap-x-10 md:gap-y-6">
       <div className="mb:mb-0 relative mx-auto mb-4 overflow-hidden rounded-full sm:mx-0">

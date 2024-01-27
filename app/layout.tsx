@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { type ReactNode } from 'react';
+
 import { ThemeProvider } from '~/app/(main)/ThemeProvider';
 import { sansFont } from '~/lib/font';
 import { seo } from '~/lib/seo';
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html

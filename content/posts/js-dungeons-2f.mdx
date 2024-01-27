@@ -32,9 +32,9 @@ updatedAt: 1706157572348
 
 ### 解題思路
 
--   使用 getDate() 來抓取現在時間
--   使用 setInterval() 來持續呼叫函式
--   利用 Vue 概念來加速完成關卡
+- 使用 getDate() 來抓取現在時間
+- 使用 setInterval() 來持續呼叫函式
+- 利用 Vue 概念來加速完成關卡
 
 這一次在挑戰前看了不少其他**同學的作品**，一部分是對這次的關卡沒甚麼掌握度，另一部分也就是那**邪惡的版面**...意外發現大多同學都推薦 **Alex 老師**先前的的 [**_CSS + JS Clock 的教學影片_**](https://www.youtube.com/watch?v=O1YsB3qxO4g)，不僅觀念講得很詳細，甚至可以直接完成這關的挑戰呢~
 
@@ -58,23 +58,23 @@ Alex 老師的頻道有好多 JS 和 Vue 的影片，看起來又發現了新大
 
 ```js
 app.component('clock-text', {
-	data() {
-			return {
-				textCss: {
-				rotate: '',
-				content: '',
-				textRotate: '',
-			},
-		};
-	},
-	props: ['x'],
-	template: `<div class="clock-text" :style="{ 'transform': rotate,
+  data() {
+    return {
+      textCss: {
+        rotate: '',
+        content: '',
+        textRotate: '',
+      },
+    };
+  },
+  props: ['x'],
+  template: `<div class="clock-text" :style="{ 'transform': rotate,
 	'--textRotate': textRotate }" :data-text='text'></div>`,
-	created() {
-		this.rotate = `rotate(${this.x * 30}deg)`;
-		this.text = this.x + 12 + '';
-		this.textRotate = `rotate(${this.x * -30}deg)`;
-	},
+  created() {
+    this.rotate = `rotate(${this.x * 30}deg)`;
+    this.text = this.x + 12 + '';
+    this.textRotate = `rotate(${this.x * -30}deg)`;
+  },
 });
 ```
 
@@ -82,32 +82,31 @@ app.component('clock-text', {
 
 ```js
 app.component('clock-stext', {
-	data() {
-		return {
-			textCss: {
-				rotate: '',
-				stextRotate: '',
-			},
-		};
-	},
-	props: ['y'],
-	template: `<div class="clock-stext" :style="{ 'transform': rotate,
+  data() {
+    return {
+      textCss: {
+        rotate: '',
+        stextRotate: '',
+      },
+    };
+  },
+  props: ['y'],
+  template: `<div class="clock-stext" :style="{ 'transform': rotate,
 	'--stextRotate': stextRotate }" :data-stext='y'></div>`,
-	created() {
-		this.rotate = `rotate(${this.y * 30}deg)`;
-		this.stextRotate = `rotate(${this.y * -30}deg)`;
-	},
+  created() {
+    this.rotate = `rotate(${this.y * 30}deg)`;
+    this.stextRotate = `rotate(${this.y * -30}deg)`;
+  },
 });
 ```
-
 
 **2F — 時鐘刻度 Component**
 
 文字部分比較單純，可以直接用 **v-for** 快速處理，再將值用 **props** 傳入進行運算，這裡都是各印出 12 個，比較需要**注意**的有兩個地方。
 
--   **數字間橘線的部分需要處理**
--   **每個數字位置要計算清楚，以免對不上秒針**
--   **數字呈現時要調整角度讓數字擺正**
+- **數字間橘線的部分需要處理**
+- **每個數字位置要計算清楚，以免對不上秒針**
+- **數字呈現時要調整角度讓數字擺正**
 
 首先橘線的部分我是這樣完成的~
 
@@ -117,7 +116,7 @@ app.component('clock-stext', {
 
 接著再使用偽元素來完成文字，一個圓有 **360 度**，而我們需要放上 12 個數字，所以每放上一個就要增加 **60** 度，如果不懂的話可以看 [**Alex 老師**](https://www.youtube.com/watch?v=O1YsB3qxO4g)講解的影片喔!
 
-比較特別的是，這裡我使用了 attr() 的語法，由於橘線會重複 12 條，使用 v-for 後，將值 * 12 後加在標籤中。
+比較特別的是，這裡我使用了 attr() 的語法，由於橘線會重複 12 條，使用 v-for 後，將值 \* 12 後加在標籤中。
 
 ```js
 template: `<div class="clock-stext" :style="{ 'transform': rotate,
@@ -130,9 +129,9 @@ template: `<div class="clock-stext" :style="{ 'transform': rotate,
 
 ```css {2}
 .clock-text::before {
-	content: attr(data-text);
-	position: absolute;
-	transform: translate(-6px, -20px) var(--textRotate);
+  content: attr(data-text);
+  position: absolute;
+  transform: translate(-6px, -20px) var(--textRotate);
 }
 ```
 
@@ -152,21 +151,21 @@ attr()目前根據 MDN 文件記載，除了 content 以外，其他屬性的使
 
 ```css {10, 16}
 .clock-text {
-	width: 1px;
-	height: 250px;
-	position: absolute;
-	left: 154.5px;
-	bottom: 30px;
-	color: #fff;
-	background-color: #ff7600;
-	font-size: 10px;
-	--textRotate: rotate(-30deg);
+  width: 1px;
+  height: 250px;
+  position: absolute;
+  left: 154.5px;
+  bottom: 30px;
+  color: #fff;
+  background-color: #ff7600;
+  font-size: 10px;
+  --textRotate: rotate(-30deg);
 }
 
 .clock-text::before {
-	content: attr(data-text);
-	position: absolute;
-	transform: translate(-6px, -20px) var(--textRotate);
+  content: attr(data-text);
+  position: absolute;
+  transform: translate(-6px, -20px) var(--textRotate);
 }
 ```
 
@@ -192,28 +191,28 @@ attr()目前根據 MDN 文件記載，除了 content 以外，其他屬性的使
 
 ```js
 app.component('clock-point', {
-	data() {
-			return {
-			textCss: {
-				pointRotate: '',
-				startRotate: '',
-				},
-		};
-	},
-	props: ['z'],
-	template: `<div v-if='(z % 3 !== 0)' class="clock-point" :style="{ 'transform': pointRotate }"></div>
+  data() {
+    return {
+      textCss: {
+        pointRotate: '',
+        startRotate: '',
+      },
+    };
+  },
+  props: ['z'],
+  template: `<div v-if='(z % 3 !== 0)' class="clock-point" :style="{ 'transform': pointRotate }"></div>
 	<div v-else-if='(z % 6 !== 0)' class='star' :style="{ 'transform': pointRotate }">
 		<div class='star-top'></div>
 		<div class='star-bottom'></div>
 	</div>`,
-	created() {
-		this.pointRotate = `rotate(${this.z * 5}deg)`;
-		if (this.z === 1) {
-			this.startRotate = `rotate(${this.z * 15}deg)`;
-		} else {
-			this.startRotate = `rotate(${this.z * 30}deg)`;
-		}
-	},
+  created() {
+    this.pointRotate = `rotate(${this.z * 5}deg)`;
+    if (this.z === 1) {
+      this.startRotate = `rotate(${this.z * 15}deg)`;
+    } else {
+      this.startRotate = `rotate(${this.z * 30}deg)`;
+    }
+  },
 });
 ```
 
@@ -227,31 +226,31 @@ app.component('clock-point', {
 
 ```js
 const app = Vue.createApp({
-	data() {
-		return {
-			secondDeg: 0,
-			minDeg: 0,
-			hourDeg: 0,
-		};
-	},
-	methods: {
-		setTime() {
-			const data = new Date();                        // 抓取時間
-			const second = data.getSeconds();
-			const min = data.getMinutes();
-			const hour = data.getHours();
-			this.setClock(second, min, hour);
-		},
-		setClock(second, min, hour) {
-			this.secondDeg = second * 6;                    // 360度 / 60秒
-			this.minDeg = min * 6 + (second * 6) / 60;      // 360度 / 60秒
-			this.hourDeg = hour * 30 + (min * 30) / 60;     // 360度 / 12小時
-		},
-	},
-	mounted() {
-		this.setTime();
-		setInterval(this.setTime, 1000);
-	},
+  data() {
+    return {
+      secondDeg: 0,
+      minDeg: 0,
+      hourDeg: 0,
+    };
+  },
+  methods: {
+    setTime() {
+      const data = new Date(); // 抓取時間
+      const second = data.getSeconds();
+      const min = data.getMinutes();
+      const hour = data.getHours();
+      this.setClock(second, min, hour);
+    },
+    setClock(second, min, hour) {
+      this.secondDeg = second * 6; // 360度 / 60秒
+      this.minDeg = min * 6 + (second * 6) / 60; // 360度 / 60秒
+      this.hourDeg = hour * 30 + (min * 30) / 60; // 360度 / 12小時
+    },
+  },
+  mounted() {
+    this.setTime();
+    setInterval(this.setTime, 1000);
+  },
 });
 ```
 

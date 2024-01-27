@@ -2,14 +2,14 @@
 
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
+import { type PropsWithChildren } from 'react';
 
-interface Props {
-  children: React.ReactNode;
+type ContainerProps = PropsWithChildren<{
   className?: string;
   duration?: number;
-}
+}>;
 
-const Container = ({ children, className, duration = 0.4 }: Props) => {
+const Container = ({ children, className, duration = 0.4 }: ContainerProps) => {
   return (
     <AnimatePresence initial={true} mode={'wait'}>
       <motion.div

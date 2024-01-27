@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { type PropsWithChildren } from 'react';
 import { Balancer } from 'react-wrap-balancer';
 
 import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, TagIcon } from '~/assets';
@@ -17,15 +18,14 @@ export type RelatedMarkdownPostForPostLayout = {
   title: string;
 } | null;
 
-interface Props<T> {
-  children: React.ReactNode;
+type MarkdownLayoutProps<T> = PropsWithChildren<{
   markdownPost: T;
   nextMarkdownPost?: RelatedMarkdownPostForPostLayout;
   prevMarkdownPost?: RelatedMarkdownPostForPostLayout;
-}
+}>;
 
 export default function MarkdownLayout<T extends MarkdownPost>(
-  props: Props<T>
+  props: MarkdownLayoutProps<T>
 ) {
   const { children, markdownPost, nextMarkdownPost, prevMarkdownPost } = props;
 

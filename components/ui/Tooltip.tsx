@@ -6,6 +6,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import {
   type ComponentPropsWithoutRef,
   type ElementRef,
+  type PropsWithChildren,
+  type ReactNode,
   forwardRef,
   useState,
 } from 'react';
@@ -36,10 +38,9 @@ export const Tooltip = {
   Trigger,
 } as const;
 
-type ElegantTooltipProps = {
-  children: React.ReactNode;
-  content: React.ReactNode;
-};
+type ElegantTooltipProps = PropsWithChildren<{
+  content: ReactNode;
+}>;
 
 export function ElegantTooltip({ children, content }: ElegantTooltipProps) {
   const [open, setOpen] = useState(false);

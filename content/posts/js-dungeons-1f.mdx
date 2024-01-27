@@ -32,9 +32,9 @@ updatedAt: 1706157574397
 
 ### 解題思路
 
--   使用 Flex 完成畫面排版
--   利用 Vue 元件概念將區塊做成元件
--   利用 v-for 印出元件
+- 使用 Flex 完成畫面排版
+- 利用 Vue 元件概念將區塊做成元件
+- 利用 v-for 印出元件
 
 以前在做作業時都有現成的 Html 架構跟 CSS 可以使用，雖然也有手刻網頁的經驗，但這真的是還是第一次切版XD，一開始拿到設計稿其實有點小呆住，心理OS(該不會要自己切版吧?)，不過想想也是給自己的一個挑戰，也很快想到解題思路就開始挑戰了。
 
@@ -50,40 +50,41 @@ _Step 1_ : 按照設計稿做出一個 1280px X 1372px 的畫面，然後在裡�
 
 _Step 2_ : 由於在 container 中使用了 align-items: center ，會將裡頭的子元素垂直置中，讓左右的間距為 85px ( 1280px - 1110px = 170px )，接著將 wrap 的 margin 上下設為 80px ( 1372px - 1178px = 194px )接著扣掉 footer 的高度 34px ) ，到這裡基本的畫面就完成了~
 
-_Step 3_ : 接著要處理 wrap 裡頭的 card*8 ，再設定完每一個 card 的大小為 350px X 366px 後 ，開始處理排序的問題，一樣使用 flex 讓元素自動分配空間，加上 **flex-wrap: wrap** 讓元素超出範圍時自動換行，再來使用 **justify-content: space-between** 來讓每個元素的間距拉出來。
+_Step 3_ : 接著要處理 wrap 裡頭的 card\*8 ，再設定完每一個 card 的大小為 350px X 366px 後 ，開始處理排序的問題，一樣使用 flex 讓元素自動分配空間，加上 **flex-wrap: wrap** 讓元素超出範圍時自動換行，再來使用 **justify-content: space-between** 來讓每個元素的間距拉出來。
 
 ```css
 /* 畫面大小 */
 
 .container {
-	width: 1280px;
-	height: 1372px;
-	background: #f0f0f0 0% 0% no-repeat padding-box;
-	opacity: 1;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  width: 1280px;
+  height: 1372px;
+  background: #f0f0f0 0% 0% no-repeat padding-box;
+  opacity: 1;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .wrap {
-	width: 1110px;
-	height: 1178px;
-	margin: 80px 0;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  width: 1110px;
+  height: 1178px;
+  margin: 80px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .card {
-	width: 350px;
-	height: 366px;
-	background: #ffffff 0% 0% no-repeat padding-box;
-	box-shadow: 0px 3px 10px #d8d8d8;
-	border-radius: 100px 0px 30px 0px;
-	opacity: 1;
+  width: 350px;
+  height: 366px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 10px #d8d8d8;
+  border-radius: 100px 0px 30px 0px;
+  opacity: 1;
 }
 ```
+
 **1F — 9x9 乘法表畫面 CSS**
 
 _Step 4 :_ 最後處理小細節，由於畫面中中間排的 card 上下 margin 為 40px，而上下排則不用設定，因此這裡我使用 **nth-child()** 選擇器來調整 wrap 中第4、5、6 個 div。
@@ -92,7 +93,7 @@ _Step 4 :_ 最後處理小細節，由於畫面中中間排的 card 上下 margi
 .wrap div:nth-child(4),
 .wrap div:nth-child(5),
 .wrap div:nth-child(6) {
-	margin: 40px 0;
+  margin: 40px 0;
 }
 ```
 
@@ -102,49 +103,49 @@ _Step 4 :_ 最後處理小細節，由於畫面中中間排的 card 上下 margi
 
 _Step 1 :_ 這裡我將 card 裡頭新增一個 box 設定大小為 270px X 268px ，設定 margin 左右為 auto 來讓兩邊間距為 ( 360px - 270px ) / 2 = 40px ，接著加上 Flex 的設定 flex-direction: column 、 **flex-wrap: wrap** 。
 
-_Step 2 : 新增_文字大小、顏色等等的設定，這裡都是按照設計稿來設定。
+*Step 2 : 新增*文字大小、顏色等等的設定，這裡都是按照設計稿來設定。
 
-_Step 3 : card 的高度之_所以設定 268px ，是因為在設計稿中，左邊會有一個 153px 高度的大數字，再來才是高度 33px 的算式，並且每行之間的距離為 8px ，因此可以得出 ( 153px + 33px * 3 + 8px * 2 = 268px ) ，為了讓每行的距離拉出來，在父層增加 **justify-content: space-between** ，這樣 8px 的間距就出來了，接著 h1標籤距離頂端的距離為 34px 所以加上 margin-top:34px 的設定。
+*Step 3 : card 的高度之*所以設定 268px ，是因為在設計稿中，左邊會有一個 153px 高度的大數字，再來才是高度 33px 的算式，並且每行之間的距離為 8px ，因此可以得出 ( 153px + 33px _ 3 + 8px _ 2 = 268px ) ，為了讓每行的距離拉出來，在父層增加 **justify-content: space-between** ，這樣 8px 的間距就出來了，接著 h1標籤距離頂端的距離為 34px 所以加上 margin-top:34px 的設定。
 
-_Step 4 :_ 但是仔細看右邊會發現並沒有大數字，所以我們必須額外調整，右邊第一排與 card 頂端的距離為 64px ，扣除剛剛已經加上的 34px，利用 nth-child 選取器加上 margin-top: 30px ，這樣右邊的高度 ( 33px * 6 + 30px + 8px * 5 = 268px ) 也已經符合囉。
+_Step 4 :_ 但是仔細看右邊會發現並沒有大數字，所以我們必須額外調整，右邊第一排與 card 頂端的距離為 64px ，扣除剛剛已經加上的 34px，利用 nth-child 選取器加上 margin-top: 30px ，這樣右邊的高度 ( 33px _ 6 + 30px + 8px _ 5 = 268px ) 也已經符合囉。
 
 ```css
 .card .box {
-	width: 270px;
-	height: 268px;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin: 34px auto 0;
+  width: 270px;
+  height: 268px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 34px auto 0;
 }
 
-.card .box p:nth-child(5){
-	margin-top: 30px;
+.card .box p:nth-child(5) {
+  margin-top: 30px;
 }
 
 .card h1 {
-	width: 71px;
-	height: 153px;
-	margin-left: 21px;
-	font-size: 128px;
-	letter-spacing: 0px;
-	color: #2eb738;
-	text-shadow: 4px 3px 0px #f0f0f0;
-	opacity: 1;
+  width: 71px;
+  height: 153px;
+  margin-left: 21px;
+  font-size: 128px;
+  letter-spacing: 0px;
+  color: #2eb738;
+  text-shadow: 4px 3px 0px #f0f0f0;
+  opacity: 1;
 }
 
 .card p {
-	width: 118px;
-	height: 33px;
-	margin-right: 34px;
-	display: flex;
-	align-items: center;
-	text-align: left;
-	font-size: 23.5px;
-	letter-spacing: 0px;
-	color: #2eb738;
-	opacity: 1;
+  width: 118px;
+  height: 33px;
+  margin-right: 34px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font-size: 23.5px;
+  letter-spacing: 0px;
+  color: #2eb738;
+  opacity: 1;
 }
 ```
 
@@ -166,15 +167,14 @@ _Step 1 :_ 我將 card 做成元件後，使用 v-for 的方式印出 8 個元�
 <card v-for="count in 8" :i="++count" :key="++count"></card>
 ```
 
-
 **1F — 9x9 乘法表 Vue Components Code**
 
 _Step 2 :_ 再次使用 v-for 來引出 p 標籤，然後將傳入的 i 跟 j 分別帶入算式就大功告成囉 。
 
 ```js
 app.component('card', {
-	props: ['i'],
-	template: `<div class="card">
+  props: ['i'],
+  template: `<div class="card">
 		<div class="box">
 			<h1>{{ i }}</h1>
 			<p v-for='j in 9'>{{ i }} × {{ j }} ＝ {{ i*j }}</p>
@@ -187,9 +187,7 @@ app.component('card', {
 
 > 接著只要傳上 GigHub Page 就完成了挑戰了(灑花)
 
-> [Demo](https://cofcat456.github.io/JS-Dungeons/1F/)
-> [Repo](https://github.com/CofCat456/JS-Dungeons/tree/gh-pages/1F)
-
+> [Demo](https://cofcat456.github.io/JS-Dungeons/1F/) > [Repo](https://github.com/CofCat456/JS-Dungeons/tree/gh-pages/1F)
 
 ---
 

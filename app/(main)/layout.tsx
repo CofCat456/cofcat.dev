@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import { Provider as BalancerProvider } from 'react-wrap-balancer';
 
 import Footer from '~/app/(main)/Footer';
@@ -5,9 +6,9 @@ import Header from '~/app/(main)/Header';
 
 export default function BlogLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: ReactNode;
+}>) {
   return (
     <BalancerProvider>
       <div className="flex min-h-[100dvh] w-full flex-col justify-between font-sans antialiased">

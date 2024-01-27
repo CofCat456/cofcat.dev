@@ -1,4 +1,6 @@
-type CustomHeadingProps = React.ComponentPropsWithRef<
+import { type ComponentPropsWithRef } from 'react';
+
+type CustomHeadingProps = ComponentPropsWithRef<
   'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 > & {
   Component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

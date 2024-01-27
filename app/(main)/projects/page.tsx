@@ -1,6 +1,6 @@
 import Projects from '~/app/(main)/projects/Projects';
 
-const title = '我的項目';
+const title = '我的專案';
 const description =
   '從我開始踏上前端之旅時，我就會喜歡到處找設計稿來切版，或是找找有什麼好玩的項目可以練練手，下面這些是我篩選出來的項目合集，裡頭有各式各樣的樣目有開源、大型電商網站、實驗的，也有單純切版練習的，是我最近退伍後，所完成的項目。';
 

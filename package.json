@@ -10,6 +10,7 @@
     "lint:fix": "next lint --fix",
     "live-import-pages": "node --experimental-vm-modules tools/import-pages.mjs",
     "live-import-posts": "node --experimental-vm-modules tools/import-posts.mjs",
+    "live-import-projects": "node --experimental-vm-modules tools/import-projects.mjs",
     "start": "next start"
   },
   "dependencies": {

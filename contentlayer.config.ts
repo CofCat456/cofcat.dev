@@ -50,7 +50,6 @@ export const Project = defineDocumentType(() => ({
   fields: {
     createdAt: { required: true, type: 'number' },
     description: { required: true, type: 'string' },
-    pin: { required: true, type: 'boolean' },
     public: { required: true, type: 'boolean' },
     slug: { required: true, type: 'string' },
     socialImage: { required: true, type: 'string' },

@@ -9,9 +9,9 @@ import siteMetadata from '~/config/siteMetadata';
 function Links() {
   return (
     <nav className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-      {navigationItems.map(({ href, text }) => (
-        <Link href={href} key={href}>
-          {text}
+      {navigationItems.map(({ path, title }) => (
+        <Link href={path} key={title}>
+          {title}
         </Link>
       ))}
     </nav>

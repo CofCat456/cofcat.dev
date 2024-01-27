@@ -49,7 +49,7 @@ html body::before {
   text-anchor: middle;
   dominant-baseline: middle;
   stroke: rgb(229 231 235);
-  stroke-width: 2;
+  strokeWidth: 2;
   animation: show 5s ease-in-out;
 }
 

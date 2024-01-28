@@ -27,16 +27,16 @@ updatedAt: 1706157576898
 
 ```html showLineNumbers
 <script setup>
-  const props = defineProps({
-    title: {
-      type: String,
-      required: true,
-    },
-    likes: {
-      type: Number,
-      default: 100,
-    },
-  });
+	const props = defineProps({
+	  title: {
+			type: String,
+			required: true
+	  },
+	  likes: {
+			type: Number,
+			default: 100
+	  }
+	})
 </script>
 ```
 
@@ -49,11 +49,11 @@ updatedAt: 1706157576898
 而當我們導入 Typescript 後，定義方式則會變成這樣
 
 ```html showLineNumbers
-<script setup lang="ts">
-  const props = defineProps<{
-    foo: string;
-    bar?: number;
-  }>();
+<script setup lang="ts"> 
+	const props = defineProps<{
+		foo: string
+		bar?: number 
+	}>()
 </script>
 ```
 
@@ -73,13 +73,13 @@ updatedAt: 1706157576898
 
 ```ts showLineNumbers
 interface Props {
-  msg?: string;
-  labels?: string[];
+	msg?: string
+	labels?: string[]
 }
 
 withDefaults(defineProps<Props>(), {
-  msg: '',
-  labels: () => ['one', 'two'],
+	msg: '',
+	labels: () => ['one', 'two']
 });
 ```
 
@@ -88,15 +88,15 @@ withDefaults(defineProps<Props>(), {
 ## 型別抽離
 
 而當然既然都使用到了 Typescript ，我們可以像 React 定義 Props 一樣，將型別先抽離出來定義，再放入 `defineProps` 中
-
+ 
 ```html showLineNumbers
 <script setup lang="ts">
-  interface Props {
-    foo: string;
-    bar?: number;
-  }
-
-  const props = defineProps<Props>();
+interface Props { 
+	foo: string
+	bar?: number
+}
+		
+const props = defineProps<Props>()
 </script>
 ```
 
@@ -112,14 +112,14 @@ withDefaults(defineProps<Props>(), {
 
 ```html:ProductView.vue showLineNumbers
 <script setup lang="ts">
-interface Product {
+interface Product { 
 	id: number
 	name: string
 	price: number
 	description: string
 	category: string
 }
-
+		
 const props = defineProps<Product>()
 
 // ...其他程式碼
@@ -130,14 +130,14 @@ const props = defineProps<Product>()
 
 ```html:addProduct.vue showLineNumbers
 <script setup lang="ts">
-interface Product {
+interface Product { 
 	id: number
 	name: string
 	price: number
 	description: string
 	category: string
 }
-
+		
 const props = defineProps<Product>()
 
 // ...其他程式碼
@@ -163,7 +163,7 @@ export interface Product {
 ```html:ProductView.vue showLineNumbers
 <script setup lang="ts">
 import type { Product } from './types'
-
+		
 const props = defineProps<Product>()
 
 // ...其他程式碼
@@ -175,7 +175,7 @@ const props = defineProps<Product>()
 ```html:addProduct.vue showLineNumbers
 <script setup lang="ts">
 import type { Product } from './types'
-
+		
 const props = defineProps<Product>()
 
 // ...其他程式碼
@@ -197,7 +197,7 @@ const props = defineProps<Product>()
 import type { Product } from './types'
 
 interface ProductBasicProp extends Product {}
-
+		
 const props = defineProps<ProductBasicProp>()
 
 // ...其他程式碼
@@ -217,9 +217,9 @@ const props = defineProps<ProductBasicProp>()
 這個 `issues`引發了不小的騷動，畢竟在 React 中，要做到這樣的功能非常簡單，當然這也是因為兩個框架的核心技術不同所導致，對於 Vue 的使用者來說，[dakt](https://github.com/dakt)說出了大部分人的心聲：
 
 > [Quite idiotic thing isn't it? It's like buying a car and not having a windscreen wipers.  
-> And the pattern of importing Props is not so rare.....I use it all the time and it's immensely powerful.  
-> Vue3 is, in terms of code readability and speed, one of the best frameworks out there...beating React by miles, but things like this and the lack of generic components is just stupid.](<(https://github.com/vuejs/core/issues/4294#issuecomment-1508139655)>)
->
+And the pattern of importing Props is not so rare.....I use it all the time and it's immensely powerful.  
+Vue3 is, in terms of code readability and speed, one of the best frameworks out there...beating React by miles, but things like this and the lack of generic components is just stupid.]((https://github.com/vuejs/core/issues/4294#issuecomment-1508139655))
+> 
 > 這確實有些莫名其妙，就像買了一輛汽車但沒有雨刷一樣。
 > 而且匯入 Props 的模式並不少見，我一直都在使用，而且非常強大。
 > 在代碼可讀性和性能方面，Vue 3 確實是最優秀的框架之一，遠遠超越 React，但是這樣的事情和缺乏通用組件的支持實在有些愚蠢。
@@ -234,13 +234,13 @@ const props = defineProps<ProductBasicProp>()
 
 ```html showLineNumbers
 <script setup lang="ts">
-  import type { Product } from './types';
+import type { Product } from './types'
+		
+const props = defineProps<{
+	product: Product
+}>()
 
-  const props = defineProps<{
-    product: Product;
-  }>();
-
-  // ...其他程式碼
+// ...其他程式碼
 </script>
 ```
 
@@ -248,14 +248,14 @@ const props = defineProps<ProductBasicProp>()
 
 ```html showLineNumbers
 <script setup lang="ts">
-  import type { User, Product } from './types';
+import type { User, Product } from './types'
+		
+const props = defineProps<{
+	user: User
+	product: Product
+}>()
 
-  const props = defineProps<{
-    user: User;
-    product: Product;
-  }>();
-
-  // ...其他程式碼
+// ...其他程式碼
 </script>
 ```
 
@@ -286,7 +286,7 @@ import VueTypeImports from 'vite-plugin-vue-type-imports'
 
 export default defineConfig({
   plugins: [
-    Vue(),
+    Vue(), 
     VueTypeImports(),
   ],
 })
@@ -304,11 +304,11 @@ export default defineConfig({
 
 ```html showLineNumbers
 <script setup lang="ts">
-  import type { Product } from './types';
+import type { Product } from './types'
+		
+const props = defineProps<Product>()
 
-  const props = defineProps<Product>();
-
-  // ...其他程式碼
+// ...其他程式碼
 </script>
 ```
 
@@ -316,14 +316,14 @@ export default defineConfig({
 
 ```html showLineNumbers
 <script setup lang="ts">
-  import type { Product  } from './types'
-
-  withDefaults(defineProps<Product>(), {
-  	name: ''
-  	price: 0
-  	description: ''
-  	category: '門票'
-  })
+import type { Product  } from './types'
+		
+withDefaults(defineProps<Product>(), {
+	name: ''
+	price: 0
+	description: ''
+	category: '門票'
+})
 </script>
 ```
 
@@ -331,11 +331,11 @@ export default defineConfig({
 
 ```html showLineNumbers
 <script setup lang="ts">
-  import type { User, Product } from './types';
+import type { User, Product  } from './types'
+		
+const props = defineProps<User & Product>()
 
-  const props = defineProps<User & Product>();
-
-  // ...其他程式碼
+// ...其他程式碼
 </script>
 ```
 
@@ -362,3 +362,5 @@ export default defineConfig({
 - [Vue Macros](https://vue-macros.sxzz.moe/)
 - [TypeScript 中文手册](https://www.tsdev.cn/)
 - [vite-plugin-vue-type-imports](https://github.com/wheatjs/vite-plugin-vue-type-imports)
+
+

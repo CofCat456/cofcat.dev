@@ -3,6 +3,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
 export const Page = defineDocumentType(() => ({
   contentType: 'mdx',
@@ -70,5 +71,6 @@ export default makeSource({
       rehypeCodeTitles,
       [rehypePrism, { ignoreMissing: true }],
     ],
+    remarkPlugins: [remarkGfm],
   },
 });

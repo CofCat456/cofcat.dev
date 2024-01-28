@@ -16,7 +16,8 @@ updatedAt: 1706157564131
 
 ## 前言
 
-在 Ckeditor 中如果想要上傳圖片的話，需要透過[前一篇](https://www.cofcat.com/posts/vue3-ckeditor5-custom)的自定義編輯器中添加 plugin ，或者是選擇 Custom upload adapter 的方式，此篇文章記錄兩種作法的設置過程。
+在 Ckeditor 中如果想要上傳圖片的話，需要透過[前一篇](
+https://www.cofcat.com/posts/vue3-ckeditor5-custom)的自定義編輯器中添加 plugin ，或者是選擇 Custom upload adapter 的方式，此篇文章記錄兩種作法的設置過程。
 
 ## 方法說明
 
@@ -28,7 +29,7 @@ updatedAt: 1706157564131
 4. [Simple upload adapter](https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/simple-upload-adapter.html)
 
 除了上面兩項是官方提供的付費功能外，下面兩項則是比較親民的選擇，
-當然，如果你都不喜歡的話，官方也提供 [Custom upload adapter](https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/upload-adapter.html#implementing-a-custom-upload-adapter)。
+當然，如果你都不喜歡的話，官方也提供 [Custom upload adapter](https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/upload-adapter.html#implementing-a-custom-upload-adapter)。 
 
 ## 示範 Base64 upload adapter
 
@@ -135,7 +136,7 @@ export function MyAdapterPlugin(editor) {
 export default MyAdapterPlugin;
 ```
 
-> 特別需要說的是，`loader.file` 前面要加上 `await` 的原因是因為他是一個 Promise 物件
+> 特別需要說的是，`loader.file` 前面要加上 `await` 的原因是因為他是一個 Promise 物件 
 
 到我們的編輯器的檔案中，導入我們自定義的插件
 
@@ -187,3 +188,8 @@ const editorConfig = {
 
 - [CKEditor 官方文檔](https://ckeditor.com/docs/ckeditor5/latest/installation/integrations/vuejs-v3.html)
 - [Custom image upload adapter 官方文檔](https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/upload-adapter.html)
+
+
+
+
+

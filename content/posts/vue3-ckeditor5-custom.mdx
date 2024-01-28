@@ -64,7 +64,7 @@ updatedAt: 1706157562142
 
 ![Imgur](https://i.imgur.com/tLVtSmN.png)
 
-4. 這裡可以選擇語言，往下滑會看到 `Chinese(Taiwan)`，
+4. 這裡可以選擇語言，往下滑會看到 `Chinese(Taiwan)`，  
 
 ![Imgur](https://i.imgur.com/H7a0ysL.png)
 
@@ -98,7 +98,7 @@ updatedAt: 1706157562142
 
 如果編輯器沒問題，接下來準備要來導入我們要使用的專案
 
-我們將解壓縮完後的資料夾丟到專案資料夾中，檔名更改為 `Ckeditor`
+我們將解壓縮完後的資料夾丟到專案資料夾中，檔名更改為 `Ckeditor` 
 
 ![Imgur](https://i.imgur.com/ALPZXwv.png)
 
@@ -125,14 +125,14 @@ export default defineConfig({
   }
 });
 ```
-
-> 當我們將 `Ckeditor` 添加到 `node_modules` 時，由於他屬於 **UMD 模塊**，而 `Vite` 似乎乎略掉了他，所以這裡我們進行手動設定
->
+ 
+> 當我們將 `Ckeditor` 添加到 `node_modules` 時，由於他屬於 **UMD 模塊**，而 `Vite`  似乎乎略掉了他，所以這裡我們進行手動設定
+> 
 > 下方會放上相關連結說明此問題
 
 設定完後，我們將 `Ckeditor` 進行安裝
 
-```bash showLineNumbers
+```bash showLineNumbers 
 npm install file:./ckeditor
 ```
 
@@ -176,8 +176,22 @@ import Editor from 'ckeditor5-custom-build/build/ckeditor';
 
 - [程式碼 Github](https://github.com/CofCat456/vue3-ckeditor5/tree/ckeditor-custom)
 
+
 ## 參考文獻
 
 - [CKEditor 官方文檔](https://ckeditor.com/docs/ckeditor5/latest/installation/integrations/vuejs-v3.html)
 - [Vite 解析 UMD 模組 issue](https://github.com/ckeditor/ckeditor5/issues/12963)
 - [ckeditor-duplicated-modules issue](https://github.com/ckeditor/ckeditor5/issues/6566)
+
+
+
+
+
+
+
+
+
+
+
+
+

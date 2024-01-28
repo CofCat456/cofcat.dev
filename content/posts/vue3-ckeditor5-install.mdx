@@ -25,7 +25,7 @@ updatedAt: 1706157560246
 這裡一樣使用 Vite 官網的指令快速建立環境
 
 ```bash showLineNumbers
-npm create vite@latest
+npm create vite@latest 
 
 # 經過一連串設定後 ...
 
@@ -52,7 +52,7 @@ CKEditor5 是一個非常優秀的套件，官網提供的版型高達 6 種
 6. [Multi-root editor](https://ckeditor.com/docs/ckeditor5/latest/examples/builds/multi-root-editor.html)
 
 > 下面的使用都會以基本板型為範例(基本上很夠用)。
-
+  
 而且能夠讓使用者自由設定的部分非常多，例如：語言、工具列、圖片上傳工具等等，有興趣的朋友可以花時間到[官方文檔](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html)瀏覽。
 
 ## 套件安裝
@@ -80,11 +80,11 @@ createApp(App).use(CKEditor).mount('#app');
 
 ```html showLineNumbers {2}
 <script setup>
-  import { component as ckeditor } from '@ckeditor/ckeditor5-vue';
+import { component as ckeditor } from '@ckeditor/ckeditor5-vue';
 </script>
 
 <template>
-  <ckeditor />
+	<ckeditor />
 </template>
 ```
 
@@ -282,6 +282,7 @@ const onEditorDestroy = () => {
 
 - [程式碼 Github](https://github.com/CofCat456/vue3-ckeditor5)
 - [Demo 網站](https://vue3-ckeditor5.vercel.app/#/)
+
 
 ## 參考文獻
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { Viewport } from 'next';
 
 import { type ReactNode } from 'react';
 
@@ -9,6 +10,13 @@ import { seo } from '~/lib/seo';
 import './globals.css';
 import './prism-one-dark.css';
 import './prism-plus.css';
+
+export const viewport: Viewport = {
+  themeColor: [
+    { color: '#ffffffb8', media: '(prefers-color-scheme: light)' },
+    { color: '#1d1d1fb8', media: '(prefers-color-scheme: dark)' },
+  ],
+};
 
 export const metadata: Metadata = {
   description: seo.description,
@@ -37,10 +45,6 @@ export const metadata: Metadata = {
     },
     index: true,
   },
-  themeColor: [
-    { color: '#1d1d1fb8', media: '(prefers-color-scheme: dark)' },
-    { color: '#ffffffb8', media: '(prefers-color-scheme: light)' },
-  ],
   title: {
     default: seo.title,
     template: '%s | CofCat',

@@ -9,6 +9,7 @@ export { BriefcaseIcon } from './icons/BriefcaseIcon';
 export { CalendarIcon } from './icons/CalendarIcon';
 export { ClipboardCheckIcon } from './icons/ClipboardCheckIcon';
 export { ClipboardDataIcon } from './icons/ClipboardDataIcon';
+export { CloseIcon } from './icons/CloseIcon';
 export { ExternalLinkIcon } from './icons/ExternalLinkIcon';
 export { FileIcon } from './icons/FileIcon';
 export { GitHubBrandIcon } from './icons/GitHubBrandIcon';

@@ -1,9 +1,9 @@
 'use client';
 
 import { Popover, type PopoverProps, Transition } from '@headlessui/react';
-import clsx from 'clsx';
 import {
   AnimatePresence,
+  LayoutGroup,
   motion,
   useMotionTemplate,
   useMotionValue,
@@ -19,6 +19,7 @@ import React, {
   useCallback,
 } from 'react';
 
+import { CloseIcon } from '~/assets';
 import MenuPopover from '~/components/ui/popover/MenuPopover';
 import { type NavigationItem, navigationItems } from '~/config/nav';
 import { clsxm } from '~/lib/helper';
@@ -36,30 +37,28 @@ function AnimatedItem({
   const isExternal = href.startsWith('http');
   const Component = isExternal ? 'a' : Link;
   return (
-    <div>
-      <Component
-        className={clsxm(
-          'relative block whitespace-nowrap px-4 py-2 transition',
-          isActive
-            ? 'text-sky-600 dark:text-sky-400'
-            : 'hover:text-sky-600 dark:hover:text-sky-400',
-          className
-        )}
-        href={href}
-        target={isExternal ? '_blank' : undefined}
-      >
-        {children}
-        {isActive && (
-          <motion.span
-            className={clsx(
-              'absolute inset-x-1 -bottom-px h-px',
-              'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-sky-700/0 via-sky-700/70 to-sky-700/0 dark:from-sky-400/0 dark:via-sky-400/40 dark:to-sky-400/0'
-            )}
-            layoutId="active-nav-item"
-          />
-        )}
-      </Component>
-    </div>
+    <Component
+      className={clsxm(
+        'relative block whitespace-nowrap px-4 py-2 transition',
+        isActive
+          ? 'text-sky-600 dark:text-sky-400'
+          : 'hover:text-sky-600 dark:hover:text-sky-400',
+        className
+      )}
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+    >
+      {children}
+      {isActive && (
+        <motion.span
+          className={clsxm(
+            'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-sky-700/0 via-sky-700/70 to-sky-700/0 dark:from-sky-400/0 dark:via-sky-400/40 dark:to-sky-400/0'
+          )}
+          layoutId="active-nav-item"
+          style={{ originY: '0px' }}
+        />
+      )}
+    </Component>
   );
 }
 
@@ -87,6 +86,7 @@ const NavItem = memo(
               <motion.span
                 className="mr-2 flex items-center"
                 layoutId="header-menu-icon"
+                style={{ originY: '0px' }}
               >
                 {subItemActive?.icon ?? section.icon}
               </motion.span>
@@ -119,52 +119,54 @@ function Desktop({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   const background = useMotionTemplate`radial-gradient(${radius}px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color) 0%, transparent 65%)`;
 
   return (
-    <AnimatePresence>
-      <nav
-        className={clsx(
-          'group relative',
-          'rounded-full bg-gradient-to-b from-zinc-50/70 to-white/90',
-          'shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md',
-          'dark:from-zinc-900/70 dark:to-zinc-800/90 dark:ring-zinc-100/10',
-          '[--spotlight-color:rgb(224_242_254_/_0.6)] dark:[--spotlight-color:rgb(180_230_253_/_0.07)]',
-          className
-        )}
-        onMouseMove={handleMouseMove}
-        {...props}
-      >
-        {/* Spotlight overlay */}
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute -inset-px rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          style={{ background }}
-        />
+    <LayoutGroup>
+      <AnimatePresence>
+        <nav
+          className={clsxm(
+            'group relative',
+            'rounded-full bg-gradient-to-b from-zinc-50/70 to-white/90',
+            'shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md',
+            'dark:from-zinc-900/70 dark:to-zinc-800/90 dark:ring-zinc-100/10',
+            '[--spotlight-color:rgb(224_242_254_/_0.6)] dark:[--spotlight-color:rgb(180_230_253_/_0.07)]',
+            className
+          )}
+          onMouseMove={handleMouseMove}
+          {...props}
+        >
+          {/* Spotlight overlay */}
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-px rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{ background }}
+          />
 
-        <div className="flex px-4 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-          {navigationItems.map((section) => {
-            const subItemActive =
-              section.subMenu?.findIndex((item) => {
-                return (
-                  item.path === pathname || pathname.slice(1) === item.path
-                );
-              }) ?? -1;
+          <div className="flex px-4 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+            {navigationItems.map((section) => {
+              const subItemActive =
+                section.subMenu?.findIndex((item) => {
+                  return (
+                    item.path === pathname || pathname.slice(1) === item.path
+                  );
+                }) ?? -1;
 
-            return (
-              <NavItem
-                isActive={
-                  pathname === section.path ||
-                  pathname.startsWith(`${section.path}/`) ||
-                  subItemActive > -1 ||
-                  false
-                }
-                key={section.path}
-                section={section}
-                subItemActive={section.subMenu?.[subItemActive]}
-              />
-            );
-          })}
-        </div>
-      </nav>
-    </AnimatePresence>
+              return (
+                <NavItem
+                  isActive={
+                    pathname === section.path ||
+                    pathname.startsWith(`${section.path}/`) ||
+                    subItemActive > -1 ||
+                    false
+                  }
+                  key={section.path}
+                  section={section}
+                  subItemActive={section.subMenu?.[subItemActive]}
+                />
+              );
+            })}
+          </div>
+        </nav>
+      </AnimatePresence>
+    </LayoutGroup>
   );
 }
 
@@ -227,20 +229,7 @@ function Mobile(props: PopoverProps<'div'>) {
           >
             <div className="flex flex-row-reverse items-center justify-between">
               <Popover.Button aria-label="關閉選單" className="-m-1 p-1">
-                <svg
-                  aria-hidden="true"
-                  className="h-6 w-6 text-zinc-500 dark:text-zinc-400"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                  />
-                </svg>
+                <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
               </Popover.Button>
               <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
                 前往

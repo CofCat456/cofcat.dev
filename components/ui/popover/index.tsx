@@ -15,6 +15,7 @@ import {
   createContext,
   createElement,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -114,6 +115,12 @@ const FloatPopover = <T extends object>({
   const actionCtxValue = useMemo(() => {
     return { close: handlePopoverDisappear };
   }, [handlePopoverDisappear]);
+
+  useEffect(() => {
+    if (refs.floating.current && open && type === 'popover') {
+      refs.floating.current.focus();
+    }
+  }, [open, refs.floating, type]);
 
   if (!children) {
     return TriggerWrapper;

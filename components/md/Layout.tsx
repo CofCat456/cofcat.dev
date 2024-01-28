@@ -6,6 +6,7 @@ import { Balancer } from 'react-wrap-balancer';
 
 import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, TagIcon } from '~/assets';
 import FABContainer from '~/components/FABContainer';
+import Comment from '~/components/md/Comment';
 import { Post } from '~/components/md/Post';
 import Link from '~/components/ui/Link';
 import RelativeTime from '~/components/ui/RelativeTime';
@@ -138,8 +139,7 @@ export default function MarkdownLayout<T extends MarkdownPost>(
                 </div>
               </motion.div>
               <div className="divide-y divide-gray-200 pb-8 dark:divide-gray-700">
-                {/* TODO: Add comment */}
-                {/* <Comment /> */}
+                <Comment />
                 <footer>
                   <div className="flex flex-col gap-8 py-8 text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
                     {prevMarkdownPost && (

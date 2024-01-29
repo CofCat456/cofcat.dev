@@ -31,7 +31,7 @@ const CustomLink = ({ children, href, ...rest }: CustomLinkProps) => {
       rel="noopener noreferrer"
       target="_blank"
       {...rest}
-      className="inline-flex place-items-baseline items-baseline gap-0.5 pr-0.5 text-[0.95em] font-semibold leading-none text-sky-500 hover:underline dark:text-sky-300"
+      className="inline-flex place-items-baseline items-baseline gap-0.5 pr-0.5 text-[0.95em] font-semibold text-sky-500 hover:underline dark:text-cc-primary"
     >
       {children}
       {typeof children === 'string' && (

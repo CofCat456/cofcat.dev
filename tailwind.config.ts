@@ -127,7 +127,6 @@ const config: Config = {
             'a code': {
               color: 'inherit',
             },
-
             'a:hover': {
               color: 'var(--tw-prose-links-hover)',
               textDecorationColor: 'var(--tw-prose-underline-hover)',

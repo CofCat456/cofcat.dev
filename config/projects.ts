@@ -190,4 +190,20 @@ export const allProject: Project[] = [
     pin: false,
     title: 'YouBike2.0',
   },
+  {
+    date: '2024-02-24',
+    description:
+      'Inkdrop 並沒有像 Obsidian 一樣支援 Daily Notes 的功能，我自己在工作時習慣每天寫 Daily Notes 來記錄當天的工作，所以花點時間做了一個插件來支援',
+    image: {
+      alt: 'Inkdrop',
+      src: Inkdrop,
+    },
+    links: {
+      github: 'https://github.com/CofCat456/inkdrop-daily-notes',
+      post: '',
+      site: '',
+    },
+    pin: false,
+    title: 'Daily Notes',
+  },
 ];

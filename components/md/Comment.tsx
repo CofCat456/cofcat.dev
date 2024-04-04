@@ -9,8 +9,6 @@ const Comment = () => {
   const { theme } = useTheme();
   const { giscusConfig } = siteMetadata;
 
-  // TODO: 重新定義資料格式 位置
-
   return (
     <div className="mx-auto max-w-prose py-6" id="comment">
       <Giscus

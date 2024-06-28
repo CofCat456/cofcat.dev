@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
-import { ArrowToTopLineIcon, NewCommentIcon } from '~/assets';
+import { ArrowToTopLineIcon, NewCommentIcon } from '~/assets'
 
-import Button from './ui/Button';
+import Button from './ui/Button'
 
 const FABContainer = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     const handleWindowScroll = () => {
-      if (window.scrollY > 50) return setShow(true);
+      if (window.scrollY > 50) return setShow(true)
 
-      setShow(false);
-    };
+      setShow(false)
+    }
 
-    window.addEventListener('scroll', handleWindowScroll);
+    window.addEventListener('scroll', handleWindowScroll)
 
-    return () => window.removeEventListener('scroll', handleWindowScroll);
-  }, []);
+    return () => window.removeEventListener('scroll', handleWindowScroll)
+  }, [])
 
   const scrollTopHandler = () => {
-    window.scrollTo({ behavior: 'smooth', top: 0 });
-  };
+    window.scrollTo({ behavior: 'smooth', top: 0 })
+  }
 
   const scrollToCommentHandler = () => {
-    document.getElementById('comment')?.scrollIntoView({ behavior: 'smooth' });
-  };
+    document.getElementById('comment')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <AnimatePresence mode="wait">
@@ -59,7 +59,7 @@ const FABContainer = () => {
         </motion.div>
       )}
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default FABContainer;
+export default FABContainer

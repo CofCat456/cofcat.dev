@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import { type PropsWithChildren } from 'react';
-import Balancer from 'react-wrap-balancer';
+import { type PropsWithChildren } from 'react'
+import Balancer from 'react-wrap-balancer'
+import { motion } from 'framer-motion'
 
-import Avatar from '~/app/(main)/Avatar';
-import Resume from '~/app/(main)/Resume';
-import SocialLink from '~/components/SocialLink';
-import siteMetadata from '~/config/siteMetadata';
+import Avatar from '~/app/(main)/Avatar'
+import Resume from '~/app/(main)/Resume'
+import SocialLink from '~/components/SocialLink'
+import siteMetadata from '~/config/siteMetadata'
 
 const About = ({ children }: PropsWithChildren) => {
   return (
@@ -99,7 +99,7 @@ const About = ({ children }: PropsWithChildren) => {
         </div>
       </motion.div>
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About

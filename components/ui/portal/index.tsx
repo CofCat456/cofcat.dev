@@ -1,17 +1,16 @@
-'use client';
+'use client'
 
-import type { FC, PropsWithChildren } from 'react';
+import { createPortal } from 'react-dom'
+import type { FC, PropsWithChildren } from 'react'
 
-import { createPortal } from 'react-dom';
-
-import { useRootPortal } from './provider';
+import { useRootPortal } from './provider'
 
 export const RootPortal: FC<
   {
-    to?: HTMLElement;
+    to?: HTMLElement
   } & PropsWithChildren
 > = (props) => {
-  const to = useRootPortal();
+  const to = useRootPortal()
 
-  return createPortal(props.children, props.to || to || document.body);
-};
+  return createPortal(props.children, props.to || to || document.body)
+}

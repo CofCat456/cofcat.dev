@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import Giscus from '@giscus/react';
-import { useTheme } from 'next-themes';
+import Giscus from '@giscus/react'
+import { useTheme } from 'next-themes'
 
-import siteMetadata from '~/config/siteMetadata';
+import siteMetadata from '~/config/siteMetadata'
 
 const Comment = () => {
-  const { theme } = useTheme();
-  const { giscusConfig } = siteMetadata;
+  const { theme } = useTheme()
+  const { giscusConfig } = siteMetadata
 
   return (
     <div className="mx-auto max-w-prose py-6" id="comment">
@@ -25,7 +25,7 @@ const Comment = () => {
         theme={theme === 'dark' ? 'transparent_dark' : 'light'}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Comment;
+export default Comment

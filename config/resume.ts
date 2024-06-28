@@ -1,16 +1,16 @@
-import { type StaticImageData } from 'next/image';
+import type { StaticImageData } from 'next/image'
 
-import airaLogo from '~/assets/company/aira.png';
-import chinalifeLogo from '~/assets/company/chinalife.png';
-import skyRecLogo from '~/assets/company/skyRec.jpeg';
+import airaLogo from '~/assets/company/aira.png'
+import chinalifeLogo from '~/assets/company/chinalife.png'
+import skyRecLogo from '~/assets/company/skyRec.jpeg'
 
 export type Resume = {
-  company: string;
-  end: { dateTime: number; label: string } | string;
-  logo: StaticImageData;
-  start: { dateTime: number; label: string } | string;
-  title: string;
-};
+  company: string
+  end: { dateTime: number; label: string } | string
+  logo: StaticImageData
+  start: { dateTime: number; label: string } | string
+  title: string
+}
 
 export const resume: Resume[] = [
   // Example
@@ -46,4 +46,4 @@ export const resume: Resume[] = [
     start: '2022/07',
     title: '軟體工程師實習生',
   },
-];
+]

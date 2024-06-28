@@ -1,4 +1,4 @@
-import { type IconProps } from '..';
+import { type IconProps } from '..'
 
 export function GitHubBrandIcon(props: IconProps = {}) {
   return (
@@ -16,5 +16,5 @@ export function GitHubBrandIcon(props: IconProps = {}) {
         fillRule="evenodd"
       />
     </svg>
-  );
+  )
 }

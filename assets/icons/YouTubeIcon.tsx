@@ -1,4 +1,4 @@
-import { type IconProps } from '~/assets';
+import { type IconProps } from '~/assets'
 
 export function YouTubeIcon(props: IconProps = {}) {
   return (
@@ -25,5 +25,5 @@ export function YouTubeIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

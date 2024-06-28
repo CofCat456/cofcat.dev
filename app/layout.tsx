@@ -1,22 +1,20 @@
-import type { Metadata } from 'next';
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next'
+import type { ReactNode } from 'react'
 
-import { type ReactNode } from 'react';
+import { ThemeProvider } from '~/app/(main)/ThemeProvider'
+import { sansFont } from '~/lib/font'
+import { seo } from '~/lib/seo'
 
-import { ThemeProvider } from '~/app/(main)/ThemeProvider';
-import { sansFont } from '~/lib/font';
-import { seo } from '~/lib/seo';
-
-import './globals.css';
-import './prism-one-dark.css';
-import './prism-plus.css';
+import './globals.css'
+import './prism-one-dark.css'
+import './prism-plus.css'
 
 export const viewport: Viewport = {
   themeColor: [
     { color: '#ffffffb8', media: '(prefers-color-scheme: light)' },
     { color: '#1d1d1fb8', media: '(prefers-color-scheme: dark)' },
   ],
-};
+}
 
 export const metadata: Metadata = {
   description: seo.description,
@@ -49,12 +47,12 @@ export const metadata: Metadata = {
     default: seo.title,
     template: '%s | CofCat',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: ReactNode;
+  children: ReactNode
 }>) {
   return (
     <html
@@ -98,5 +96,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { type IconProps } from '..';
+import { type IconProps } from '..'
 
 export function FileIcon(props: IconProps = {}) {
   return (
@@ -11,5 +11,5 @@ export function FileIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

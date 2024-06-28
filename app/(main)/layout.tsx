@@ -1,13 +1,13 @@
-import { type ReactNode } from 'react';
-import { Provider as BalancerProvider } from 'react-wrap-balancer';
+import { type ReactNode } from 'react'
+import { Provider as BalancerProvider } from 'react-wrap-balancer'
 
-import Footer from '~/app/(main)/Footer';
-import Header from '~/app/(main)/Header';
+import Footer from '~/app/(main)/Footer'
+import Header from '~/app/(main)/Header'
 
 export default function BlogLayout({
   children,
 }: Readonly<{
-  children: ReactNode;
+  children: ReactNode
 }>) {
   return (
     <BalancerProvider>
@@ -21,5 +21,5 @@ export default function BlogLayout({
         <Footer />
       </div>
     </BalancerProvider>
-  );
+  )
 }

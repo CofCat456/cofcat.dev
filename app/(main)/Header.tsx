@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
-import { NavigationBar } from './NavigationBar';
-import ThemeSwitcher from './ThemeSwitcher';
+import { NavigationBar } from './NavigationBar'
+import ThemeSwitcher from './ThemeSwitcher'
 
 const Header = () => {
   return (
@@ -40,7 +40,7 @@ const Header = () => {
         </div>
       </motion.header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

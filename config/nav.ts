@@ -1,15 +1,14 @@
-import type { ReactNode } from 'react';
+import { createElement as h } from 'react'
+import type { ReactNode } from 'react'
 
-import { createElement as h } from 'react';
-
-import { FileIcon, HomeIcon, SparkleIcon } from '~/assets';
+import { FileIcon, HomeIcon, SparkleIcon } from '~/assets'
 
 export interface NavigationItem {
-  icon?: ReactNode;
-  path: string;
-  subMenu?: NavigationItem[];
-  title: string;
-  type?: string;
+  icon?: ReactNode
+  path: string
+  subMenu?: NavigationItem[]
+  title: string
+  type?: string
 }
 
 export const navigationItems: NavigationItem[] = [
@@ -37,4 +36,4 @@ export const navigationItems: NavigationItem[] = [
     title: '專案',
     type: 'Project',
   },
-];
+]

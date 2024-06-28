@@ -1,12 +1,13 @@
-import Link, { type LinkProps } from 'next/link';
 import {
   type ComponentPropsWithoutRef,
   type HTMLAttributes,
   type PropsWithChildren,
-} from 'react';
+} from 'react'
+import Link from 'next/link'
+import type { LinkProps } from 'next/link'
 
-import { ArrowRightIcon } from '~/assets';
-import { clsxm } from '~/lib/helper';
+import { ArrowRightIcon } from '~/assets'
+import { clsxm } from '~/lib/helper'
 
 export function Card({
   as: Component = 'div',
@@ -14,11 +15,11 @@ export function Card({
   className,
   ...props
 }: PropsWithChildren<{
-  as?: keyof JSX.IntrinsicElements;
-  className?: string;
-  onMouseEnter?: React.MouseEventHandler;
-  onMouseLeave?: React.MouseEventHandler;
-  onMouseMove?: React.MouseEventHandler;
+  as?: keyof JSX.IntrinsicElements
+  className?: string
+  onMouseEnter?: React.MouseEventHandler
+  onMouseLeave?: React.MouseEventHandler
+  onMouseMove?: React.MouseEventHandler
 }>) {
   return (
     <Component
@@ -27,7 +28,7 @@ export function Card({
     >
       {children}
     </Component>
-  );
+  )
 }
 
 Card.Link = function CardLink({
@@ -42,41 +43,41 @@ Card.Link = function CardLink({
         <span className="relative z-10">{children}</span>
       </Link>
     </>
-  );
-};
+  )
+}
 
 Card.Title = function CardTitle({
   as: Component = 'h2',
   children,
   href,
 }: PropsWithChildren<{
-  as?: keyof JSX.IntrinsicElements;
-  href?: string;
+  as?: keyof JSX.IntrinsicElements
+  href?: string
 }>) {
   return (
     <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
-  );
-};
+  )
+}
 
 Card.Description = function CardDescription({
   children,
   className,
 }: PropsWithChildren<{
-  className?: string;
+  className?: string
 }>) {
   return (
     <p
       className={clsxm(
         'relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400',
-        className
+        className,
       )}
     >
       {children}
     </p>
-  );
-};
+  )
+}
 
 Card.Cta = function CardCta({ children }: PropsWithChildren) {
   return (
@@ -87,8 +88,8 @@ Card.Cta = function CardCta({ children }: PropsWithChildren) {
       {children}
       <ArrowRightIcon className="ml-1 h-4 w-4 stroke-current" />
     </div>
-  );
-};
+  )
+}
 
 Card.Eyebrow = function CardEyebrow({
   as: Component = 'p',
@@ -97,9 +98,9 @@ Card.Eyebrow = function CardEyebrow({
   decorate = false,
   ...props
 }: PropsWithChildren<{
-  as?: keyof JSX.IntrinsicElements;
-  className?: string;
-  decorate?: boolean;
+  as?: keyof JSX.IntrinsicElements
+  className?: string
+  decorate?: boolean
 }> &
   HTMLAttributes<unknown>) {
   return (
@@ -107,7 +108,7 @@ Card.Eyebrow = function CardEyebrow({
       className={clsxm(
         className,
         'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
-        decorate ? 'pl-3.5' : ''
+        decorate ? 'pl-3.5' : '',
       )}
       {...props}
     >
@@ -121,5 +122,5 @@ Card.Eyebrow = function CardEyebrow({
       )}
       {children}
     </Component>
-  );
-};
+  )
+}

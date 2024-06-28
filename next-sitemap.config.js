@@ -5,4 +5,4 @@ module.exports = {
       ? 'https://www.cofcat.com'
       : 'http://localhost:3000',
   generateRobotsTxt: true, // (optional)
-};
+}

@@ -1,4 +1,4 @@
-import { type IconProps } from '..';
+import { type IconProps } from '..'
 
 export function PostPinIcon(props: IconProps = {}) {
   return (
@@ -14,5 +14,5 @@ export function PostPinIcon(props: IconProps = {}) {
         fill="currentColor"
       />
     </svg>
-  );
+  )
 }

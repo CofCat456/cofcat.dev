@@ -1,40 +1,40 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
+import clsx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const HoverOverlay = () => {
-  const [mouseEnter, setMouseEnter] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [mouseEnter, setMouseEnter] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const $ref = ref.current;
-    if (!$ref) return;
-    const $parent = $ref.parentElement;
-    if (!$parent) return;
+    const $ref = ref.current
+    if (!$ref) return
+    const $parent = $ref.parentElement
+    if (!$parent) return
     $parent.onfocus = () => {
-      setMouseEnter(true);
-    };
+      setMouseEnter(true)
+    }
 
     $parent.onblur = () => {
-      setMouseEnter(false);
-    };
+      setMouseEnter(false)
+    }
 
     return () => {
-      $parent.onfocus = null;
-      $parent.onblur = null;
-    };
-  }, []);
+      $parent.onfocus = null
+      $parent.onblur = null
+    }
+  }, [])
   return (
     <>
       <div
         className="absolute inset-0 z-10"
         onMouseEnter={() => {
-          setMouseEnter(true);
+          setMouseEnter(true)
         }}
         onMouseLeave={() => {
-          setMouseEnter(false);
+          setMouseEnter(false)
         }}
         ref={ref}
       />
@@ -49,7 +49,7 @@ const HoverOverlay = () => {
             className={clsx(
               'absolute z-0 rounded-xl',
               'bg-slate-300/50 dark:bg-neutral-800',
-              'bottom-[1rem] left-[-1rem] right-[-1.5rem] top-[1rem]'
+              'bottom-[1rem] left-[-1rem] right-[-1.5rem] top-[1rem]',
             )}
             exit={{
               opacity: 0,
@@ -65,7 +65,7 @@ const HoverOverlay = () => {
         )}
       </AnimatePresence>
     </>
-  );
-};
+  )
+}
 
-export default HoverOverlay;
+export default HoverOverlay

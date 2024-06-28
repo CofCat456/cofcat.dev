@@ -1,4 +1,4 @@
-import { type IconProps } from '..';
+import { type IconProps } from '..'
 
 export function ArrowToTopLineIcon(props: IconProps = {}) {
   return (
@@ -18,5 +18,5 @@ export function ArrowToTopLineIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

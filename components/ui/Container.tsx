@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
-import { type PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react'
+import clsx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type ContainerProps = PropsWithChildren<{
-  className?: string;
-  duration?: number;
-}>;
+  className?: string
+  duration?: number
+}>
 
 const Container = ({ children, className, duration = 0.4 }: ContainerProps) => {
   return (
@@ -23,7 +23,7 @@ const Container = ({ children, className, duration = 0.4 }: ContainerProps) => {
         {children}
       </motion.div>
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default Container;
+export default Container

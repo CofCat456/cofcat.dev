@@ -1,33 +1,33 @@
-import { type StaticImageData } from 'next/image';
+import type { StaticImageData } from 'next/image'
 
-import CoffeeShop from '~/public/images/projects/CoffeeShop.png';
-import Discord from '~/public/images/projects/Discord.png';
-import F2EMission1 from '~/public/images/projects/F2EMission1.png';
-import Inkdrop from '~/public/images/projects/Inkdrop.png';
-import LivePhotos from '~/public/images/projects/LivePhotos.png';
-import MaskMap from '~/public/images/projects/MaskMap.png';
-import RNMail from '~/public/images/projects/RNMail.jpg';
-import TravelFun from '~/public/images/projects/TravelFun.png';
-import Voomap from '~/public/images/projects/Voomap.png';
-import YouBike from '~/public/images/projects/YouBike.png';
+import CoffeeShop from '~/public/images/projects/CoffeeShop.png'
+import Discord from '~/public/images/projects/Discord.png'
+import F2EMission1 from '~/public/images/projects/F2EMission1.png'
+import Inkdrop from '~/public/images/projects/Inkdrop.png'
+import LivePhotos from '~/public/images/projects/LivePhotos.png'
+import MaskMap from '~/public/images/projects/MaskMap.png'
+import RNMail from '~/public/images/projects/RNMail.jpg'
+import TravelFun from '~/public/images/projects/TravelFun.png'
+import Voomap from '~/public/images/projects/Voomap.png'
+import YouBike from '~/public/images/projects/YouBike.png'
 
 export type Link = {
-  github: string;
-  post: string;
-  site: string;
-};
+  github: string
+  post: string
+  site: string
+}
 
 export type Project = {
-  date: string;
-  description: string;
+  date: string
+  description: string
   image: {
-    alt: string;
-    src: StaticImageData | string;
-  };
-  links: Link;
-  pin?: boolean;
-  title: string;
-};
+    alt: string
+    src: StaticImageData | string
+  }
+  links: Link
+  pin?: boolean
+  title: string
+}
 
 export const allProject: Project[] = [
   {
@@ -206,4 +206,4 @@ export const allProject: Project[] = [
     pin: false,
     title: 'Daily Notes',
   },
-];
+]

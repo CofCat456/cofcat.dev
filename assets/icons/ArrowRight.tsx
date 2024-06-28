@@ -1,4 +1,4 @@
-import { type IconProps } from '..';
+import { type IconProps } from '..'
 
 export function ArrowRightIcon(props: IconProps = {}) {
   return (
@@ -11,5 +11,5 @@ export function ArrowRightIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

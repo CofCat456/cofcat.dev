@@ -1,36 +1,32 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
-import {
-  type ComponentPropsWithoutRef,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react'
+import clsx from 'clsx'
+import type { ComponentPropsWithoutRef } from 'react'
 
-import { ClipboardCheckIcon, ClipboardDataIcon } from '~/assets';
-import { copyToClipboard } from '~/lib/copyToClipboard';
-import { removeDuplicateNewLine } from '~/lib/removeDuplicateNewLine';
+import { ClipboardCheckIcon, ClipboardDataIcon } from '~/assets'
+import { copyToClipboard } from '~/lib/copyToClipboard'
+import { removeDuplicateNewLine } from '~/lib/removeDuplicateNewLine'
 
-type CustomPreProps = ComponentPropsWithoutRef<'pre'>;
+type CustomPreProps = ComponentPropsWithoutRef<'pre'>
 
 function CustomPre({ children, className, ...props }: CustomPreProps) {
-  const preRef = useRef<HTMLPreElement>(null);
+  const preRef = useRef<HTMLPreElement>(null)
 
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setCopied(false), 2000);
+    const timer = setTimeout(() => setCopied(false), 2000)
 
-    return () => clearTimeout(timer);
-  }, [copied]);
+    return () => clearTimeout(timer)
+  }, [copied])
 
   const onClick = async () => {
     if (preRef.current?.innerText) {
-      await copyToClipboard(removeDuplicateNewLine(preRef.current.innerText));
-      setCopied(true);
+      await copyToClipboard(removeDuplicateNewLine(preRef.current.innerText))
+      setCopied(true)
     }
-  };
+  }
 
   return (
     <div className="group relative">
@@ -56,7 +52,7 @@ function CustomPre({ children, className, ...props }: CustomPreProps) {
                 'border-gray-600 hover:border-gray-400 focus:ring-4 focus:ring-gray-200/50 dark:border-gray-700 dark:hover:border-gray-400':
                   !copied,
                 'border-green-400': copied,
-              }
+              },
             )}
             disabled={copied}
             onClick={onClick}
@@ -73,7 +69,7 @@ function CustomPre({ children, className, ...props }: CustomPreProps) {
         {children}
       </pre>
     </div>
-  );
+  )
 }
 
-export default CustomPre;
+export default CustomPre

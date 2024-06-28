@@ -35,6 +35,6 @@ const siteMetadata = {
   },
   socialBanner: '/banner.jpg',
   title: 'CofCat',
-};
+}
 
-export default siteMetadata;
+export default siteMetadata

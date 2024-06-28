@@ -1,4 +1,4 @@
-import { type IconProps } from '..';
+import { type IconProps } from '..'
 
 export function LightningIcon(props: IconProps = {}) {
   return (
@@ -18,5 +18,5 @@ export function LightningIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { ProjectCard } from '~/app/(main)/projects/ProjectCard';
-import { allProject } from '~/config/projects';
+import { ProjectCard } from '~/app/(main)/projects/ProjectCard'
+import { allProject } from '~/config/projects'
 
 export default function Projects() {
   return (
@@ -11,5 +11,5 @@ export default function Projects() {
         <ProjectCard key={project.title} project={project} />
       ))}
     </ul>
-  );
+  )
 }

@@ -1,17 +1,18 @@
-import Image from 'next/image';
+import Image from 'next/image'
+import type { Resume } from '~/config/resume'
 
-import { BriefcaseIcon } from '~/assets';
-import { type Resume, resume } from '~/config/resume';
+import { BriefcaseIcon } from '~/assets'
+import { resume } from '~/config/resume'
 
 function getRoleDate(date: Resume['end'], label = true) {
   if (typeof date === 'string') {
-    return date;
+    return date
   }
 
   if (label) {
-    return date.label;
+    return date.label
   } else {
-    return String(date.dateTime);
+    return String(date.dateTime)
   }
 }
 
@@ -45,7 +46,7 @@ const Resume = () => {
               <dt className="sr-only">日期</dt>
               <dd
                 aria-label={`${getRoleDate(role.start)} 到 ${getRoleDate(
-                  role.end
+                  role.end,
                 )}`}
                 className="ml-auto text-xs text-zinc-500/80 dark:text-zinc-400/80"
               >
@@ -62,7 +63,7 @@ const Resume = () => {
         ))}
       </ol>
     </div>
-  );
-};
+  )
+}
 
-export default Resume;
+export default Resume

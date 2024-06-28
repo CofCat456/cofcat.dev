@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
-import siteMetadata from '~/config/siteMetadata';
+import siteMetadata from '~/config/siteMetadata'
 
 const Avatar = () => {
-  const [isShowAvatar, setIsShowAvatar] = useState(false);
+  const [isShowAvatar, setIsShowAvatar] = useState(false)
 
-  const { siteLogo, siteLogoReal } = siteMetadata;
+  const { siteLogo, siteLogoReal } = siteMetadata
 
   const toggleShowAvatar = useCallback(() => {
-    setIsShowAvatar((preStatus) => !preStatus);
-  }, []);
+    setIsShowAvatar((preStatus) => !preStatus)
+  }, [])
 
   return (
     <motion.div
@@ -33,7 +33,7 @@ const Avatar = () => {
         width={200}
       />
     </motion.div>
-  );
-};
+  )
+}
 
-export default Avatar;
+export default Avatar

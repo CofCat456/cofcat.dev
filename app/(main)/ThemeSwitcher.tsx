@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { useTheme } from 'next-themes';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 
-import { LightningIcon, MoonIcon, SunIcon } from '~/assets';
-import { Tooltip } from '~/components/ui/Tooltip';
+import { LightningIcon, MoonIcon, SunIcon } from '~/assets'
+import { Tooltip } from '~/components/ui/Tooltip'
 
 const themes = [
   {
@@ -18,25 +18,25 @@ const themes = [
     label: '深色模式',
     value: 'dark',
   },
-];
+]
 
 const ThemeSwitcher = () => {
-  const [mounted, setMounted] = useState(false);
-  const [open, setOpen] = useState(false);
-  const { resolvedTheme, setTheme, theme } = useTheme();
+  const [mounted, setMounted] = useState(false)
+  const [open, setOpen] = useState(false)
+  const { resolvedTheme, setTheme, theme } = useTheme()
   const ThemeIcon = useMemo(
     () => themes.find((t) => t.value === theme)?.icon ?? LightningIcon,
-    [theme]
-  );
+    [theme],
+  )
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => setMounted(true), [])
 
   function toggleTheme() {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
   }
 
   if (!mounted) {
-    return null;
+    return null
   }
 
   return (
@@ -69,7 +69,7 @@ const ThemeSwitcher = () => {
         </AnimatePresence>
       </Tooltip.Root>
     </Tooltip.Provider>
-  );
-};
+  )
+}
 
-export default ThemeSwitcher;
+export default ThemeSwitcher

@@ -1,4 +1,4 @@
-import { type IconProps } from '~/assets';
+import { type IconProps } from '~/assets'
 
 export function NewCommentIcon(props: IconProps = {}) {
   return (
@@ -18,5 +18,5 @@ export function NewCommentIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

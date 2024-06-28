@@ -1,15 +1,15 @@
-import clsx from 'clsx';
-import { type Post as PostType } from 'contentlayer/generated';
-import { type PropsWithChildren } from 'react';
-import { Balancer } from 'react-wrap-balancer';
+import { type PropsWithChildren } from 'react'
+import { Balancer } from 'react-wrap-balancer'
+import clsx from 'clsx'
+import { type Post as PostType } from 'contentlayer/generated'
 
-import { ArrowRightIcon, CalendarIcon, PostPinIcon, TagIcon } from '~/assets';
-import HoverOverlay from '~/components/md/HoverOverlay';
-import Link from '~/components/ui/Link';
-import RelativeTime from '~/components/ui/RelativeTime';
-import BottomToUpTransitionView from '~/components/ui/transition/BottomToUpTransitionView';
+import { ArrowRightIcon, CalendarIcon, PostPinIcon, TagIcon } from '~/assets'
+import HoverOverlay from '~/components/md/HoverOverlay'
+import Link from '~/components/ui/Link'
+import RelativeTime from '~/components/ui/RelativeTime'
+import BottomToUpTransitionView from '~/components/ui/transition/BottomToUpTransitionView'
 
-import styles from './body.module.scss';
+import styles from './body.module.scss'
 
 function Item({
   createdAt,
@@ -40,7 +40,7 @@ function Item({
             <div
               className={clsx(
                 'float-right mb-2 ml-3 h-[5.5rem] w-[5.5rem] overflow-hidden rounded-md',
-                'bg-cover bg-center bg-no-repeat'
+                'bg-cover bg-center bg-no-repeat',
               )}
               style={{ backgroundImage: `url(${socialImage})` }}
             />
@@ -85,23 +85,23 @@ function Item({
         )}
       </div>
     </Link>
-  );
+  )
 }
 
 function List({ posts }: { posts: PostType[] }) {
   return (
     <ul className="mx-auto mt-12 max-w-2xl px-2 sm:mt-20 lg:px-0 2xl:max-w-3xl">
       {posts.map((post, index) => {
-        const { slug } = post;
+        const { slug } = post
 
         return (
           <BottomToUpTransitionView delay={index / 10} key={slug}>
             <Item {...post} />
           </BottomToUpTransitionView>
-        );
+        )
       })}
     </ul>
-  );
+  )
 }
 
 function Body({ children }: PropsWithChildren) {
@@ -109,16 +109,16 @@ function Body({ children }: PropsWithChildren) {
     <div
       className={clsx(
         'prose max-w-none transition-colors dark:prose-dark',
-        styles.postBody
+        styles.postBody,
       )}
     >
       {children}
     </div>
-  );
+  )
 }
 
 export const Post = {
   Body,
   Item,
   List,
-} as const;
+} as const

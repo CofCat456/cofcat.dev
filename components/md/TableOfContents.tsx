@@ -1,83 +1,83 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
-import GithubSlugger from 'github-slugger';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
+import clsx from 'clsx'
+import GithubSlugger from 'github-slugger'
 
-type UseIntersectionObserverType = (setActiveId: (id: string) => void) => void;
+type UseIntersectionObserverType = (setActiveId: (id: string) => void) => void
 
 const useIntersectionObserver: UseIntersectionObserverType = (setActiveId) => {
   const headingElementsRef = useRef<{
-    [key: string]: IntersectionObserverEntry;
-  }>({});
+    [key: string]: IntersectionObserverEntry
+  }>({})
 
   useEffect(() => {
     const callback = (headings: IntersectionObserverEntry[]) => {
       headingElementsRef.current = headings.reduce((map, headingElement) => {
-        map[headingElement.target.id] = headingElement;
+        map[headingElement.target.id] = headingElement
 
-        return map;
-      }, headingElementsRef.current);
+        return map
+      }, headingElementsRef.current)
 
-      const visibleHeadings: IntersectionObserverEntry[] = [];
+      const visibleHeadings: IntersectionObserverEntry[] = []
 
       Object.keys(headingElementsRef.current).forEach((key) => {
-        const headingElement = headingElementsRef.current[key];
-        if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
-      });
+        const headingElement = headingElementsRef.current[key]
+        if (headingElement.isIntersecting) visibleHeadings.push(headingElement)
+      })
 
       const getIndexFromId = (id: string) =>
-        headingElements.findIndex((heading) => heading.id === id);
+        headingElements.findIndex((heading) => heading.id === id)
 
       if (visibleHeadings.length === 1) {
-        setActiveId(visibleHeadings[0].target.id);
+        setActiveId(visibleHeadings[0].target.id)
       } else if (visibleHeadings.length > 1) {
         const sortedVisibleHeadings = visibleHeadings.sort(
-          (a, b) => getIndexFromId(b.target.id) - getIndexFromId(a.target.id)
-        );
+          (a, b) => getIndexFromId(b.target.id) - getIndexFromId(a.target.id),
+        )
 
-        setActiveId(sortedVisibleHeadings[0].target.id);
+        setActiveId(sortedVisibleHeadings[0].target.id)
       }
-    };
+    }
 
     const observer = new IntersectionObserver(callback, {
       rootMargin: '0px 0px -70% 0px',
-    });
+    })
 
     const headingElements = Array.from(
-      document.querySelectorAll('article h2,h3')
-    );
+      document.querySelectorAll('article h2,h3'),
+    )
 
-    headingElements.forEach((element) => observer.observe(element));
+    headingElements.forEach((element) => observer.observe(element))
 
-    return () => observer.disconnect();
-  }, [setActiveId]);
-};
+    return () => observer.disconnect()
+  }, [setActiveId])
+}
 
 type Props = {
-  source: string;
-};
+  source: string
+}
 
 const TableOfContents = ({ source }: Props) => {
   const headingLines = source
     .split('\n')
-    .filter((line) => line.match(/^###?\s/));
+    .filter((line) => line.match(/^###?\s/))
 
   const headings = headingLines.map((raw) => {
-    const text = raw.replace(/^###*\s/, '');
-    const level = raw.slice(0, 3) === '###' ? 3 : 2;
-    const slugger = new GithubSlugger();
+    const text = raw.replace(/^###*\s/, '')
+    const level = raw.slice(0, 3) === '###' ? 3 : 2
+    const slugger = new GithubSlugger()
 
     return {
       id: slugger.slug(text),
       level,
       text,
-    };
-  });
+    }
+  })
 
-  const [activeId, setActiveId] = useState<string>();
+  const [activeId, setActiveId] = useState<string>()
 
-  useIntersectionObserver(setActiveId);
+  useIntersectionObserver(setActiveId)
 
   return (
     <div className="mt-10">
@@ -93,26 +93,26 @@ const TableOfContents = ({ source }: Props) => {
                   ? 'font-medium text-sky-500 hover:text-sky-600 dark:hover:text-sky-400'
                   : 'font-normal text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200',
                 heading.level === 3 && 'pl-4',
-                'mb-3 text-left text-sm hover:underline'
+                'mb-3 text-left text-sm hover:underline',
               )}
               key={index}
               onClick={(e) => {
-                e.preventDefault();
+                e.preventDefault()
                 document.querySelector(`#${heading.id}`)?.scrollIntoView({
                   behavior: 'smooth',
                   block: 'start',
                   inline: 'nearest',
-                });
+                })
               }}
               type="button"
             >
               {heading.text}
             </button>
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TableOfContents;
+export default TableOfContents

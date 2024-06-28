@@ -1,10 +1,11 @@
-import Image, { type ImageProps } from 'next/image';
+import Image from 'next/image'
+import type { ImageProps } from 'next/image'
 
-type CustomImageProps = ImageProps & { base64?: string };
+type CustomImageProps = ImageProps & { base64?: string }
 
 const imageStyle = {
   borderRadius: '6px',
-};
+}
 
 const CustomImage = ({
   alt,
@@ -14,7 +15,7 @@ const CustomImage = ({
   width,
   ...otherProps
 }: CustomImageProps) => {
-  if (!src) return null;
+  if (!src) return null
 
   if (typeof src === 'string' && (!height || !width)) {
     return (
@@ -27,7 +28,7 @@ const CustomImage = ({
         width={width}
         {...otherProps}
       />
-    );
+    )
   }
 
   return (
@@ -45,7 +46,7 @@ const CustomImage = ({
         {...otherProps}
       />
     </div>
-  );
-};
+  )
+}
 
-export default CustomImage;
+export default CustomImage

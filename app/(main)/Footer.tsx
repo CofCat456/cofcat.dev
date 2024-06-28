@@ -1,10 +1,10 @@
-import NextLink from 'next/link';
+import NextLink from 'next/link'
 
-import { GitHubBrandIcon } from '~/assets';
-import Link from '~/components/ui/Link';
-import { footerConfig } from '~/config/info';
-import { navigationItems } from '~/config/nav';
-import siteMetadata from '~/config/siteMetadata';
+import { GitHubBrandIcon } from '~/assets'
+import Link from '~/components/ui/Link'
+import { footerConfig } from '~/config/info'
+import { navigationItems } from '~/config/nav'
+import siteMetadata from '~/config/siteMetadata'
 
 function Links() {
   return (
@@ -15,7 +15,7 @@ function Links() {
         </Link>
       ))}
     </nav>
-  );
+  )
 }
 
 const Footer = () => {
@@ -50,7 +50,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

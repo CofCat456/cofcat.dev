@@ -1,9 +1,9 @@
 // contentlayer.config.ts
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
-import rehypeCodeTitles from 'rehype-code-titles';
-import rehypePrism from 'rehype-prism-plus';
-import rehypeSlug from 'rehype-slug';
-import remarkGfm from 'remark-gfm';
+import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrism from 'rehype-prism-plus'
+import rehypeSlug from 'rehype-slug'
+import remarkGfm from 'remark-gfm'
 
 export const Page = defineDocumentType(() => ({
   contentType: 'mdx',
@@ -15,7 +15,7 @@ export const Page = defineDocumentType(() => ({
   },
   filePathPattern: `**/*.mdx`,
   name: 'Page',
-}));
+}))
 
 export const Post = defineDocumentType(() => ({
   computedFields: {
@@ -38,7 +38,7 @@ export const Post = defineDocumentType(() => ({
   },
   filePathPattern: `**/*.mdx`,
   name: 'Post',
-}));
+}))
 
 export const Project = defineDocumentType(() => ({
   computedFields: {
@@ -60,7 +60,7 @@ export const Project = defineDocumentType(() => ({
   },
   filePathPattern: `**/*.mdx`,
   name: 'Project',
-}));
+}))
 
 export default makeSource({
   contentDirPath: 'content',
@@ -73,4 +73,4 @@ export default makeSource({
     ],
     remarkPlugins: [remarkGfm],
   },
-});
+})

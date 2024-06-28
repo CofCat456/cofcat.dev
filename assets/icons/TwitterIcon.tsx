@@ -1,4 +1,4 @@
-import { type IconProps } from '~/assets';
+import { type IconProps } from '~/assets'
 
 export function TwitterIcon(props: IconProps = {}) {
   return (
@@ -11,5 +11,5 @@ export function TwitterIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

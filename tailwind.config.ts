@@ -1,6 +1,5 @@
-import type { Config } from 'tailwindcss';
-
-import { fontFamily } from 'tailwindcss/defaultTheme';
+import { fontFamily } from 'tailwindcss/defaultTheme'
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
@@ -121,7 +120,7 @@ const config: Config = {
               transitionDuration: theme('transitionDuration.150'),
               transitionProperty: 'color, text-decoration-color',
               transitionTimingFunction: theme(
-                'transitionTimingFunction.in-out'
+                'transitionTimingFunction.in-out',
               ),
             },
             'a code': {
@@ -330,5 +329,5 @@ const config: Config = {
       }),
     },
   },
-};
-export default config;
+}
+export default config

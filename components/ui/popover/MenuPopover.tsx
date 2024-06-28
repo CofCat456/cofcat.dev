@@ -1,13 +1,14 @@
-'use clint';
+'use clint'
 
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { type PropsWithChildren, memo, useId, useMemo, useState } from 'react';
+import { memo, useId, useMemo, useState } from 'react'
+import clsx from 'clsx'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import type { PropsWithChildren } from 'react'
 
-import { type NavigationItem } from '~/config/nav';
+import { type NavigationItem } from '~/config/nav'
 
-import FloatPopover from './index';
+import FloatPopover from './index'
 
 const MenuPopover = memo(
   ({
@@ -15,12 +16,12 @@ const MenuPopover = memo(
     path,
     subMenu,
   }: PropsWithChildren<{
-    path: NavigationItem['path'];
-    subMenu: NavigationItem['subMenu'];
+    path: NavigationItem['path']
+    subMenu: NavigationItem['subMenu']
   }>) => {
-    const currentId = useId();
-    const TriggerComponent = useMemo(() => () => children, [children]);
-    if (!subMenu) return children;
+    const currentId = useId()
+    const TriggerComponent = useMemo(() => () => children, [children])
+    if (!subMenu) return children
 
     return (
       <FloatPopover
@@ -47,13 +48,13 @@ const MenuPopover = memo(
                 path={path + item.path}
                 title={item.title}
               />
-            );
+            )
           })}
       </FloatPopover>
-    );
-  }
-);
-MenuPopover.displayName = 'MenuPopover';
+    )
+  },
+)
+MenuPopover.displayName = 'MenuPopover'
 
 const Item = memo(
   ({
@@ -62,7 +63,7 @@ const Item = memo(
     path,
     title,
   }: NavigationItem & { currentId: string }) => {
-    const [isEnter, setIsEnter] = useState(false);
+    const [isEnter, setIsEnter] = useState(false)
 
     return (
       <Link
@@ -70,10 +71,10 @@ const Item = memo(
         href={path}
         key={title}
         onMouseEnter={() => {
-          setIsEnter(true);
+          setIsEnter(true)
         }}
         onMouseLeave={() => {
-          setIsEnter(false);
+          setIsEnter(false)
         }}
         role="button"
       >
@@ -85,15 +86,15 @@ const Item = memo(
             className={clsx(
               'absolute bottom-0 left-0 right-2 top-0 z-[-1] rounded-md',
               'bg-zinc-50 dark:bg-neutral-900',
-              'border border-zinc-200 dark:border-zinc-800'
+              'border border-zinc-200 dark:border-zinc-800',
             )}
             layoutId={currentId}
           />
         )}
       </Link>
-    );
-  }
-);
-Item.displayName = 'Item';
+    )
+  },
+)
+Item.displayName = 'Item'
 
-export default MenuPopover;
+export default MenuPopover

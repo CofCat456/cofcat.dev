@@ -1,16 +1,7 @@
-'use clint';
+'use clint'
 
+import { flip, offset, shift, useFloating } from '@floating-ui/react-dom'
 import {
-  type UseFloatingOptions,
-  flip,
-  offset,
-  shift,
-  useFloating,
-} from '@floating-ui/react-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import {
-  type FC,
-  type PropsWithChildren,
   cloneElement,
   createContext,
   createElement,
@@ -18,29 +9,32 @@ import {
   useEffect,
   useMemo,
   useState,
-} from 'react';
+} from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import type { UseFloatingOptions } from '@floating-ui/react-dom'
+import type { FC, PropsWithChildren } from 'react'
 
-import { RootPortal } from '~/components/ui/portal';
-import { clsxm } from '~/lib/helper';
+import { RootPortal } from '~/components/ui/portal'
+import { clsxm } from '~/lib/helper'
 
 type FloatPopoverProps<T> = PropsWithChildren<{
-  TriggerComponent: FC<T>;
-  as?: keyof JSX.IntrinsicElements;
-  offset?: number;
-  padding?: number;
-  popoverClassNames?: string;
-  popoverWrapperClassNames?: string;
-  to?: HTMLElement;
-  trigger?: 'both' | 'click' | 'hover';
-  triggerComponentProps?: T;
-  type?: 'popover' | 'tooltip';
-  wrapperClassName?: string;
+  TriggerComponent: FC<T>
+  as?: keyof JSX.IntrinsicElements
+  offset?: number
+  padding?: number
+  popoverClassNames?: string
+  popoverWrapperClassNames?: string
+  to?: HTMLElement
+  trigger?: 'both' | 'click' | 'hover'
+  triggerComponentProps?: T
+  type?: 'popover' | 'tooltip'
+  wrapperClassName?: string
 }> &
-  UseFloatingOptions;
+  UseFloatingOptions
 
 const PopoverActionContext = createContext<{
-  close: () => void;
-}>(null!);
+  close: () => void
+}>(null!)
 
 const FloatPopover = <T extends object>({
   TriggerComponent,
@@ -56,7 +50,7 @@ const FloatPopover = <T extends object>({
   wrapperClassName: wrapperClassNames,
   ...floatingProps
 }: FloatPopoverProps<T>) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const { isPositioned, refs, strategy, x, y } = useFloating({
     middleware: floatingProps.middleware ?? [
@@ -67,39 +61,39 @@ const FloatPopover = <T extends object>({
     placement: floatingProps.placement ?? 'bottom-start',
     strategy: floatingProps.strategy,
     whileElementsMounted: floatingProps.whileElementsMounted,
-  });
+  })
 
   const handlePopoverDisappear = useCallback(() => {
-    setOpen(false);
-  }, []);
+    setOpen(false)
+  }, [])
 
   const handlePopoverShow = useCallback(() => {
-    setOpen(true);
-  }, []);
+    setOpen(true)
+  }, [])
 
   const handleMouseOut = useCallback(() => {
-    handlePopoverDisappear();
-  }, [handlePopoverDisappear]);
+    handlePopoverDisappear()
+  }, [handlePopoverDisappear])
 
   const listener = useMemo(() => {
     switch (trigger) {
       case 'click':
         return {
           onClick: handlePopoverShow,
-        };
+        }
       case 'hover':
         return {
           onMouseOut: handlePopoverDisappear,
           onMouseOver: handlePopoverShow,
-        };
+        }
       case 'both':
         return {
           onClick: handlePopoverShow,
           onMouseOut: handleMouseOut,
           onMouseOver: handlePopoverShow,
-        };
+        }
     }
-  }, [handleMouseOut, handlePopoverDisappear, handlePopoverShow, trigger]);
+  }, [handleMouseOut, handlePopoverDisappear, handlePopoverShow, trigger])
 
   const TriggerWrapper = createElement(
     Component,
@@ -109,21 +103,21 @@ const FloatPopover = <T extends object>({
       role: trigger === 'both' || trigger === 'click' ? 'button' : 'note',
       ...listener,
     },
-    cloneElement(createElement(TriggerComponent, triggerComponentProps))
-  );
+    cloneElement(createElement(TriggerComponent, triggerComponentProps)),
+  )
 
   const actionCtxValue = useMemo(() => {
-    return { close: handlePopoverDisappear };
-  }, [handlePopoverDisappear]);
+    return { close: handlePopoverDisappear }
+  }, [handlePopoverDisappear])
 
   useEffect(() => {
     if (refs.floating.current && open && type === 'popover') {
-      refs.floating.current.focus();
+      refs.floating.current.focus()
     }
-  }, [open, refs.floating, type]);
+  }, [open, refs.floating, type])
 
   if (!children) {
-    return TriggerWrapper;
+    return TriggerWrapper
   }
 
   return (
@@ -137,7 +131,7 @@ const FloatPopover = <T extends object>({
               className={clsxm(
                 'float-popover',
                 'relative z-[99]',
-                popoverWrapperClassNames
+                popoverWrapperClassNames,
               )}
               {...(trigger === 'hover' || trigger === 'both' ? listener : {})}
             >
@@ -149,7 +143,7 @@ const FloatPopover = <T extends object>({
                   type === 'tooltip'
                     ? `max-w-[25rem] break-all rounded-xl px-4 py-2`
                     : '',
-                  popoverClassNames
+                  popoverClassNames,
                 )}
                 exit={{ opacity: 0, translateY: '10px' }}
                 initial={{ opacity: 0, translateY: '10px' }}
@@ -173,7 +167,7 @@ const FloatPopover = <T extends object>({
         )}
       </AnimatePresence>
     </>
-  );
-};
+  )
+}
 
-export default FloatPopover;
+export default FloatPopover

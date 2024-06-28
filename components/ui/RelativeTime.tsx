@@ -1,39 +1,39 @@
-'use client';
+'use client'
 
-import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
 
-import { parseDate, relativeTimeFromNow } from '~/lib/dateTime';
+import { parseDate, relativeTimeFromNow } from '~/lib/dateTime'
 
 const RelativeTime: React.FC<{
-  date: Date | number | string;
-  displayAbsoluteTimeAfterDay?: number;
+  date: Date | number | string
+  displayAbsoluteTimeAfterDay?: number
 }> = (props) => {
   const [relative, setRelative] = useState<string>(
-    relativeTimeFromNow(props.date)
-  );
+    relativeTimeFromNow(props.date),
+  )
 
-  const { displayAbsoluteTimeAfterDay = 29 } = props;
+  const { displayAbsoluteTimeAfterDay = 29 } = props
 
   useEffect(() => {
-    setRelative(relativeTimeFromNow(props.date));
+    setRelative(relativeTimeFromNow(props.date))
     const timer = setInterval(() => {
-      setRelative(relativeTimeFromNow(props.date));
-    }, 1000);
+      setRelative(relativeTimeFromNow(props.date))
+    }, 1000)
 
     if (
       Math.abs(dayjs(props.date).diff(new Date(), 'd')) >
       displayAbsoluteTimeAfterDay
     ) {
-      clearInterval(timer);
-      setRelative(parseDate(props.date, 'YYYY 年 M 月 D 日'));
+      clearInterval(timer)
+      setRelative(parseDate(props.date, 'YYYY 年 M 月 D 日'))
     }
     return () => {
-      clearInterval(timer);
-    };
-  }, [props.date, displayAbsoluteTimeAfterDay]);
+      clearInterval(timer)
+    }
+  }, [props.date, displayAbsoluteTimeAfterDay])
 
-  return <>{relative}</>;
-};
+  return <>{relative}</>
+}
 
-export default RelativeTime;
+export default RelativeTime

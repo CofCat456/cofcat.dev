@@ -1,26 +1,22 @@
-'use client';
+'use client'
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { type LinkProps } from 'next/link';
-import Link from 'next/link';
-import { type AnchorHTMLAttributes, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
+import type { LinkProps } from 'next/link'
+import { useState } from 'react'
+import type { AnchorHTMLAttributes } from 'react'
+import type { IconProps } from '~/assets'
 
-import {
-  GitHubIcon,
-  type IconProps,
-  MailIcon,
-  TwitterIcon,
-  YouTubeIcon,
-} from '~/assets';
-import { Tooltip } from '~/components/ui/Tooltip';
+import { GitHubIcon, MailIcon, TwitterIcon, YouTubeIcon } from '~/assets'
+import { Tooltip } from '~/components/ui/Tooltip'
 
-type IconType = (props: IconProps) => JSX.Element;
-type Platform = 'github' | 'mail' | 'twitter' | 'youtube';
+type IconType = (props: IconProps) => JSX.Element
+type Platform = 'github' | 'mail' | 'twitter' | 'youtube'
 type PlatformInfo = {
-  icon: IconType;
-  label: string;
-  platform: Platform;
-};
+  icon: IconType
+  label: string
+  platform: Platform
+}
 const iconMapper: { [key: string]: PlatformInfo } = {
   '((?:t.co)|(?:twitter.com))': {
     icon: TwitterIcon,
@@ -34,36 +30,36 @@ const iconMapper: { [key: string]: PlatformInfo } = {
   },
   '(?:github.com)': { icon: GitHubIcon, label: 'GitHub', platform: 'github' },
   '(?:mailto:)': { icon: MailIcon, label: '邮箱地址', platform: 'mail' },
-};
+}
 
 function getIconForUrl(url: string): PlatformInfo | undefined {
   for (const regexStr in iconMapper) {
     const regex = new RegExp(
-      `^(?:https?:\/\/)?(?:[^@/\\n]+@)?(?:www.)?` + regexStr
-    );
+      `^(?:https?:\/\/)?(?:[^@/\\n]+@)?(?:www.)?${regexStr}`,
+    )
     if (regex.test(url)) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return iconMapper[regexStr];
+      return iconMapper[regexStr]
     }
   }
 
-  return undefined;
+  return undefined
 }
 
 function getIconForPlatform(
-  platform: Platform | undefined
+  platform: Platform | undefined,
 ): PlatformInfo | undefined {
   if (!platform) {
-    return undefined;
+    return undefined
   }
 
   for (const info of Object.values(iconMapper)) {
     if (info.platform === platform) {
-      return info;
+      return info
     }
   }
 
-  return undefined;
+  return undefined
 }
 
 const SocialLink = ({
@@ -72,13 +68,13 @@ const SocialLink = ({
   ...props
 }: { platform?: Platform } & LinkProps &
   AnchorHTMLAttributes<HTMLAnchorElement>) => {
-  const [open, setOpen] = useState(false);
-  const info = getIconForPlatform(platform) ?? getIconForUrl(href.toString());
+  const [open, setOpen] = useState(false)
+  const info = getIconForPlatform(platform) ?? getIconForUrl(href.toString())
 
   if (!info) {
-    console.warn(`No icon found for ${href.toString()}`);
+    console.warn(`No icon found for ${href.toString()}`)
 
-    return <Link href={href} {...props} />;
+    return <Link href={href} {...props} />
   }
 
   return (
@@ -113,7 +109,7 @@ const SocialLink = ({
         </AnimatePresence>
       </Tooltip.Root>
     </Tooltip.Provider>
-  );
-};
+  )
+}
 
-export default SocialLink;
+export default SocialLink

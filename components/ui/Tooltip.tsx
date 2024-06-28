@@ -1,18 +1,17 @@
-'use client';
+'use client'
 
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
-import {
-  type ComponentPropsWithoutRef,
-  type ElementRef,
-  type PropsWithChildren,
-  type ReactNode,
-  forwardRef,
-  useState,
-} from 'react';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { forwardRef, useState } from 'react'
+import clsx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
+import type {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  PropsWithChildren,
+  ReactNode,
+} from 'react'
 
-const { Portal, Provider, Root, Trigger } = TooltipPrimitive;
+const { Portal, Provider, Root, Trigger } = TooltipPrimitive
 
 const TooltipContent = forwardRef<
   ElementRef<typeof TooltipPrimitive.Content>,
@@ -21,14 +20,14 @@ const TooltipContent = forwardRef<
   <TooltipPrimitive.Content
     className={clsx(
       'z-50 overflow-hidden rounded-md bg-gradient-to-b from-zinc-50/50 to-white/95 px-3 py-1.5 text-xs font-medium text-zinc-900 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-800/95 dark:text-zinc-200 dark:ring-white/10',
-      className
+      className,
     )}
     ref={ref}
     sideOffset={sideOffset}
     {...props}
   />
-));
-TooltipContent.displayName = TooltipPrimitive.Content.displayName;
+))
+TooltipContent.displayName = TooltipPrimitive.Content.displayName
 
 export const Tooltip = {
   Content: TooltipContent,
@@ -36,14 +35,14 @@ export const Tooltip = {
   Provider,
   Root,
   Trigger,
-} as const;
+} as const
 
 type ElegantTooltipProps = PropsWithChildren<{
-  content: ReactNode;
-}>;
+  content: ReactNode
+}>
 
 export function ElegantTooltip({ children, content }: ElegantTooltipProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
     <Tooltip.Provider delayDuration={0.2} disableHoverableContent>
@@ -66,5 +65,5 @@ export function ElegantTooltip({ children, content }: ElegantTooltipProps) {
         </AnimatePresence>
       </Tooltip.Root>
     </Tooltip.Provider>
-  );
+  )
 }

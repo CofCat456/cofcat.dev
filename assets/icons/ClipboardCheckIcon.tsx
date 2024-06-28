@@ -1,4 +1,4 @@
-import { type IconProps } from '~/assets';
+import { type IconProps } from '~/assets'
 
 export function ClipboardCheckIcon(props: IconProps = {}) {
   return (
@@ -18,5 +18,5 @@ export function ClipboardCheckIcon(props: IconProps = {}) {
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }

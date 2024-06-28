@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import { type PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react'
+import { motion } from 'framer-motion'
 
 type BottomToUpTransitionViewProps = PropsWithChildren<{
-  delay?: number;
-  duration?: number;
-}>;
+  delay?: number
+  duration?: number
+}>
 
 const BottomToUpTransitionView = ({
   children,
@@ -44,7 +44,7 @@ const BottomToUpTransitionView = ({
     >
       {children}
     </motion.li>
-  );
-};
+  )
+}
 
-export default BottomToUpTransitionView;
+export default BottomToUpTransitionView

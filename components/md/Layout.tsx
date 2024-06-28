@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import { type PropsWithChildren } from 'react';
-import { Balancer } from 'react-wrap-balancer';
+import { type PropsWithChildren } from 'react'
+import { Balancer } from 'react-wrap-balancer'
+import { motion } from 'framer-motion'
 
-import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, TagIcon } from '~/assets';
-import FABContainer from '~/components/FABContainer';
-import Comment from '~/components/md/Comment';
-import { Post } from '~/components/md/Post';
-import Link from '~/components/ui/Link';
-import RelativeTime from '~/components/ui/RelativeTime';
-import { type MarkdownPost } from '~/types';
+import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, TagIcon } from '~/assets'
+import FABContainer from '~/components/FABContainer'
+import Comment from '~/components/md/Comment'
+import { Post } from '~/components/md/Post'
+import Link from '~/components/ui/Link'
+import RelativeTime from '~/components/ui/RelativeTime'
+import { type MarkdownPost } from '~/types'
 
-import TableOfContents from './TableOfContents';
+import TableOfContents from './TableOfContents'
 
 export type RelatedMarkdownPostForPostLayout = {
-  path: string;
-  title: string;
-} | null;
+  path: string
+  title: string
+} | null
 
 type MarkdownLayoutProps<T> = PropsWithChildren<{
-  markdownPost: T;
-  nextMarkdownPost?: RelatedMarkdownPostForPostLayout;
-  prevMarkdownPost?: RelatedMarkdownPostForPostLayout;
-}>;
+  markdownPost: T
+  nextMarkdownPost?: RelatedMarkdownPostForPostLayout
+  prevMarkdownPost?: RelatedMarkdownPostForPostLayout
+}>
 
 export default function MarkdownLayout<T extends MarkdownPost>(
-  props: MarkdownLayoutProps<T>
+  props: MarkdownLayoutProps<T>,
 ) {
-  const { children, markdownPost, nextMarkdownPost, prevMarkdownPost } = props;
+  const { children, markdownPost, nextMarkdownPost, prevMarkdownPost } = props
 
   const {
     body: { raw },
@@ -37,7 +37,7 @@ export default function MarkdownLayout<T extends MarkdownPost>(
     tags,
     title,
     updatedAt,
-  } = markdownPost;
+  } = markdownPost
 
   return (
     <div className="mx-auto max-w-2xl lg:max-w-5xl">
@@ -183,5 +183,5 @@ export default function MarkdownLayout<T extends MarkdownPost>(
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,17 +1,18 @@
-'use client';
+'use client'
 
+import { useCallback, useState } from 'react'
 import {
   AnimatePresence,
+  motion,
   useMotionTemplate,
   useMotionValue,
-} from 'framer-motion';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { type MouseEvent, useCallback, useState } from 'react';
+} from 'framer-motion'
+import Image from 'next/image'
+import type { MouseEvent } from 'react'
 
-import { ExternalLinkIcon } from '~/assets';
-import { Card } from '~/components/ui/Card';
-import { type Link, type Project } from '~/config/projects';
+import { ExternalLinkIcon } from '~/assets'
+import { Card } from '~/components/ui/Card'
+import { type Link, type Project } from '~/config/projects'
 
 export function ProjectCard({ project }: { project: Project }) {
   const {
@@ -19,32 +20,32 @@ export function ProjectCard({ project }: { project: Project }) {
     image: { alt: imgAlt, src: imgLogo },
     links,
     title,
-  } = project;
+  } = project
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const radius = useMotionValue(0);
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const radius = useMotionValue(0)
   const handleMouseMove = useCallback(
     ({ clientX, clientY, currentTarget }: MouseEvent) => {
-      const bounds = currentTarget.getBoundingClientRect();
-      mouseX.set(clientX - bounds.left);
-      mouseY.set(clientY - bounds.top);
-      radius.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2);
+      const bounds = currentTarget.getBoundingClientRect()
+      mouseX.set(clientX - bounds.left)
+      mouseY.set(clientY - bounds.top)
+      radius.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2)
     },
-    [mouseX, mouseY, radius]
-  );
-  const maskBackground = useMotionTemplate`radial-gradient(circle ${radius}px at ${mouseX}px ${mouseY}px, black 40%, transparent)`;
-  const [isHovering, setIsHovering] = useState(false);
+    [mouseX, mouseY, radius],
+  )
+  const maskBackground = useMotionTemplate`radial-gradient(circle ${radius}px at ${mouseX}px ${mouseY}px, black 40%, transparent)`
+  const [isHovering, setIsHovering] = useState(false)
 
   const getLink = (links: Link) => {
-    const { github, post, site } = links;
+    const { github, post, site } = links
 
-    if (post) return post;
-    if (site) return site;
-    if (github) return github;
+    if (post) return post
+    if (site) return site
+    if (github) return github
 
-    return 'https://cofcat.com';
-  };
+    return 'https://cofcat.com'
+  }
 
   return (
     <Card
@@ -106,5 +107,5 @@ export function ProjectCard({ project }: { project: Project }) {
         )}
       </AnimatePresence>
     </Card>
-  );
+  )
 }

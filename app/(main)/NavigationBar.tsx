@@ -1,28 +1,24 @@
-'use client';
+'use client'
 
-import { Popover, type PopoverProps, Transition } from '@headlessui/react';
+import { Popover, Transition } from '@headlessui/react'
+import React, { Fragment, memo, useCallback } from 'react'
 import {
   AnimatePresence,
   LayoutGroup,
   motion,
   useMotionTemplate,
   useMotionValue,
-} from 'framer-motion';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React, {
-  Fragment,
-  type HTMLAttributes,
-  type MouseEvent,
-  type PropsWithChildren,
-  memo,
-  useCallback,
-} from 'react';
+} from 'framer-motion'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import type { PopoverProps } from '@headlessui/react'
+import type { NavigationItem } from '~/config/nav'
+import type { HTMLAttributes, MouseEvent, PropsWithChildren } from 'react'
 
-import { CloseIcon } from '~/assets';
-import MenuPopover from '~/components/ui/popover/MenuPopover';
-import { type NavigationItem, navigationItems } from '~/config/nav';
-import { clsxm } from '~/lib/helper';
+import { CloseIcon } from '~/assets'
+import MenuPopover from '~/components/ui/popover/MenuPopover'
+import { navigationItems } from '~/config/nav'
+import { clsxm } from '~/lib/helper'
 
 function AnimatedItem({
   children,
@@ -30,12 +26,12 @@ function AnimatedItem({
   href,
   isActive,
 }: PropsWithChildren<{
-  className?: string;
-  href: string;
-  isActive?: boolean;
+  className?: string
+  href: string
+  isActive?: boolean
 }>) {
-  const isExternal = href.startsWith('http');
-  const Component = isExternal ? 'a' : Link;
+  const isExternal = href.startsWith('http')
+  const Component = isExternal ? 'a' : Link
   return (
     <Component
       className={clsxm(
@@ -43,7 +39,7 @@ function AnimatedItem({
         isActive
           ? 'text-sky-600 dark:text-sky-400'
           : 'hover:text-sky-600 dark:hover:text-sky-400',
-        className
+        className,
       )}
       href={href}
       target={isExternal ? '_blank' : undefined}
@@ -52,14 +48,14 @@ function AnimatedItem({
       {isActive && (
         <motion.span
           className={clsxm(
-            'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-sky-700/0 via-sky-700/70 to-sky-700/0 dark:from-sky-400/0 dark:via-sky-400/40 dark:to-sky-400/0'
+            'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-sky-700/0 via-sky-700/70 to-sky-700/0 dark:from-sky-400/0 dark:via-sky-400/40 dark:to-sky-400/0',
           )}
           layoutId="active-nav-item"
           style={{ originY: '0px' }}
         />
       )}
     </Component>
-  );
+  )
 }
 
 const NavItem = memo(
@@ -68,11 +64,11 @@ const NavItem = memo(
     section,
     subItemActive,
   }: {
-    isActive: boolean;
-    section: NavigationItem;
-    subItemActive?: NavigationItem;
+    isActive: boolean
+    section: NavigationItem
+    subItemActive?: NavigationItem
   }) => {
-    const href = section.path;
+    const href = section.path
 
     return (
       <MenuPopover key={href} path={href} subMenu={section?.subMenu}>
@@ -97,26 +93,26 @@ const NavItem = memo(
           </span>
         </AnimatedItem>
       </MenuPopover>
-    );
-  }
-);
-NavItem.displayName = 'NavItem';
+    )
+  },
+)
+NavItem.displayName = 'NavItem'
 
 function Desktop({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  const pathname = usePathname();
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const radius = useMotionValue(0);
+  const pathname = usePathname()
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const radius = useMotionValue(0)
   const handleMouseMove = useCallback(
     ({ clientX, clientY, currentTarget }: MouseEvent) => {
-      const bounds = currentTarget.getBoundingClientRect();
-      mouseX.set(clientX - bounds.left);
-      mouseY.set(clientY - bounds.top);
-      radius.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2.5);
+      const bounds = currentTarget.getBoundingClientRect()
+      mouseX.set(clientX - bounds.left)
+      mouseY.set(clientY - bounds.top)
+      radius.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2.5)
     },
-    [mouseX, mouseY, radius]
-  );
-  const background = useMotionTemplate`radial-gradient(${radius}px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color) 0%, transparent 65%)`;
+    [mouseX, mouseY, radius],
+  )
+  const background = useMotionTemplate`radial-gradient(${radius}px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color) 0%, transparent 65%)`
 
   return (
     <LayoutGroup>
@@ -128,7 +124,7 @@ function Desktop({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
             'shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md',
             'dark:from-zinc-900/70 dark:to-zinc-800/90 dark:ring-zinc-100/10',
             '[--spotlight-color:rgb(224_242_254_/_0.6)] dark:[--spotlight-color:rgb(180_230_253_/_0.07)]',
-            className
+            className,
           )}
           onMouseMove={handleMouseMove}
           {...props}
@@ -146,8 +142,8 @@ function Desktop({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
                 section.subMenu?.findIndex((item) => {
                   return (
                     item.path === pathname || pathname.slice(1) === item.path
-                  );
-                }) ?? -1;
+                  )
+                }) ?? -1
 
               return (
                 <NavItem
@@ -161,26 +157,26 @@ function Desktop({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
                   section={section}
                   subItemActive={section.subMenu?.[subItemActive]}
                 />
-              );
+              )
             })}
           </div>
         </nav>
       </AnimatePresence>
     </LayoutGroup>
-  );
+  )
 }
 
 function MobileNavItem({
   children,
   href,
 }: PropsWithChildren<{
-  href: string;
+  href: string
 }>) {
   return (
     <Popover.Button as={Link} className="inline-block p-2 text-sm" href={href}>
       {children}
     </Popover.Button>
-  );
+  )
 }
 
 function Mobile(props: PopoverProps<'div'>) {
@@ -266,22 +262,22 @@ function Mobile(props: PopoverProps<'div'>) {
                                 {sub.title}
                               </MobileNavItem>
                             </li>
-                          );
+                          )
                         })}
                       </ul>
                     )}
                   </motion.section>
-                );
+                )
               })}
             </div>
           </Popover.Panel>
         </Transition.Child>
       </Transition.Root>
     </Popover>
-  );
+  )
 }
 
 export const NavigationBar = {
   Desktop,
   Mobile,
-} as const;
+} as const

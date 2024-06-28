@@ -1,4 +1,4 @@
-import { type IconProps } from '..';
+import { type IconProps } from '..'
 
 export function CloseIcon(props: IconProps = {}) {
   return (
@@ -12,5 +12,5 @@ export function CloseIcon(props: IconProps = {}) {
         strokeWidth="1.5"
       />
     </svg>
-  );
+  )
 }

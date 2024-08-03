@@ -1,11 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
-import type { LinkProps } from 'next/link'
-import { useState } from 'react'
-import type { AnchorHTMLAttributes } from 'react'
 import type { IconProps } from '~/assets'
+import type { LinkProps } from 'next/link'
+import type { AnchorHTMLAttributes } from 'react'
 
 import { GitHubIcon, MailIcon, TwitterIcon, YouTubeIcon } from '~/assets'
 import { Tooltip } from '~/components/ui/Tooltip'

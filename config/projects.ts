@@ -1,6 +1,7 @@
 import type { StaticImageData } from 'next/image'
 
 import CoffeeShop from '~/public/images/projects/CoffeeShop.png'
+import Dictionary from '~/public/images/projects/Dictionary.png'
 import Discord from '~/public/images/projects/Discord.png'
 import F2EMission1 from '~/public/images/projects/F2EMission1.png'
 import Inkdrop from '~/public/images/projects/Inkdrop.png'
@@ -10,7 +11,6 @@ import RNMail from '~/public/images/projects/RNMail.jpg'
 import TravelFun from '~/public/images/projects/TravelFun.png'
 import Voomap from '~/public/images/projects/Voomap.png'
 import YouBike from '~/public/images/projects/YouBike.png'
-import Dictionary from "~/public/images/projects/Dictionary.png";
 
 export type Link = {
   github: string
@@ -209,14 +209,14 @@ export const allProject: Project[] = [
   },
   {
     date: '2024-07-19',
-    description:
-      'Raycast 擴展，使用普通話詞典解釋文本。',
+    description: 'Raycast 擴展，使用普通話詞典解釋文本。',
     image: {
       alt: 'Dictionary',
       src: Dictionary,
     },
     links: {
-      github: 'https://github.com/CofCat456/raycast-mandarin-chinese-dictionary',
+      github:
+        'https://github.com/CofCat456/raycast-mandarin-chinese-dictionary',
       post: '',
       site: '',
     },

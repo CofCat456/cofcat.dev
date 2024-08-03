@@ -1,19 +1,19 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 import siteMetadata from '~/config/siteMetadata'
 
 const Avatar = () => {
-  const [isShowAvatar, setIsShowAvatar] = useState(false)
+  const [isShowAvatar] = useState(false)
 
-  const { siteLogo, siteLogoReal } = siteMetadata
+  const { siteLogo } = siteMetadata
 
-  const toggleShowAvatar = useCallback(() => {
-    setIsShowAvatar((preStatus) => !preStatus)
-  }, [])
+  // const toggleShowAvatar = useCallback(() => {
+  //   setIsShowAvatar((preStatus) => !preStatus)
+  // }, [])
 
   return (
     <motion.div
@@ -21,7 +21,6 @@ const Avatar = () => {
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
       key={isShowAvatar ? 'logo' : 'logoReal'}
-      onClick={toggleShowAvatar}
       transition={{ duration: 0.3, type: 'tween' }}
     >
       <Image
@@ -29,7 +28,7 @@ const Avatar = () => {
         height={200}
         priority
         quality={100}
-        src={isShowAvatar ? siteLogo : siteLogoReal}
+        src={siteLogo}
         width={200}
       />
     </motion.div>

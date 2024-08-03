@@ -24,7 +24,6 @@ const siteMetadata = {
   industry: 'front-end engineer 🧑🏻‍💻',
   motto: 'All you need is a notepad and the world becomes your canvas.',
   siteLogo: '/logo.jpg',
-  siteLogoReal: '/logo_real.jpg',
   siteUrl: 'https://www.cofcat.com',
   social: {
     email: 'mailto:a25690756@gmail.com',

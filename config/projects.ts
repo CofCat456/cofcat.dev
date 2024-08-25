@@ -11,6 +11,7 @@ import RNMail from '~/public/images/projects/RNMail.jpg'
 import TravelFun from '~/public/images/projects/TravelFun.png'
 import Voomap from '~/public/images/projects/Voomap.png'
 import YouBike from '~/public/images/projects/YouBike.png'
+import TakeShare from '~/public/images/projects/TakeShare.png'
 
 export type Link = {
   github: string
@@ -222,5 +223,21 @@ export const allProject: Project[] = [
     },
     pin: false,
     title: 'Mandarin Chinese Dictionary',
+  },
+  {
+    date: '2024-08-25',
+    description:
+      'IOS 的 App 作品，用於拍照後不需儲存即可分享，使用 React Native 完成。',
+    image: {
+      alt: 'TakeShare',
+      src: TakeShare,
+    },
+    links: {
+      github:'',
+      post: '',
+      site: 'https://apps.apple.com/tw/app/takeshare/id6615084408',
+    },
+    pin: false,
+    title: 'TakeShare',
   },
 ]
